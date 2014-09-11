@@ -264,7 +264,7 @@
     <Content Include="img\slider\bg-text.png" />
     <Content Include="img\slider\bg.jpg" />
     <Content Include="img\slider\bgold.jpg" />
-    <Content Include="img\slider\connecting-people.jpg" />
+    <Content Include="img\slider\connecting-people.png" />
     <Content Include="img\user.jpg" />
     <Content Include="Scripts\ai.js" />
     <Content Include="Scripts\bootstrap.js" />
