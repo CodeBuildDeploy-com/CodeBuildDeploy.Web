@@ -16,6 +16,9 @@ namespace MyWebSite.Controllers
 
         public ActionResult Contact()
         {
+            ViewBag.Title = "Contact";
+            ViewBag.Message = "Get in touch...";
+
             return View();
         }
 

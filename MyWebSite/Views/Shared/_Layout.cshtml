@@ -1,56 +1,110 @@
 ﻿<!DOCTYPE html>
-<html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mark Pollard Web</title>
-    @Styles.Render("~/Content/css")
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- CSS Global Compulsory -->
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/unify")
+
+    <!-- CSS Implementing Plugins -->
+    <!-- Add later
+    <link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">-->
+    @Styles.Render("~/Content/flexslider")
+    @Styles.Render("~/Content/parallaxslider")
+
+    <!-- CSS Theme (id should be style_color) -->
+    @Styles.Render("~/Content/unifythemes")
+
+    <!-- Can this be moved to the bottom -->
     @Scripts.Render("~/bundles/modernizr")
+    <script type="text/javascript">
+        window.appInsights = { queue: [], applicationInsightsId: null, accountId: null, appUserId: null, configUrl: null, start: function (n) { function u(n) { t[n] = function () { var i = arguments; t.queue.push(function () { t[n].apply(t, i) }) } } function f(n, t) { if (n) { var u = r.createElement(i); u.type = "text/javascript"; u.src = n; u.async = !0; u.onload = t; u.onerror = t; r.getElementsByTagName(i)[0].parentNode.appendChild(u) } else t() } var r = document, t = this, i; t.applicationInsightsId = n; u("logEvent"); u("logPageView"); i = "script"; f(t.configUrl, function () { f("//az416426.vo.msecnd.net/scripts/a/ai.0.7.js") }); t.start = function () { } } };
 
-<script type="text/javascript">
-    window.appInsights={queue:[],applicationInsightsId:null,accountId:null,appUserId:null,configUrl:null,start:function(n){function u(n){t[n]=function(){var i=arguments;t.queue.push(function(){t[n].apply(t,i)})}}function f(n,t){if(n){var u=r.createElement(i);u.type="text/javascript";u.src=n;u.async=!0;u.onload=t;u.onerror=t;r.getElementsByTagName(i)[0].parentNode.appendChild(u)}else t()}var r=document,t=this,i;t.applicationInsightsId=n;u("logEvent");u("logPageView");i="script";f(t.configUrl,function(){f("//az416426.vo.msecnd.net/scripts/a/ai.0.7.js")});t.start=function(){}}};
-
-    appInsights.start("a119c9ae-8fd1-48ca-81ca-bccb876e5d15");
-    appInsights.logPageView();
-</script></head>
+        appInsights.start("a119c9ae-8fd1-48ca-81ca-bccb876e5d15");
+        appInsights.logPageView();
+    </script>
+</head>
 <body>
-    <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Mark Pollard Web", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-    <div class="jumbotron">
-        <div class="container">
-            <h1>@ViewBag.Title.</h1>
-            <p class="lead">@ViewBag.Message</p>
-            <!--<p><a href="~/Home/About" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>-->
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - MarkPollardWeb</p>
-        </footer>
-    </div>
+    <div class="wrapper">
 
+        <div class="header">
+            <!-- Topbar -->
+            @{
+                Html.RenderPartial("_Topbar");
+            }
+            <!-- End Topbar -->
+            <!-- Navbar -->
+            @{
+                Html.RenderPartial("_Navbar");
+            }
+            <!-- End Navbar -->
+        </div>
+        <!--=== End Header ===-->
+
+        <!--=== Slider ===-->
+        @{
+            Html.RenderPartial("_Slider");
+        }
+        <!--=== End Slider ===-->
+
+        <!--=== Content Part ===-->
+        <div class="container content">
+            @RenderBody()
+        </div><!--/container-->
+        <!-- End Content Part -->
+
+        <!--=== Footer ===-->
+        @{
+            Html.RenderPartial("_Footer");
+        }
+        <!--=== End Footer ===-->
+
+        <!--=== Copyright ===-->
+        @{
+            Html.RenderPartial("_Copyright"); 
+        }
+        <!--=== End Copyright ===-->
+
+    </div><!--/wrapper-->
+
+    <!-- JS Global Compulsory -->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+
+    <!-- JS Implementing Plugins -->
+    @Scripts.Render("~/bundles/backtotop")
+    @Scripts.Render("~/bundles/flexslider")
+    @Scripts.Render("~/bundles/parallaxslider")
+
+    <!-- JS Page Level -->
+    @Scripts.Render("~/bundles/unify")
+    <script type="text/javascript" src="~/Scripts/unify/pages/index.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            App.init();
+            App.initSliders();
+            Index.initParallaxSlider();
+        });
+    </script>
+    <!--[if lt IE 9]>
+        @Scripts.Render("~/bundles/respond")
+        @Scripts.Render("~/bundles/html5shiv")
+    <![endif]-->
+    
     @RenderSection("scripts", required: false)
+
 </body>
 </html>
