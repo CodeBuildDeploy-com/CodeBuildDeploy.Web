@@ -249,6 +249,7 @@
     <Content Include="img\icons\social\xing.png" />
     <Content Include="img\icons\social\yahoo.png" />
     <Content Include="img\icons\social\youtube.png" />
+    <Content Include="img\logo1-default.jpg" />
     <Content Include="img\overlay-icon.png" />
     <Content Include="img\slider\arrows.png" />
     <Content Include="img\slider\bg-heading-aqua.png" />
@@ -265,6 +266,7 @@
     <Content Include="img\slider\bg.jpg" />
     <Content Include="img\slider\bgold.jpg" />
     <Content Include="img\slider\connecting-people.png" />
+    <Content Include="img\slider\me.jpg" />
     <Content Include="img\user.jpg" />
     <Content Include="Scripts\ai.js" />
     <Content Include="Scripts\bootstrap.js" />
