@@ -54,10 +54,16 @@
         </div>
         <!--=== End Header ===-->
 
-        <!--=== Content Part ===-->
+        <!--=== Midbars Part ===-->
         @{
-            Html.RenderPartial("_Content");
+            Html.RenderPartial("_Midbars");
         }        
+        <!-- End Midbars Part -->
+
+        <!--=== Content Part ===-->
+        <div class="container content">
+            @RenderBody()
+        </div><!--/container-->
         <!-- End Content Part -->
 
         <!--=== Footer ===-->

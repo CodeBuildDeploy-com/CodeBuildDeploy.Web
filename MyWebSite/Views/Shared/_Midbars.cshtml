@@ -1,0 +1,12 @@
+﻿<!--=== Slider ===-->
+@if (ViewContext.RouteData.Values["controller"].ToString() == "Home")
+{
+    Html.RenderPartial("_Slider");
+}
+<!--=== End Slider ===-->
+
+<!--=== Breadcrumbs ===-->
+@{
+    Html.RenderPartial("_Breadcrumbs");
+}
+<!--=== End Breadcrumbs ===-->

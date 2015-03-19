@@ -348,7 +348,8 @@
     <Content Include="Views\Shared\_Navbar.cshtml" />
     <Content Include="Views\Shared\_Contact.cshtml" />
     <Content Include="Views\Blog\PowerShellRemoting.cshtml" />
-    <Content Include="Views\Shared\_Content.cshtml" />
+    <Content Include="Views\Shared\_Midbars.cshtml" />
+    <Content Include="Views\Shared\_Breadcrumbs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
