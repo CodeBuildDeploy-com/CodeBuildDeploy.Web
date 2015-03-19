@@ -54,16 +54,10 @@
         </div>
         <!--=== End Header ===-->
 
-        <!--=== Slider ===-->
-        @{
-            Html.RenderPartial("_Slider");
-        }
-        <!--=== End Slider ===-->
-
         <!--=== Content Part ===-->
-        <div class="container content">
-            @RenderBody()
-        </div><!--/container-->
+        @{
+            Html.RenderPartial("_Content");
+        }        
         <!-- End Content Part -->
 
         <!--=== Footer ===-->
