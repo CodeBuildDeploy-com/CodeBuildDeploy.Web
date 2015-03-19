@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <!-- Enable the restore command to run before builds -->
+        <RestorePackages Condition="  '$(RestorePackages)' == '' ">false</RestorePackages>
+
+        <NuGetRootPath>$(MSBuildProjectDirectory)\..\</NuGetRootPath>
+        <NuGetToolsPath>$([System.IO.Path]::Combine($(NuGetRootPath), ".nuget"))</NuGetToolsPath>
+        <NuGetExePath Condition=" '$(NuGetExePath)' == '' ">$(NuGetToolsPath)\NuGet.exe</NuGetExePath>
+
+        <PackagesProjectConfig>$(MSBuildProjectDirectory)\packages.$(MSBuildProjectName.Replace(' ', '_')).config</PackagesProjectConfig>
+
+        <PackagesConfig Condition="Exists('$(MSBuildProjectDirectory)\packages.config')">$(MSBuildProjectDirectory)\packages.config</PackagesConfig>
+        <PackagesConfig Condition="Exists('$(PackagesProjectConfig)')">$(PackagesProjectConfig)</PackagesConfig>
+        
+        <RestoreCommand>NuGet install "$(PackagesConfig)" -NonInteractive</RestoreCommand>
+        
+        <!-- We need to ensure packages are restored prior to assembly resolve -->
+        <BuildDependsOn Condition="$(RestorePackages) == 'true'">
+            RestorePackages;
+            $(BuildDependsOn);
+        </BuildDependsOn>
+    </PropertyGroup>
+
+    <Target Name="CheckPrerequisites">
+        <!-- Raise an error if we're unable to locate nuget.exe  -->
+        <Error Condition="!Exists('$(NuGetExePath)')" Text="Unable to locate '$(NuGetExePath)'" />
+    </Target>
+
+    <Target Name="RestorePackages" DependsOnTargets="CheckPrerequisites">        
+        <Exec Command="$(RestoreCommand)"
+              WorkingDirectory="$(NuGetToolsPath)"
+              LogStandardErrorAsError="true"
+              Condition="Exists('$(PackagesConfig)')" />
+    </Target>
+</Project>

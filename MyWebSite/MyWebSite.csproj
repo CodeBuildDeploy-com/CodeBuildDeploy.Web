@@ -20,6 +20,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <RestorePackages>true</RestorePackages>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <ApplicationInsightsResourceId>/subscriptions/a8c29995-b368-4d2a-b32a-db619e53639d/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/MyWebSite</ApplicationInsightsResourceId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -219,6 +221,9 @@
     <Content Include="img\bg-black1.png" />
     <Content Include="img\bg-green.png" />
     <Content Include="img\bg-white.png" />
+    <Content Include="img\blog\libraries.jpg" />
+    <Content Include="img\blog\links.jpg" />
+    <Content Include="img\blog\tools.jpg" />
     <Content Include="img\breadcrumbs.png" />
     <Content Include="img\icons\social\amazon.png" />
     <Content Include="img\icons\social\behance.png" />
@@ -341,6 +346,7 @@
     <Content Include="Views\Shared\_Topbar.cshtml" />
     <Content Include="Views\Shared\_Navbar.cshtml" />
     <Content Include="Views\Shared\_Contact.cshtml" />
+    <Content Include="Views\Blog\PowerShellRemoting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -380,10 +386,11 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+  <Import Project="$(ProjectDir)..\.nuget\NuGet.targets" Condition="Exists('$(ProjectDir)..\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(ProjectDir)..\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(ProjectDir)..\.nuget\NuGet.targets'))" />
   </Target>
-  <Target Name="AfterBuild">
-  </Target> -->
 </Project>
