@@ -1,18 +1,33 @@
 ﻿<!-- Collect the nav links, forms, and other content for toggling -->
-<div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
+<div class="collapse navbar-collapse mega-menu navbar-responsive-collapse margin-top-20">
     <div class="container">
         <ul class="nav navbar-nav">
             <!-- Home -->
             <li class="dropdown active">
-                <!-- Html.ActionLink("Home", "Index", "Home", new { class = "dropdown-toggle", "data-toggle" = "dropdown" }) -->
-                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                    Home
-                </a>
-                <ul class="dropdown-menu">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                </ul>
+                @Html.ActionLink("Home", "Index", "Home")
             </li>
             <!-- End Home -->
+            <!-- Blog -->
+            <li class="dropdown">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                    Blog
+                </a>
+                <ul class="dropdown-menu">
+                    <!-- PowerShell Pages -->
+                    <li class="dropdown-submenu">
+                        <a href="javascript:void(0);">PowerShell</a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("PowerShell Remoting", "PowerShellRemoting", "Blog")</li>
+                            <li>@Html.ActionLink("PowerShell Policy", "PowerShellPolicy", "Blog")</li>
+                        </ul>
+                    </li>
+                    <!-- End PowerShell Pages -->
+                    <li>@Html.ActionLink("Tools", "Tools", "Home")</li>
+                    <li>@Html.ActionLink("Libraries", "Libraries", "Home")</li>
+                    <li>@Html.ActionLink("Links", "Links", "Home")</li>
+                </ul>
+            </li>
+            <!-- End Blog -->
             <!-- Pages -->
             <li class="dropdown">
                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
@@ -41,56 +56,33 @@
                     <li><a href="page_coming_soon.html">Coming Soon</a></li>
                     <!-- End Coming Soon -->
                     <!-- FAQs Pages -->
-                    <li class="dropdown-submenu">
-                        <a href="javascript:void(0);">FAQs Pages</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="page_faq1.html">FAQs Page</a></li>
-                            <li><a href="page_faq.html">FAQs Basic</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="javascript:void(0);">FAQs</a></li>
                     <!-- End FAQs Pages -->
                     <!-- Login and Registration -->
                     <li class="dropdown-submenu">
                         <a href="javascript:void(0);">Login and Registration</a>
                         <ul class="dropdown-menu">
-                            <li><a href="page_registration.html">Registration Page</a></li>
-                            <li><a href="page_login.html">Login Page</a></li>
-                            <li><a href="page_registration1.html">Registration Option</a></li>
-                            <li><a href="page_login1.html">Login Option</a></li>
+                            <li><a href="javascript:void(0);">Registration Page</a></li>
+                            <li><a href="javascript:void(0);">Login Page</a></li>
+                            <li><a href="javascript:void(0);">Registration Option</a></li>
+                            <li><a href="javascript:void(0);">Login Option</a></li>
                         </ul>
                     </li>
                     <!-- End Login and Registration -->
                     <!-- Privacy Policy -->
-                    <li><a href="page_privacy.html">Privacy Policy</a></li>
+                    <li><a href="javascript:void(0);">Privacy Policy</a></li>
                     <!-- End Privacy Policy -->
                     <!-- Terms Of Service -->
-                    <li><a href="page_terms.html">Terms Of Service</a></li>
+                    <li><a href="javascript:void(0);">Terms Of Service</a></li>
                     <!-- End Terms Of Service -->
                 </ul>
             </li>
             <!-- End Pages -->
-            <!-- Blog -->
-            <li class="dropdown">
-                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                    Blog
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Blog Page 1</a></li>
-                    <li><a href="#">Blog Page 2</a></li>
-                    <li><a href="#">Blog Page 3</a></li>
-                </ul>
-            </li>
-            <!-- End Blog -->
             <!-- Contacts -->
             <li class="dropdown">
-                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                <a href="javascript:void(0);">
                     Contacts
                 </a>
-                <ul class="dropdown-menu">
-                    <li><a href="page_contact1.html">Contacts Default</a></li>
-                    <li><a href="page_contact2.html">Contacts Option 1</a></li>
-                    <li><a href="page_contact3.html">Contacts Option 2</a></li>
-                </ul>
             </li>
             <!-- End Contacts -->
             <!-- Search Block

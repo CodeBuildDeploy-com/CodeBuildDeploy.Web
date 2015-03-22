@@ -1,6 +1,6 @@
 ﻿<div class="container">
     <!-- Logo -->
-    <a class="logo" href="@Url.Action("Index", "Home")">
+    <a class="navbar-brand" href="@Url.Action("Index", "Home")">
         <img src="@Url.Content("~/img/logo1-default.jpg")" alt="Logo">
     </a>
     <!-- End Logo -->
@@ -12,12 +12,12 @@
                 <a>Languages</a>
                 <ul class="languages hoverSelectorBlock">
                     <li class="active">
-                        <a href="#">English <i class="fa fa-check"></i></a>
+                        <a href="javascript:void(0);">English <i class="fa fa-check"></i></a>
                     </li>
                 </ul>
             </li>
             <li class="topbar-devider"></li>
-            <li><a href="page_faq.html">Help</a></li>
+            <li><a href="javascript:void(0);">Help</a></li>
             <li class="topbar-devider"></li>
             @{
                 Html.RenderPartial("_LoginPartial");
@@ -25,7 +25,6 @@
         </ul>
     </div>
     <!-- End Topbar -->
-    
     <!-- Toggle get grouped for better mobile display -->
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
         <span class="sr-only">Toggle navigation</span>
