@@ -370,6 +370,7 @@
     <Content Include="Views\Blog\PowerShellRemoting.cshtml" />
     <Content Include="Views\Shared\_Midbars.cshtml" />
     <Content Include="Views\Shared\_Breadcrumbs.cshtml" />
+    <Content Include="Views\Blog\PowerShellGrep.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

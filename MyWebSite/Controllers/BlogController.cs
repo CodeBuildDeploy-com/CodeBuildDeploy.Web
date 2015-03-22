@@ -8,5 +8,10 @@ namespace MyWebSite.Controllers
         {
             return View();
         }
+
+        public ActionResult PowerShellGrep()
+        {
+            return View();
+        }
     }
 }
