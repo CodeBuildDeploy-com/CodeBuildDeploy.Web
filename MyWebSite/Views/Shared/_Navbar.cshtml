@@ -1,124 +1,111 @@
-﻿<div class="navbar navbar-default" role="navigation">
+﻿<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
     <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="fa fa-bars"></span>
-            </button>
-            <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                <img id="logo-header" src="@Url.Content("~/img/logo1-default.jpg")" alt="Logo">
-            </a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-responsive-collapse">
-            <ul class="nav navbar-nav">
-                <!-- Home -->
-                <li class="dropdown active">
-                    <!-- Html.ActionLink("Home", "Index", "Home", new { class = "dropdown-toggle", "data-toggle" = "dropdown" }) -->
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                        Home
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    </ul>
-                </li>
-                <!-- End Home -->
-                <!-- Pages -->
-                <li class="dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                        Pages
-                    </a>
-                    <ul class="dropdown-menu">
-                        <!-- About Pages -->
-                        <li class="dropdown-submenu">
-                            <a href="javascript:void(0);">About Pages</a>
-                            <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("About Me", "About", "Home")</li>
-                                <li>@Html.ActionLink("Contact Me", "Contact", "Home")</li>
-                                <li class="dropdown-submenu">
-                                    <a href="javascript:void(0);">About Our Team</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a target="_blank" href="#">Mark</a></li>
-                                        <li><a target="_blank" href="#">Jacqueline</a></li>
-                                        <li><a target="_blank" href="#">Lewis</a></li>
-                                        <li><a target="_blank" href="#">Summer</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- End About Pages -->
-                        <!-- Coming Soon -->
-                        <li><a href="page_coming_soon.html">Coming Soon</a></li>
-                        <!-- End Coming Soon -->
-                        <!-- FAQs Pages -->
-                        <li class="dropdown-submenu">
-                            <a href="javascript:void(0);">FAQs Pages</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="page_faq1.html">FAQs Page</a></li>
-                                <li><a href="page_faq.html">FAQs Basic</a></li>
-                            </ul>
-                        </li>
-                        <!-- End FAQs Pages -->
-                        <!-- Login and Registration -->
-                        <li class="dropdown-submenu">
-                            <a href="javascript:void(0);">Login and Registration</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="page_registration.html">Registration Page</a></li>
-                                <li><a href="page_login.html">Login Page</a></li>
-                                <li><a href="page_registration1.html">Registration Option</a></li>
-                                <li><a href="page_login1.html">Login Option</a></li>
-                            </ul>
-                        </li>
-                        <!-- End Login and Registration -->
-                        <!-- Privacy Policy -->
-                        <li><a href="page_privacy.html">Privacy Policy</a></li>
-                        <!-- End Privacy Policy -->
-                        <!-- Terms Of Service -->
-                        <li><a href="page_terms.html">Terms Of Service</a></li>
-                        <!-- End Terms Of Service -->
-                    </ul>
-                </li>
-                <!-- End Pages -->
-                <!-- Blog -->
-                <li class="dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                        Blog
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Blog Page 1</a></li>
-                        <li><a href="#">Blog Page 2</a></li>
-                        <li><a href="#">Blog Page 3</a></li>
-                    </ul>
-                </li>
-                <!-- End Blog -->
-                <!-- Contacts -->
-                <li class="dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                        Contacts
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="page_contact1.html">Contacts Default</a></li>
-                        <li><a href="page_contact2.html">Contacts Option 1</a></li>
-                        <li><a href="page_contact3.html">Contacts Option 2</a></li>
-                    </ul>
-                </li>
-                <!-- End Contacts -->
-                <!-- Search Block 
-                <li>
-                    <i class="search fa fa-search search-btn"></i>
-                    <div class="search-open">
-                        <div class="input-group animated fadeInDown">
-                            <input type="text" class="form-control" placeholder="Search">
-                            <span class="input-group-btn">
-                                <button class="btn-u" type="button">Go</button>
-                            </span>
-                        </div>
+        <ul class="nav navbar-nav">
+            <!-- Home -->
+            <li class="dropdown active">
+                <!-- Html.ActionLink("Home", "Index", "Home", new { class = "dropdown-toggle", "data-toggle" = "dropdown" }) -->
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                    Home
+                </a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                </ul>
+            </li>
+            <!-- End Home -->
+            <!-- Pages -->
+            <li class="dropdown">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                    Pages
+                </a>
+                <ul class="dropdown-menu">
+                    <!-- About Pages -->
+                    <li class="dropdown-submenu">
+                        <a href="javascript:void(0);">About Pages</a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("About Me", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact Me", "Contact", "Home")</li>
+                            <li class="dropdown-submenu">
+                                <a href="javascript:void(0);">About Our Team</a>
+                                <ul class="dropdown-menu">
+                                    <li><a target="_blank" href="#">Mark</a></li>
+                                    <li><a target="_blank" href="#">Jacqueline</a></li>
+                                    <li><a target="_blank" href="#">Lewis</a></li>
+                                    <li><a target="_blank" href="#">Summer</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- End About Pages -->
+                    <!-- Coming Soon -->
+                    <li><a href="page_coming_soon.html">Coming Soon</a></li>
+                    <!-- End Coming Soon -->
+                    <!-- FAQs Pages -->
+                    <li class="dropdown-submenu">
+                        <a href="javascript:void(0);">FAQs Pages</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="page_faq1.html">FAQs Page</a></li>
+                            <li><a href="page_faq.html">FAQs Basic</a></li>
+                        </ul>
+                    </li>
+                    <!-- End FAQs Pages -->
+                    <!-- Login and Registration -->
+                    <li class="dropdown-submenu">
+                        <a href="javascript:void(0);">Login and Registration</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="page_registration.html">Registration Page</a></li>
+                            <li><a href="page_login.html">Login Page</a></li>
+                            <li><a href="page_registration1.html">Registration Option</a></li>
+                            <li><a href="page_login1.html">Login Option</a></li>
+                        </ul>
+                    </li>
+                    <!-- End Login and Registration -->
+                    <!-- Privacy Policy -->
+                    <li><a href="page_privacy.html">Privacy Policy</a></li>
+                    <!-- End Privacy Policy -->
+                    <!-- Terms Of Service -->
+                    <li><a href="page_terms.html">Terms Of Service</a></li>
+                    <!-- End Terms Of Service -->
+                </ul>
+            </li>
+            <!-- End Pages -->
+            <!-- Blog -->
+            <li class="dropdown">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                    Blog
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Blog Page 1</a></li>
+                    <li><a href="#">Blog Page 2</a></li>
+                    <li><a href="#">Blog Page 3</a></li>
+                </ul>
+            </li>
+            <!-- End Blog -->
+            <!-- Contacts -->
+            <li class="dropdown">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                    Contacts
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="page_contact1.html">Contacts Default</a></li>
+                    <li><a href="page_contact2.html">Contacts Option 1</a></li>
+                    <li><a href="page_contact3.html">Contacts Option 2</a></li>
+                </ul>
+            </li>
+            <!-- End Contacts -->
+            <!-- Search Block
+            <li>
+                <i class="search fa fa-search search-btn"></i>
+                <div class="search-open">
+                    <div class="input-group animated fadeInDown">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+                            <button class="btn-u" type="button">Go</button>
+                        </span>
                     </div>
-                </li>-->
-                <!-- End Search Block -->
-            </ul>
-        </div><!--/navbar-collapse-->
-    </div>
+                </div>
+            </li>-->
+            <!-- End Search Block -->
+        </ul>
+    </div><!--/navbar-collapse-->
 </div>

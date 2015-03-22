@@ -17,7 +17,8 @@ namespace MyWebSite
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
             bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
-                      "~/Content/bootstrap.css"));
+                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-theme.css"));
 
             // Browser support
             bundles.Add(new ScriptBundle("~/bundles/respond").Include(
@@ -34,17 +35,23 @@ namespace MyWebSite
             bundles.Add(new StyleBundle("~/bundles/backtotop").Include(
                       "~/Scripts/plugins/back-to-top.js"));
 
-            // FlexSlider bundles
-            bundles.Add(new StyleBundle("~/bundles/flexslider").Include(
-                      "~/Scripts/plugins/flexslider/jquery.flexslider.js"));
-            bundles.Add(new StyleBundle("~/Content/flexslider").Include(
-                      "~/Content/plugins/flexslider/flexslider.css"));
+            // BackToTop bundles
+            bundles.Add(new StyleBundle("~/bundles/smoothScroll").Include(
+                      "~/Scripts/plugins/smoothScroll.js"));
 
-            // FlexSlider bundles
+            // ParallaxSlider bundles
             bundles.Add(new StyleBundle("~/bundles/parallaxslider").Include(
-                      "~/Scripts/plugins/parallax-slider/jquery.cslider.js"));
+                      "~/Scripts/plugins/parallax-slider/jquery.cslider.js",
+                      "~/Scripts/plugins/parallax-slider/parallax-slider.js"));
             bundles.Add(new StyleBundle("~/Content/parallaxslider").Include(
                       "~/Content/plugins/parallax-slider/parallax-slider.css"));
+
+            // OwlCarousel bundles
+            bundles.Add(new StyleBundle("~/bundles/owlcarousel").Include(
+                      "~/Scripts/plugins/owl-carousel/owl-carousel.js",
+                      "~/Scripts/plugins/owl-carousel/owl.carousel.js"));
+            bundles.Add(new StyleBundle("~/Content/owlcarousel").Include(
+                      "~/Content/plugins/owl-carousel/owl.carousel.css"));
 
             // Unify bundles
             bundles.Add(new StyleBundle("~/bundles/unify").Include(
@@ -55,9 +62,12 @@ namespace MyWebSite
                       "~/Content/unify/ie8.css",
                       "~/Content/plugins/animate.css",
                       "~/Content/plugins/box-shadows.css",
-                      "~/Content/unify/style.css"));
+                      "~/Content/unify/style.css",
+                      "~/Content/unify/blocks.css"));
             bundles.Add(new StyleBundle("~/Content/unifythemes").Include(
-                      "~/Content/unify/themes/default.css"));
+                      "~/Content/unify/headers/header-default.css",
+                      "~/Content/unify/footers/footer-default.css",
+                      "~/Content/unify/theme-colors/brown.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

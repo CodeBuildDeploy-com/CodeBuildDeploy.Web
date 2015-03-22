@@ -13,6 +13,9 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon.ico">
+    
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
 
     <!-- CSS Global Compulsory -->
     @Styles.Render("~/Content/bootstrap")
@@ -20,10 +23,11 @@
 
     <!-- CSS Implementing Plugins -->
     <!-- Add later
+    <link rel="stylesheet" href="assets/plugins/animate.css">
     <link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
     <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">-->
-    @Styles.Render("~/Content/flexslider")
     @Styles.Render("~/Content/parallaxslider")
+    @Styles.Render("~/Content/owlcarousel")
 
     <!-- CSS Theme (id should be style_color) -->
     @Styles.Render("~/Content/unifythemes")
@@ -65,18 +69,21 @@
             @RenderBody()
         </div><!--/container-->
         <!-- End Content Part -->
-
-        <!--=== Footer ===-->
-        @{
-            Html.RenderPartial("_Footer");
-        }
-        <!--=== End Footer ===-->
-
-        <!--=== Copyright ===-->
-        @{
-            Html.RenderPartial("_Copyright"); 
-        }
-        <!--=== End Copyright ===-->
+    
+        <!--=== Footer Version 1 ===-->
+        <div class="footer-default">
+            <!--=== Footer ===-->
+            @{
+                Html.RenderPartial("_Footer");
+            }
+            <!--=== End Footer ===-->
+            <!--=== Copyright ===-->
+            @{
+                Html.RenderPartial("_Copyright");
+            }
+            <!--=== End Copyright ===-->
+        </div>
+        <!--=== End Footer Version 1 ===-->
 
     </div><!--/wrapper-->
 
@@ -86,8 +93,9 @@
 
     <!-- JS Implementing Plugins -->
     @Scripts.Render("~/bundles/backtotop")
-    @Scripts.Render("~/bundles/flexslider")
+    @Scripts.Render("~/bundles/smoothScroll")
     @Scripts.Render("~/bundles/parallaxslider")
+    @Scripts.Render("~/bundles/owlcarousel")
 
     <!-- JS Page Level -->
     @Scripts.Render("~/bundles/unify")
@@ -95,8 +103,8 @@
     <script type="text/javascript">
         jQuery(document).ready(function () {
             App.init();
-            App.initSliders();
-            Index.initParallaxSlider();
+            OwlCarousel.initOwlCarousel();
+            ParallaxSlider.initParallaxSlider();
         });
     </script>
     <!--[if lt IE 9]>

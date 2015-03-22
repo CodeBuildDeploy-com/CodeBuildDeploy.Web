@@ -193,27 +193,49 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\plugins\animate.css" />
     <Content Include="Content\plugins\box-shadows.css" />
-    <Content Include="Content\plugins\flexslider\flexslider.css" />
+    <Content Include="Content\plugins\owl-carousel\owl.carousel.css" />
+    <Content Include="Content\plugins\owl-carousel\owl.theme.css" />
     <Content Include="Content\plugins\parallax-slider\parallax-slider.css" />
     <Content Include="Content\unify\app.css" />
+    <Content Include="Content\unify\blocks.css" />
+    <Content Include="Content\unify\footers\footer-default.css" />
+    <Content Include="Content\unify\footers\footer-v1.css" />
+    <Content Include="Content\unify\footers\footer-v2.css" />
+    <Content Include="Content\unify\footers\footer-v3.css" />
+    <Content Include="Content\unify\footers\footer-v4.css" />
+    <Content Include="Content\unify\footers\footer-v5.css" />
+    <Content Include="Content\unify\footers\footer-v6.css" />
+    <Content Include="Content\unify\footers\footer-v7.css" />
+    <Content Include="Content\unify\headers\header-default.css" />
+    <Content Include="Content\unify\headers\header-v1.css" />
+    <Content Include="Content\unify\headers\header-v2.css" />
+    <Content Include="Content\unify\headers\header-v3.css" />
+    <Content Include="Content\unify\headers\header-v4.css" />
+    <Content Include="Content\unify\headers\header-v5.css" />
+    <Content Include="Content\unify\headers\header-v6.css" />
+    <Content Include="Content\unify\headers\header-v7.css" />
     <Content Include="Content\unify\ie8.css" />
     <Content Include="Content\unify\plugins.css" />
     <Content Include="Content\unify\style.css" />
-    <Content Include="Content\unify\themes\aqua.css" />
-    <Content Include="Content\unify\themes\blue.css" />
-    <Content Include="Content\unify\themes\brown.css" />
-    <Content Include="Content\unify\themes\dark-blue.css" />
-    <Content Include="Content\unify\themes\dark.css" />
-    <Content Include="Content\unify\themes\default.css" />
-    <Content Include="Content\unify\themes\light-green.css" />
-    <Content Include="Content\unify\themes\light.css" />
-    <Content Include="Content\unify\themes\orange.css" />
-    <Content Include="Content\unify\themes\purple.css" />
-    <Content Include="Content\unify\themes\red.css" />
+    <Content Include="Content\unify\theme-colors\aqua.css" />
+    <Content Include="Content\unify\theme-colors\blue.css" />
+    <Content Include="Content\unify\theme-colors\brown.css" />
+    <Content Include="Content\unify\theme-colors\dark-blue.css" />
+    <Content Include="Content\unify\theme-colors\dark-red.css" />
+    <Content Include="Content\unify\theme-colors\default.css" />
+    <Content Include="Content\unify\theme-colors\light-green.css" />
+    <Content Include="Content\unify\theme-colors\light.css" />
+    <Content Include="Content\unify\theme-colors\orange.css" />
+    <Content Include="Content\unify\theme-colors\purple.css" />
+    <Content Include="Content\unify\theme-colors\red.css" />
+    <Content Include="Content\unify\theme-colors\teal.css" />
+    <Content Include="Content\unify\theme-skins\dark.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -256,18 +278,10 @@
     <Content Include="img\icons\social\yahoo.png" />
     <Content Include="img\icons\social\youtube.png" />
     <Content Include="img\logo1-default.jpg" />
+    <Content Include="img\map-img-v1.png" />
+    <Content Include="img\map-img.png" />
     <Content Include="img\overlay-icon.png" />
     <Content Include="img\slider\arrows.png" />
-    <Content Include="img\slider\bg-heading-aqua.png" />
-    <Content Include="img\slider\bg-heading-blue.png" />
-    <Content Include="img\slider\bg-heading-brown.png" />
-    <Content Include="img\slider\bg-heading-dark-blue.png" />
-    <Content Include="img\slider\bg-heading-light-green.png" />
-    <Content Include="img\slider\bg-heading-light.png" />
-    <Content Include="img\slider\bg-heading-orange.png" />
-    <Content Include="img\slider\bg-heading-purple.png" />
-    <Content Include="img\slider\bg-heading-red.png" />
-    <Content Include="img\slider\bg-heading.png" />
     <Content Include="img\slider\bg-text.png" />
     <Content Include="img\slider\bg.jpg" />
     <Content Include="img\slider\bgold.jpg" />
@@ -280,21 +294,28 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Scripts\jquery-1.11.2.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <None Include="Scripts\jquery-1.11.2-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.11.2.js" />
+    <Content Include="Scripts\jquery-1.11.2.min.js" />
     <Content Include="Scripts\jquery-migrate-1.2.1.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\plugins\back-to-top.js" />
-    <Content Include="Scripts\plugins\flexslider\jquery.flexslider-min.js" />
-    <Content Include="Scripts\plugins\flexslider\jquery.flexslider.js" />
     <Content Include="Scripts\plugins\html5shiv.js" />
+    <Content Include="Scripts\plugins\owl-carousel\owl-carousel.js" />
+    <Content Include="Scripts\plugins\owl-carousel\owl.carousel.js" />
+    <Content Include="Scripts\plugins\owl-carousel\owl.carousel.min.js" />
     <Content Include="Scripts\plugins\parallax-slider\jquery.cslider.js" />
+    <Content Include="Scripts\plugins\parallax-slider\parallax-slider.js" />
+    <Content Include="Scripts\plugins\smoothScroll.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\unify\app.js" />
@@ -314,7 +335,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
@@ -389,11 +409,11 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="$(ProjectDir)..\.nuget\NuGet.targets" Condition="Exists('$(ProjectDir)..\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('$(ProjectDir)..\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(ProjectDir)..\.nuget\NuGet.targets'))" />
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
   </Target>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
 </Project>
