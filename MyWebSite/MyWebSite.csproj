@@ -187,12 +187,19 @@
     <Compile Include="Helpers\GravatarHelper.cs" />
     <Compile Include="Helpers\GravatarOptions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BlogsViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BlogRepository.cs" />
+    <Compile Include="Repositories\IBlogsRepository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\dbo.Category.sql" />
+    <Content Include="App_Data\dbo.Post.sql" />
+    <Content Include="App_Data\dbo.PostTag.sql" />
+    <Content Include="App_Data\dbo.Tag.sql" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -373,7 +380,6 @@
     <Content Include="Views\Blog\PowerShellGrep.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="img\logo\" />
   </ItemGroup>
   <ItemGroup>
@@ -381,6 +387,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyWebSite.DataAccess\MyWebSite.DataAccess.csproj">
+      <Project>{bfd5fb71-d65a-4231-820b-59c4b12087f6}</Project>
+      <Name>MyWebSite.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
