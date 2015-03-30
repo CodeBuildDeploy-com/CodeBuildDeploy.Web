@@ -14,10 +14,21 @@
             _session = session;
         }
 
+        public IList<Category> AllCategories()
+        {
+            return _session.Categories.Where(c => c.Posts.Any()).ToList();
+        }
+
+        public IList<Post> AllPosts()
+        {
+            return _session.Posts.Where(p => p.Published)
+                    .OrderByDescending(p => p.PostedOn)
+                    .ToList();
+        }
+
         public IList<Post> Posts(int pageNo, int pageSize)
         {
-            return
-                _session.Posts.Where(p => p.Published)
+            return _session.Posts.Where(p => p.Published)
                     .OrderByDescending(p => p.PostedOn)
                     .Skip(pageNo * pageSize)
                     .Take(pageSize)
