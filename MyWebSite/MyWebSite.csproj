@@ -370,9 +370,9 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\Tools.cshtml" />
-    <Content Include="Views\Home\Libraries.cshtml" />
-    <Content Include="Views\Home\Links.cshtml" />
+    <Content Include="Views\Blog\Tools.cshtml" />
+    <Content Include="Views\Blog\ViewBlogEntry.cshtml" />
+    <Content Include="Views\Blog\Links.cshtml" />
     <Content Include="Views\Shared\_Copyright.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_Slider.cshtml" />

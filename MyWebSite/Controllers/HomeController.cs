@@ -21,20 +21,5 @@ namespace MyWebSite.Controllers
 
             return View();
         }
-
-        public ActionResult Tools()
-        {
-            return View();
-        }
-
-        public ActionResult Libraries()
-        {
-            return View();
-        }
-
-        public ActionResult Links()
-        {
-            return View();
-        }
     }
 }

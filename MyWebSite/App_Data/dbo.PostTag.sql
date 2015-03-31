@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[PostTag]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY, 
     [Post_Id] INT NOT NULL, 
     [Tag_Id] INT NOT NULL, 
     CONSTRAINT [FK_PostTag_Post] FOREIGN KEY ([Post_Id]) REFERENCES [Post]([Id]), 
