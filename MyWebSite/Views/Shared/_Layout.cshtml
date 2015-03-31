@@ -22,10 +22,10 @@
     @Styles.Render("~/Content/unify")
 
     <!-- CSS Implementing Plugins -->
-    <!-- Add later
-    <link rel="stylesheet" href="assets/plugins/animate.css">
-    <link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
-    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">-->
+    @Styles.Render("~/Content/animate")
+    @Styles.Render("~/Content/boxShaddows")
+    @Styles.Render("~/Content/lineIcons")
+    @Styles.Render("~/Content/fontAwesome")
     @Styles.Render("~/Content/parallaxslider")
     @Styles.Render("~/Content/owlcarousel")
 
@@ -65,9 +65,7 @@
         <!-- End Midbars Part -->
 
         <!--=== Content Part ===-->
-        <div class="container content">
-            @RenderBody()
-        </div><!--/container-->
+        @RenderBody()
         <!-- End Content Part -->
     
         <!--=== Footer Version 1 ===-->

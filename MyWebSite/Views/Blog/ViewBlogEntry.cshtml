@@ -1,4 +1,38 @@
 ﻿@model MyWebSite.DataAccess.Post
-<p>
-    @Html.Raw(Model.Content)
-</p>
+
+<!--=== Blog Posts ===-->
+<div class="bg-color-light">
+    <div class="container content-sm">
+        <!-- News v3 -->
+        <div class="news-v3 margin-bottom-30">
+            <div class="news-v3-in">
+                <ul class="list-inline posted-info">
+                    <li>By <a href="#">Mark Pollard</a></li>
+                    <li>In <a href="#">Design</a></li>
+                    <li>Posted @Model.PostedOn.ToString("dddd, dd MMMM yyyy")</li>
+                </ul>
+                <h2>@Model.Title</h2>
+                @Html.Raw(Model.Content)
+            </div>
+        </div>
+        <!-- End News v3 -->
+    
+        <!-- Blog Post Author -->
+        <div class="blog-author margin-bottom-30">
+            <img src="/img/logo1-default.jpg" alt="">
+            <div class="blog-author-desc">
+                <div class="overflow-h">
+                    <h4>Mark Pollard</h4>
+                    <ul class="list-inline">
+                        <li><a href="https://www.facebook.com/m4rkpollard"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://twitter.com/m4rk5"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://plus.google.com/100391612500164447413/posts"><i class="fa fa-google-plus"></i></a></li>
+                    </ul>
+                </div>
+                <p>In auctor fringilla turpis eu rhoncus. Vivamus quis nisi vel dui ultrices lacinia ac eu massa. Quis que vitae consequat sapien. Vivamus sit amet tincidunt ipsum, nec blandit ipsum. Lorem ipsu m dolor sit amet, consectetur adipiscing elit...</p>
+            </div>
+        </div>
+        <!-- End Blog Post Author -->
+    </div><!--/end container-->
+</div>
+<!--=== End Blog Posts ===-->

@@ -11,6 +11,9 @@
         public virtual int Id { get; set; }
 
         [StringLength(50)]
+        public virtual string UrlSlug { get; set; }
+
+        [StringLength(50)]
         public virtual string Title { get; set; }
 
         [StringLength(50)]

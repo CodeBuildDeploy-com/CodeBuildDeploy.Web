@@ -17,15 +17,15 @@
                     <li class="dropdown-submenu">
                         <a href="javascript:void(0);">PowerShell</a>
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("PowerShell Remoting", "PowerShellRemoting", "Blog")</li>
-                            <li>@Html.ActionLink("PowerShell Grep", "PowerShellGrep", "Blog")</li>
-                            <li>@Html.ActionLink("PowerShell Policy", "PowerShellPolicy", "Blog")</li>
+                            <li>@Html.ActionLink("PowerShell Remoting", "ViewBlogEntry", "Blog", new { urlSlug = "PowerShellRemoting" }, null)</li>
+                            <li>@Html.ActionLink("PowerShell Grep", "ViewBlogEntry", "Blog", new { urlSlug = "PowerShellGrep" }, null)</li>
+                            <li>@Html.ActionLink("PowerShell Policy", "ViewBlogEntry", "Blog", new { urlSlug = "PowerShellPolicy" }, null)</li>
                         </ul>
                     </li>
                     <!-- End PowerShell Pages -->
-                    <li>@Html.ActionLink("Tools", "Tools", "Blog")</li>
-                    <li>@Html.ActionLink("Libraries", "ViewBlogEntry", "Blog", new { title="libraries" }, null)</li>
-                    <li>@Html.ActionLink("Links", "Links", "Blog")</li>
+                    <li>@Html.ActionLink("Tools", "ViewBlogEntry", "Blog", new { urlSlug = "tools" }, null)</li>
+                    <li>@Html.ActionLink("Libraries", "ViewBlogEntry", "Blog", new { urlSlug = "libraries" }, null)</li>
+                    <li>@Html.ActionLink("Links", "ViewBlogEntry", "Blog", new { urlSlug = "links" }, null)</li>
                 </ul>
             </li>
             <!-- End Blog -->
