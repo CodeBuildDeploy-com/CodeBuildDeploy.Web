@@ -79,7 +79,8 @@ namespace MyWebSite
                       //"~/Content/unify/blocks.css", // This is provided by style.css
                       "~/Content/unify/style.css",
                       "~/Content/unify/headers/header-default.css",
-                      "~/Content/unify/footers/footer-default.css"));
+                      "~/Content/unify/footers/footer-default.css",
+                      "~/Content/unify/custom.css"));
             bundles.Add(new StyleBundle("~/Content/unifythemes").Include(
                       "~/Content/unify/theme-colors/brown.css"));
 

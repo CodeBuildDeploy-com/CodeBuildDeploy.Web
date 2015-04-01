@@ -31,6 +31,8 @@
 
     <!-- CSS Theme (id should be style_color) -->
     @Styles.Render("~/Content/unifythemes")
+    
+    @RenderSection("styles", required: false)
 
     <!-- Can this be moved to the bottom -->
     @Scripts.Render("~/bundles/modernizr")
@@ -98,6 +100,9 @@
     <!-- JS Page Level -->
     @Scripts.Render("~/bundles/unify")
     <script type="text/javascript" src="~/Scripts/unify/pages/index.js"></script>
+    
+    @RenderSection("scripts", required: false)
+
     <script type="text/javascript">
         jQuery(document).ready(function () {
             App.init();
@@ -109,8 +114,6 @@
         @Scripts.Render("~/bundles/respond")
         @Scripts.Render("~/bundles/html5shiv")
     <![endif]-->
-    
-    @RenderSection("scripts", required: false)
 
 </body>
 </html>

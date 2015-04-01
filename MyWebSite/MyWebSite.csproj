@@ -213,6 +213,7 @@
     <Content Include="Plugins\box-shadows.css" />
     <Content Include="Content\unify\app.css" />
     <Content Include="Content\unify\blocks.css" />
+    <Content Include="Content\unify\custom.css" />
     <Content Include="Content\unify\footers\footer-default.css" />
     <Content Include="Content\unify\footers\footer-v1.css" />
     <Content Include="Content\unify\footers\footer-v2.css" />
@@ -230,6 +231,7 @@
     <Content Include="Content\unify\headers\header-v6.css" />
     <Content Include="Content\unify\headers\header-v7.css" />
     <Content Include="Content\unify\ie8.css" />
+    <Content Include="Content\unify\pages\page_log_reg_v1.css" />
     <Content Include="Content\unify\plugins.css" />
     <Content Include="Content\unify\style.css" />
     <Content Include="Content\unify\theme-colors\aqua.css" />
@@ -272,6 +274,7 @@
     <Content Include="img\icons\social\jolicloud.png" />
     <Content Include="img\icons\social\last-fm.png" />
     <Content Include="img\icons\social\linkedin.png" />
+    <Content Include="img\icons\social\microsoft.png" />
     <Content Include="img\icons\social\picasa.png" />
     <Content Include="img\icons\social\pintrest.png" />
     <Content Include="img\icons\social\rss.png" />

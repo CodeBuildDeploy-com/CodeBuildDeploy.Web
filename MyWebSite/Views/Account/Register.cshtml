@@ -2,40 +2,58 @@
 @{
     ViewBag.Title = "Register";
 }
-
-<h2>@ViewBag.Title.</h2>
-
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@section styles
 {
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
+    @Styles.Render("~/Content/unify/pages/page_log_reg_v1.css")
 }
+<div class="container content">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "reg-page", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="reg-header">
+                    <h2>Sign Up</h2>
+                    <p>Already Signed Up? Click @Html.ActionLink("Sign in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "color-green" }) to login your account.</p>
+                </div>
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                @Html.LabelFor(m => m.FirstName)
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control margin-bottom-20" })
+
+                @Html.LabelFor(m => m.LastName)
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control margin-bottom-20" })
+
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control margin-bottom-20" })
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        @Html.LabelFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control margin-bottom-20" })
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.LabelFor(m => m.ConfirmPassword)
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    <div class="col-lg-6 checkbox">
+                        <label>
+                            <input type="checkbox">
+                            I read <a href="javascript:void(0);" class="color-green">Terms and Conditions</a>
+                        </label>
+                    </div>
+                    <div class="col-lg-6 text-right">
+                        <button class="btn-u" type="submit">Register</button>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div><!--/container-->	
