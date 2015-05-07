@@ -3,6 +3,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+
+using MyWebSite.DataAccess;
+using MyWebSite.Identity;
+
 using Owin;
 using MyWebSite.Models;
 
