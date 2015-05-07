@@ -9,6 +9,7 @@
     using Microsoft.Owin.Security;
     using Microsoft.Practices.Unity;
     using MyWebSite.Models;
+    using MyWebSite.ViewModels.Account;
 
     [Authorize]
     public class AccountController : Controller
