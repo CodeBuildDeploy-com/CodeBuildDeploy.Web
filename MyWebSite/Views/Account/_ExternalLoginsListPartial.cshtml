@@ -1,4 +1,6 @@
 ﻿@model MyWebSite.ViewModels.Account.ExternalLoginListViewModel
+@using System.Linq
+@using System.Web
 @using Microsoft.Owin.Security
 
 @{
@@ -6,35 +8,36 @@
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
     if (loginProviders.Any())
     {
-        //using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl }))
-        //{
-            //@Html.AntiForgeryToken()
-            <ul class="social-icons text-center">
-            @foreach (AuthenticationDescription p in loginProviders)
+        using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl }, FormMethod.Post, new { id = "externalLoginForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" id="provider" name="provider" value="Microsoft" />
+        }
+        <ul class="social-icons text-center">
+        @foreach (AuthenticationDescription p in loginProviders)
+        {
+            if (p.AuthenticationType == "Microsoft")
             {
-                if (p.AuthenticationType == "Microsoft")
-                {
-                    //<button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
-                    <li><a class="rounded-x social_microsoft" data-original-title="@p.AuthenticationType" href="javascript:void(0);"></a></li>
-                }
-                else if (p.AuthenticationType == "Facebook")
-                {
-                    <li><a class="rounded-x social_facebook" data-original-title="@p.AuthenticationType" href="javascript:void(0);"></a></li>
-                }
-                else if (p.AuthenticationType == "Twitter")
-                {
-                    <li><a class="rounded-x social_twitter" data-original-title="@p.AuthenticationType" href="javascript:void(0);"></a></li>
-                }
-                else if (p.AuthenticationType == "googleplus")
-                {
-                    <li><a class="rounded-x social_googleplus" data-original-title="Google Plus" href="javascript:void(0);"></a></li>
-                }
-                else if (p.AuthenticationType == "linkedin")
-                {
-                    <li><a class="rounded-x social_linkedin" data-original-title="Linkedin" href="javascript:void(0);"></a></li>
-                }
+                //<button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
+                <li><a class="rounded-x social_microsoft" data-original-title="@p.AuthenticationType" href="javascript:$('#externalLoginForm').submit();"></a></li>
             }
-            </ul>
-        //}
+            else if (p.AuthenticationType == "Facebook")
+            {
+                <li><a class="rounded-x social_facebook" data-original-title="@p.AuthenticationType" href="javascript:void(0);"></a></li>
+            }
+            else if (p.AuthenticationType == "Twitter")
+            {
+                <li><a class="rounded-x social_twitter" data-original-title="@p.AuthenticationType" href="javascript:void(0);"></a></li>
+            }
+            else if (p.AuthenticationType == "googleplus")
+            {
+                <li><a class="rounded-x social_googleplus" data-original-title="Google Plus" href="javascript:void(0);"></a></li>
+            }
+            else if (p.AuthenticationType == "linkedin")
+            {
+                <li><a class="rounded-x social_linkedin" data-original-title="Linkedin" href="javascript:void(0);"></a></li>
+            }
+        }
+        </ul>
     }
 }

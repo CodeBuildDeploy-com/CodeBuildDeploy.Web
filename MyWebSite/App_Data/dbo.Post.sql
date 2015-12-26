@@ -27,7 +27,7 @@ INSERT INTO [dbo].[Post] ([Id], [Title], [ShortDescription], [Description], [Con
         <li><a href="http://www.hanselman.com/" target="_blank">Scott Hanselman</a></li>
     </ul>
 </p>', 1, N'2015-03-31 00:00:00', N'2015-03-31 00:00:00', 3, N'Links')
-INSERT INTO [dbo].[Post] ([Id], [Title], [ShortDescription], [Description], [Content], [Published], [PostedOn], [Modified], [Category_Id], [UrlSlug]) VALUES (5, N'Tools', N'My favourite software tools', N'This section lists the tools I freaqiuently use. Some are development tools others utility tools making general day to day working easier.', N'<p>
+INSERT INTO [dbo].[Post] ([Id], [Title], [ShortDescription], [Description], [Content], [Published], [PostedOn], [Modified], [Category_Id], [UrlSlug]) VALUES (5, N'Tools', N'My favourite software tools', N'This section lists the tools I frequently use. Some are development tools others utility tools making general day to day working easier.', N'<p>
     <p>Ok, so everyone has their favourite tools right?.. You know when you get a new machine and 
        there''s that nice long list of tools you install on it with all the latest versions.
        Well this is my lists. Some are development tools, others just general utility tools that
@@ -51,6 +51,9 @@ INSERT INTO [dbo].[Post] ([Id], [Title], [ShortDescription], [Description], [Con
         </li>
         <li>
             <a href="https://github.com/bmatzelle/gow/wiki" target="_blank" class="text-info">GOW (Gnu on Windows)</a> - The alternative to cygwin for linux on windows.
+        </li>
+        <li>
+            <a href="https://github.com/cmderdev/cmder" target="_blank" class="text-info">Cmder</a> - Decent Terminal on windows.
         </li>
     </ul>
     <h4>Source Control</h4>
