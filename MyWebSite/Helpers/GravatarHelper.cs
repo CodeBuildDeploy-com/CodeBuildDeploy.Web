@@ -1,10 +1,10 @@
-﻿namespace MyWebSite.Helpers
-{
-    using System.Security.Cryptography;
-    using System.Text;
-    using System.Web;
-    using System.Web.Mvc;
+﻿using System.Security.Cryptography;
+using System.Text;
+using System.Web;
+using System.Web.Mvc;
 
+namespace MyWebSite.Helpers
+{
     public static class GravatarHelper
     {
         public static HtmlString GravatarImage(this HtmlHelper htmlHelper, string emailAddress, GravatarOptions options = null)

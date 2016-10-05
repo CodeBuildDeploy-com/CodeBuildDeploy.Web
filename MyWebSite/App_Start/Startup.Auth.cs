@@ -8,7 +8,6 @@ using MyWebSite.DataAccess;
 using MyWebSite.Identity;
 
 using Owin;
-using MyWebSite.Models;
 
 namespace MyWebSite
 {

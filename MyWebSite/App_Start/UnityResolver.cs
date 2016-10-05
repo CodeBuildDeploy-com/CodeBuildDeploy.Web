@@ -1,10 +1,11 @@
-﻿namespace MyWebSite
-{
-    using Microsoft.Practices.Unity;
-    using System;
-    using System.Collections.Generic;
-    using System.Web.Http.Dependencies;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.Http.Dependencies;
 
+using Microsoft.Practices.Unity;
+
+namespace MyWebSite
+{
     public class UnityResolver : IDependencyResolver
     {
         private readonly IUnityContainer _container;

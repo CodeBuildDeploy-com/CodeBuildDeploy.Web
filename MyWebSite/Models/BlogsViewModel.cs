@@ -1,10 +1,10 @@
-﻿namespace MyWebSite.Models
+﻿using System.Collections.Generic;
+
+using MyWebSite.DataAccess;
+using MyWebSite.Repositories;
+
+namespace MyWebSite.Models
 {
-    using System.Collections.Generic;
-
-    using MyWebSite.DataAccess;
-    using MyWebSite.Repositories;
-
     public class BlogsViewModel
     {
         public BlogsViewModel(IBlogRepository blogRepository, int p)

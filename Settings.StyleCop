@@ -130,7 +130,7 @@
         </Rule>
         <Rule Name="ElementMustBeginWithUpperCaseLetter">
           <RuleSettings>
-            <BooleanProperty Name="Enabled">True</BooleanProperty>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
           </RuleSettings>
         </Rule>
         <Rule Name="ElementMustBeginWithLowerCaseLetter">

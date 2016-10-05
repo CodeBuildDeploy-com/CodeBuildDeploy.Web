@@ -6,7 +6,6 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 
 using MyWebSite.DataAccess;
-using MyWebSite.Models;
 
 namespace MyWebSite.Identity
 {

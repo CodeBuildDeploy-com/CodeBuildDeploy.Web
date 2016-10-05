@@ -1,17 +1,17 @@
-﻿namespace MyWebSite
+﻿using System;
+using System.Linq;
+using System.Net.Http;
+using System.Reflection;
+using System.Web.Http.Controllers;
+using System.Web.Http.Dispatcher;
+using System.Web.Mvc;
+using System.Web.Routing;
+using System.Web.SessionState;
+
+using Microsoft.Practices.Unity;
+
+namespace MyWebSite
 {
-    using System;
-    using System.Linq;
-    using System.Net.Http;
-    using System.Reflection;
-    using System.Web.Http.Controllers;
-    using System.Web.Http.Dispatcher;
-    using System.Web.Mvc;
-    using System.Web.Routing;
-    using System.Web.SessionState;
-
-    using Microsoft.Practices.Unity;
-
     public class HttpControllerActivator : IHttpControllerActivator, IControllerFactory
     {
         private readonly IUnityContainer _container;

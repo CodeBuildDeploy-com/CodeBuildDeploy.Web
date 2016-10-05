@@ -1,8 +1,8 @@
-﻿namespace MyWebSite.DataAccess
-{
-    using System.Data.Entity;
-    using System.Data.Entity.ModelConfiguration.Conventions;
+﻿using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
+namespace MyWebSite.DataAccess
+{
     public class DAContext : DbContext
     {
         public DAContext()

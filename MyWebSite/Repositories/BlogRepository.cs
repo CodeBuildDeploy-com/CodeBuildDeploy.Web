@@ -1,10 +1,10 @@
-﻿namespace MyWebSite.Repositories
+﻿using System.Collections.Generic;
+using System.Linq;
+
+using MyWebSite.DataAccess;
+
+namespace MyWebSite.Repositories
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using MyWebSite.DataAccess;
-
     public class BlogRepository : IBlogRepository
     {
         private readonly DAContext _session;

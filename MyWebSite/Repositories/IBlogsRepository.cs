@@ -1,8 +1,9 @@
-﻿namespace MyWebSite.Repositories
-{
-    using System.Collections.Generic;
-    using MyWebSite.DataAccess;
+﻿using System.Collections.Generic;
 
+using MyWebSite.DataAccess;
+
+namespace MyWebSite.Repositories
+{
     public interface IBlogRepository
     {
         IList<Category> AllCategories();

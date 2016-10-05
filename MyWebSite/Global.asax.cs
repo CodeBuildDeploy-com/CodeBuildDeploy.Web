@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Dispatcher;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
+using Microsoft.Practices.Unity;
+
 using MyWebSite.Controllers;
+using MyWebSite.DataAccess;
+using MyWebSite.Repositories;
 
 using NLog;
 
 namespace MyWebSite
 {
-    using System.Web.Http.Dispatcher;
-
-    using Microsoft.Practices.Unity;
-
-    using MyWebSite.DataAccess;
-    using MyWebSite.Repositories;
-
     public class MvcApplication : HttpApplication
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();

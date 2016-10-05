@@ -1,8 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-using Elmah;
-
 using NLog;
 
 namespace MyWebSite
@@ -58,10 +56,6 @@ namespace MyWebSite
 
             // Log the exception in NLog
             Logger.Error("Exception caight in ApplicationHandleErrorAttribute", filterContext.Exception);
-
-            // Signal ELMAH to log the exception
-            if (filterContext.ExceptionHandled)
-                ErrorSignal.FromCurrentContext().Raise(filterContext.Exception);
 
             filterContext.ExceptionHandled = true;
             filterContext.HttpContext.Response.Clear();

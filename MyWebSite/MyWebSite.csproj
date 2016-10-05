@@ -23,6 +23,7 @@
     <RestorePackages>true</RestorePackages>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <ApplicationInsightsResourceId>/subscriptions/a8c29995-b368-4d2a-b32a-db619e53639d/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/MyWebSite</ApplicationInsightsResourceId>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,12 +43,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Elmah">
-      <HintPath>..\Packages\elmah.corelibrary.1.2\lib\Elmah.dll</HintPath>
-    </Reference>
-    <Reference Include="Elmah.Mvc">
-      <HintPath>..\Packages\Elmah.MVC.2.1.2\lib\net40\Elmah.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ApplicationInsights">
       <HintPath>..\packages\Microsoft.ApplicationInsights.0.9.0-build06428\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
     </Reference>
