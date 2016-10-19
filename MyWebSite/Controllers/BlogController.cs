@@ -1,14 +1,13 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+
+using MyWebSite.DataAccess;
+using MyWebSite.Models;
+using MyWebSite.Repositories;
 
 namespace MyWebSite.Controllers
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using MyWebSite.DataAccess;
-    using MyWebSite.Models;
-    using MyWebSite.Repositories;
-
     public class BlogController : Controller
     {
         private readonly IBlogRepository _blogsRepository;
