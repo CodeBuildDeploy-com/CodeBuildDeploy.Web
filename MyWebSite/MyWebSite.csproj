@@ -450,6 +450,11 @@
     <Content Include="Views\Shared\_Midbars.cshtml" />
     <Content Include="Views\Shared\_Breadcrumbs.cshtml" />
     <Content Include="Views\Shared\NotFound.cshtml" />
+    <Content Include="Views\Blog\Links.cshtml" />
+    <Content Include="Views\Blog\PowerShellGrep.cshtml" />
+    <Content Include="Views\Blog\PowerShellRemoting.cshtml" />
+    <Content Include="Views\Blog\Tools.cshtml" />
+    <Content Include="Views\Blog\Libraries.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="img\logo\" />
