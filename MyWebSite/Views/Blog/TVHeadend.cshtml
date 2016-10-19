@@ -1,0 +1,21 @@
+﻿<p>
+    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61<br />
+    echo "deb https://dl.bintray.com/tvheadend/deb vivid stable" | sudo tee -a /etc/apt/sources.list<br />
+    sudo apt-get update<br />
+    sudo apt-get install tvheadend<br />
+    <br />
+    User = XX<br />
+    Password = XXX<br />
+    <br />
+    To configure:<br />
+    <ul>
+        <li>Create Network</li>
+        <li>Set Network in adapters and enable adapters</li>
+        <li>Map Services (Disable all services that you dont want)</li>
+        <li>Enable the West York Bouquet</li>
+        <li>Select settings on EPG grabber</li>
+        <li>Now go through Channels</li>
+    </ul>
+
+    Test: http://host:9981/<br />
+</p>

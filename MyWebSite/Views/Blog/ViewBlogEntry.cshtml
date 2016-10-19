@@ -12,7 +12,9 @@
                     <li>Posted @Model.PostedOn.ToString("dddd, dd MMMM yyyy")</li>
                 </ul>
                 <h2>@Model.Title</h2>
-                @Html.Raw(Model.Content)
+                @{
+                    Html.RenderPartial(Model.UrlSlug);
+                }
             </div>
         </div>
         <!-- End News v3 -->

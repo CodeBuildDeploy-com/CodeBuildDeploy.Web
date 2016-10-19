@@ -129,23 +129,25 @@ INSERT INTO [dbo].[Post] ([Id], [Title], [ShortDescription], [Description], [Con
 </p>', 1, N'2015-05-31 00:00:00', N'2015-05-31 00:00:00', 5, N'PowerShellRemoting')
 INSERT INTO [dbo].[Post] ([Id], [Title], [ShortDescription], [Description], [Content], [Published], [PostedOn], [Modified], [Category_Id], [UrlSlug]) 
 VALUES (7, N'Install TVHeadend', N'How to install TVHeadend.', N'How to install TVHeadend.', N'<p>
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
-echo "deb https://dl.bintray.com/tvheadend/deb vivid stable" | sudo tee -a /etc/apt/sources.list
-sudo apt-get update
-sudo apt-get install tvheadend
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61<br />
+echo "deb https://dl.bintray.com/tvheadend/deb vivid stable" | sudo tee -a /etc/apt/sources.list<br />
+sudo apt-get update<br />
+sudo apt-get install tvheadend<br />
+<br />
+User = XX<br />
+Password = XXX<br />
+<br />
+To configure:<br />
+<ul>
+<li>Create Network</li>
+<li>Set Network in adapters and enable adapters</li>
+<li>Map Services (Disable all services that you dont want)</li>
+<li>Enable the West York Bouquet</li>
+<li>Select settings on EPG grabber</li>
+<li>Now go through Channels</li>
+</ul>
 
-User = XX
-Password = XXX
-
-To configure:
-	• Create Network
-	• Set Network in adapters and enable adapters
-	• Map Services (Disable all services that you dont want)
-	• Enable the West York Bouquet
-	• Select settings on EPG grabber
-	• Now go through Channels
-
-Test: http://host:9981/
+Test: http://host:9981/<br />
 </p>', 1, N'2015-10-19 00:00:00', N'2015-10-19 00:00:00', 6, N'TVHeadend')
 
 SET IDENTITY_INSERT [dbo].[Post] OFF
