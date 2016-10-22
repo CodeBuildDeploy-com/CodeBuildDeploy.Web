@@ -455,6 +455,7 @@
     <Content Include="Views\Blog\PowerShellRemoting.cshtml" />
     <Content Include="Views\Blog\Tools.cshtml" />
     <Content Include="Views\Blog\Libraries.cshtml" />
+    <Content Include="Views\Blog\MySql.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="img\logo\" />

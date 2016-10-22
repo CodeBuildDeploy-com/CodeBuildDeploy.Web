@@ -1,0 +1,10 @@
+﻿<code>sudo apt-get install mysql-server</code><br />
+Create a password when asked<br />
+<code>sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf</code><br />
+Modify bind-address to 0.0.0.0<br />
+<code>sudo service mysql start</code><br />
+<code>mysql -u root -p</code><br />
+<code>CREATE USER 'kodi' IDENTIFIED BY 'kodi';</code><br />
+<code>GRANT ALL ON *.* TO 'kodi';</code><br />
+<code>flush privileges;</code>
+<code>\q</code>
