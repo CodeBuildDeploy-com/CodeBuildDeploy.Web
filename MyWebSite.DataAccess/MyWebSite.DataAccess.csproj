@@ -1,6 +1,6 @@
-﻿<Project ToolsVersion="15.0" Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net46</TargetFramework>
+    <TargetFramework>net461</TargetFramework>
     <AssemblyName>MyWebSite.DataAccess</AssemblyName>
     <AssemblyTitle>$(AssemblyName)</AssemblyTitle>
     <RootNamespace>$(AssemblyName)</RootNamespace>
@@ -9,15 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="node_modules\**" />
-    <EmbeddedResource Remove="node_modules\**" />
-    <None Remove="node_modules\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="EntityFramework" Version="6.1.1" />
-    <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.1.0" />
-    <PackageReference Include="Microsoft.AspNet.Identity.EntityFramework" Version="2.1.0" />
+    <PackageReference Include="EntityFramework" Version="6.4.0" />
+    <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.3" />
+    <PackageReference Include="Microsoft.AspNet.Identity.EntityFramework" Version="2.2.3" />
   </ItemGroup>
 
   <ItemGroup>

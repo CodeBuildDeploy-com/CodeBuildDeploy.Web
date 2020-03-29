@@ -43,7 +43,7 @@ namespace MyWebSite.Identity
             }
             catch (Exception ex)
             {
-                Logger.Error("Failed to create Web transport.", ex);
+                Logger.Error(ex, "Failed to create Web transport.");
             }
             await Task.FromResult(0);
         }

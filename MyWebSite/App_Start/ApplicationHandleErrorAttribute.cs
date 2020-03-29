@@ -55,7 +55,7 @@ namespace MyWebSite
             }
 
             // Log the exception in NLog
-            Logger.Error("Exception caight in ApplicationHandleErrorAttribute", filterContext.Exception);
+            Logger.Error(filterContext.Exception, "Exception caight in ApplicationHandleErrorAttribute");
 
             filterContext.ExceptionHandled = true;
             filterContext.HttpContext.Response.Clear();

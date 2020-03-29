@@ -62,7 +62,7 @@ namespace MyWebSite
 
             var ex = Server.GetLastError();
 
-            Logger.Error("Exception caight in the Global.asax", ex);
+            Logger.Error(ex, "Exception caight in the Global.asax");
 
             var controller = new ErrorController();
             var routeData = new RouteData();
