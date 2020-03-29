@@ -82,7 +82,7 @@ namespace MyWebSite
                       "~/Content/unify/footers/footer-default.css",
                       "~/Content/unify/custom.css"));
             bundles.Add(new StyleBundle("~/Content/unifythemes").Include(
-                      "~/Content/unify/theme-colors/aqua.css"));
+                      "~/Content/unify/theme-colors/dark-blue.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
