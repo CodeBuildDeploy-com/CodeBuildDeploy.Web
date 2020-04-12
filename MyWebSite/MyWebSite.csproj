@@ -179,7 +179,6 @@
     <Compile Include="App_Start\ApplicationHandleErrorAttribute.cs" />
     <Compile Include="App_Start\Identity\ApplicationSignInManager.cs" />
     <Compile Include="App_Start\Identity\ApplicationUserManager.cs" />
-    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\Identity\EmailService.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\HttpControllerActivator.cs" />

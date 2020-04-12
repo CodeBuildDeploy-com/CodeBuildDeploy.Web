@@ -32,7 +32,6 @@ namespace MyWebSite
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
             
             GlobalConfiguration.Configuration.DependencyResolver = new UnityResolver(container);
             GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerActivator), container.Resolve<IHttpControllerActivator>());

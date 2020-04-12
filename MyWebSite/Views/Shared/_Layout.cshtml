@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-    <title>@ViewBag.Title - Mark Pollard Web</title>
+    <title>@ViewBag.Title - Code-Build-Deploy</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -13,29 +13,33 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon.ico">
-    
+
     <!-- Web Fonts -->
     <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
 
     <!-- CSS Global Compulsory -->
-    @Styles.Render("~/Content/bootstrap")
-    @Styles.Render("~/Content/unify")
-
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="~/Content/unify/style.css" />
+    <link rel="stylesheet" href="~/Content/unify/headers/header-default.css" />
+    <link rel="stylesheet" href="~/Content/unify/footers/footer-default.css" />
+    <link rel="stylesheet" href="~/Content/unify/custom.css" />
+ 
     <!-- CSS Implementing Plugins -->
-    @Styles.Render("~/Content/animate")
-    @Styles.Render("~/Content/boxShaddows")
-    @Styles.Render("~/Content/lineIcons")
-    @Styles.Render("~/Content/fontAwesome")
-    @Styles.Render("~/Content/parallaxslider")
-    @Styles.Render("~/Content/owlcarousel")
+    <link rel="stylesheet" href="~/Plugins/animate.css" />
+    <link rel="stylesheet" href="~/Plugins/box-shadows.css" />
+    <link rel="stylesheet" href="~/Plugins/line-icons/line-icons.css" />
+    <link rel="stylesheet" href="~/Plugins/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="~/Plugins/parallax-slider/css/parallax-slider.css" />
+    <link rel="stylesheet" href="~/Plugins/owl-carousel/owl.carousel.css" />
 
     <!-- CSS Theme (id should be style_color) -->
-    @Styles.Render("~/Content/unifythemes")
-    
+    <link rel="stylesheet" href="~/Content/unify/theme-colors/dark-blue.css" />
+
     @RenderSection("styles", required: false)
 
     <!-- Can this be moved to the bottom -->
-    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -82,17 +86,23 @@
     </div><!--/wrapper-->
 
     <!-- JS Global Compulsory -->
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/jquery-1.11.2.min.js"></script>
+    <script src="~/Scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
 
     <!-- JS Implementing Plugins -->
-    @Scripts.Render("~/bundles/backtotop")
-    @Scripts.Render("~/bundles/smoothScroll")
-    @Scripts.Render("~/bundles/parallaxslider")
-    @Scripts.Render("~/bundles/owlcarousel")
+    <script src="~/Plugins/back-to-top.js"></script>
+    <script src="~/Plugins/smoothScroll.js"></script>
+    <script src="~/Plugins/parallax-slider/js/jquery.cslider.js"></script>
+    <script src="~/Scripts/unify/plugins/parallax-slider/parallax-slider.js"></script>
+    <script src="~/Plugins/owl-carousel/owl.carousel.js"></script>
+    <script src="~/Scripts/unify/plugins/owl-carousel/owl-carousel.js"></script>
 
     <!-- JS Page Level -->
-    @Scripts.Render("~/bundles/unify")
+    <script src="~/Scripts/unify/app.js"></script>
     <script type="text/javascript" src="~/Scripts/unify/pages/index.js"></script>
     
     @RenderSection("scripts", required: false)
@@ -105,8 +115,8 @@
         });
     </script>
     <!--[if lt IE 9]>
-        @Scripts.Render("~/bundles/respond")
-        @Scripts.Render("~/bundles/html5shiv")
+        <script src="~/Scripts/respond.min.js"></script>
+        <script src="~/Plugins/html5shiv.js"></script>
     <![endif]-->
 
 </body>
