@@ -14,6 +14,6 @@ namespace MyWebSite.DataAccess
 
         public virtual string Description { get; set; }
 
-        public virtual IList<Post> Posts { get; set; }
+        public virtual IList<PostTag> PostTags { get; set; }
     }
 }

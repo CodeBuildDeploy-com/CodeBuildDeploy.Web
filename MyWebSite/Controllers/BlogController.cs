@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 using MyWebSite.DataAccess;
 using MyWebSite.Models;
@@ -10,10 +12,13 @@ namespace MyWebSite.Controllers
 {
     public class BlogController : Controller
     {
+        private readonly ILogger<BlogController> _logger;
+
         private readonly IBlogRepository _blogsRepository;
 
-        public BlogController(IBlogRepository blogsRepository)
+        public BlogController(ILogger<BlogController> logger, IBlogRepository blogsRepository)
         {
+            _logger = logger;
             _blogsRepository = blogsRepository;
         }
 
@@ -25,6 +30,8 @@ namespace MyWebSite.Controllers
 
             ViewBag.Title = post.Title;
             ViewBag.Message = post.Description;
+
+            _logger.LogInformation("Viewing Blog: '{0}'", post.Title);
 
             return View(post);
         }

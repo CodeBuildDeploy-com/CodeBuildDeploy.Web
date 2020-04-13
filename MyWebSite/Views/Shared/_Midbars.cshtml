@@ -1,5 +1,5 @@
 ﻿<!--=== Slider ===-->
-@if (ViewContext.RouteData.Values["controller"].ToString() == "Home")
+@if (ViewContext.RouteData.Values.ContainsKey("controller") && ViewContext.RouteData.Values["controller"].ToString() == "Home")
 {
     Html.RenderPartial("_Slider");
 }

@@ -1,23 +1,28 @@
-﻿using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace MyWebSite.DataAccess
 {
     public class DAContext : DbContext
     {
-        public DAContext()
-            : base("name=DefaultConnection")
+        public DAContext(DbContextOptions<DAContext> options)
+            : base(options)
         {
-            Database.SetInitializer<DbContext>(null);
         }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Category> Categories { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Database does not pluralize table names
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                entityType.SetTableName(entityType.DisplayName());
+            }
+
+            modelBuilder.Entity<PostTag>()
+                .HasKey(pt => new { pt.PostId, pt.TagId });
         }
     }
 }

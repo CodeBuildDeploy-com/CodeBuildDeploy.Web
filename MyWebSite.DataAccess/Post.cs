@@ -30,8 +30,11 @@ namespace MyWebSite.DataAccess
 
         public virtual DateTime? Modified { get; set; }
 
+        [Column("Category_Id")]
+        public virtual int CategoryId { get; set; }
+
         public virtual Category Category { get; set; }
 
-        public virtual IList<Tag> Tags { get; set; }
+        public virtual IList<PostTag> PostTags { get; set; }
     }
 }
