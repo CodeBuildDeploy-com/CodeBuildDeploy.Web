@@ -1,15 +1,9 @@
 ﻿@model MyWebSite.DataAccess.Post
 
 <!-- Blog Posts -->
-
-<section class="container g-pt-100 g-pb-50">
-    <div class="row justify-content-center">
-        <h2>@Model.Title</h2>
-        @{
-            Html.RenderPartial(Model.Content);
-        }
-    </div><!--/end container-->
-</section>
+@{
+    Html.RenderPartial(Model.Content);
+}
 
 <!-- Blog Post Author -->
 <section class="container">
