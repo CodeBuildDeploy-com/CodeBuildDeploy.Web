@@ -1,59 +1,109 @@
-﻿@model MyWebSite.ViewModels.Account.RegisterViewModel
+﻿@using MyWebSite.ViewModels.Account
+@model MyWebSite.ViewModels.Account.RegisterViewModel
 @{
     ViewBag.Title = "Register";
 }
-@section styles
-{
-    <link rel="stylesheet" href="~/Content/unify/pages/page_log_reg_v1.css" />
-}
-<div class="container content">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 
-            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "reg-page", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <div class="reg-header">
-                    <h2>Sign Up</h2>
-                    <p>Already Signed Up? Click @Html.ActionLink("Sign in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "color-green" }) to login your account.</p>
-                </div>
-                @Html.ValidationSummary("", new { @class = "text-danger" })
+<!-- Signup -->
+<section class="container g-py-100">
+    <div class="row justify-content-center">
+        <div class="col-sm-10 col-md-9 col-lg-6">
+            <div class="g-brd-around g-brd-gray-light-v4 rounded g-py-40 g-px-30">
+                <header class="text-center mb-4">
+                    <h2 class="h2 g-color-black g-font-weight-600">Signup</h2>
+                </header>
 
-                @Html.LabelFor(m => m.FirstName)
-                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control margin-bottom-20" })
+                <!-- Form -->
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "reg-page", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
 
-                @Html.LabelFor(m => m.LastName)
-                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control margin-bottom-20" })
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
 
-                @Html.LabelFor(m => m.Email)
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control margin-bottom-20" })
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 mb-4">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text g-width-45 g-brd-right-none g-brd-gray-light-v4 g-color-gray-dark-v5"><i class="icon-finance-067 u-line-icon-pro"></i></span>
+                                </div>
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover g-py-15 g-px-15", placeholder = "John" })
+                            </div>
+                        </div>
 
-                <div class="row">
-                    <div class="col-sm-6">
-                        @Html.LabelFor(m => m.Password)
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control margin-bottom-20" })
+                        <div class="col-xs-12 col-sm-6 mb-4">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text g-width-45 g-brd-right-none g-brd-gray-light-v4 g-color-gray-dark-v5"><i class="icon-finance-067 u-line-icon-pro"></i></span>
+                                </div>
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover g-py-15 g-px-15", placeholder = "Doe" })
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        @Html.LabelFor(m => m.ConfirmPassword)
-                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+
+                    <div class="mb-4">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text g-width-45 g-brd-right-none g-brd-gray-light-v4 g-color-gray-dark-v5"><i class="icon-communication-062 u-line-icon-pro"></i></span>
+                            </div>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover g-py-15 g-px-15", placeholder = "johndoe@gmail.com" })
+                        </div>
                     </div>
-                </div>
 
-                <hr>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 mb-4">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text g-width-45 g-brd-right-none g-brd-gray-light-v4 g-color-gray-dark-v5"><i class="icon-communication-062 u-line-icon-pro"></i></span>
+                                </div>
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover g-py-15 g-px-15", placeholder = "Password" })
+                            </div>
+                        </div>
 
-                <div class="row">
-                    <div class="col-lg-6 checkbox">
-                        <label>
-                            <input type="checkbox">
-                            I read <a href="javascript:void(0);" class="color-green">Terms and Conditions</a>
+                        <div class="col-xs-12 col-sm-6 mb-4">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text g-width-45 g-brd-right-none g-brd-gray-light-v4 g-color-gray-dark-v5"><i class="icon-media-094 u-line-icon-pro"></i></span>
+                                </div>
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover g-py-15 g-px-15", placeholder = "Password" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-check-inline u-check g-color-gray-dark-v5 g-font-size-13 g-pl-25">
+                            <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
+                            <div class="u-check-icon-checkbox-v6 g-absolute-centered--y g-left-0">
+                                <i class="fa g-rounded-2" data-check-icon="&#xf00c"></i>
+                            </div>
+                            I accept the <a href="#">Terms and Conditions</a>
                         </label>
                     </div>
-                    <div class="col-lg-6 text-right">
-                        <button class="btn-u" type="submit">Register</button>
-                    </div>
-                </div>
-            }
 
+                    <button class="btn btn-md btn-block u-btn-primary rounded-0 g-py-15 mb-5" type="button">Signup</button>
+
+                    <div class="d-flex justify-content-center text-center g-mb-30">
+                        <div class="d-inline-block align-self-center g-width-50 g-height-1 g-bg-gray-light-v1"></div>
+                        <span class="align-self-center g-color-gray-dark-v3 mx-4">OR</span>
+                        <div class="d-inline-block align-self-center g-width-50 g-height-1 g-bg-gray-light-v1"></div>
+                    </div>
+
+                    <!-- Form Social Icons -->
+                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                    <!-- End Form Social Icons -->
+                }
+                <!-- End Form -->
+
+                <footer class="text-center">
+                    <p class="g-color-gray-dark-v5 g-font-size-13 mb-0">
+                        Already have an account? @Html.ActionLink("signin", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "g-font-weight-600" })
+                    </p>
+                </footer>
+            </div>
         </div>
     </div>
-</div><!--/container-->	
+</section>
+<!-- End Signup -->
+
+@section scripts {
+    <script src="~/assets/js/helpers/hs.focus-state.js"></script>
+}

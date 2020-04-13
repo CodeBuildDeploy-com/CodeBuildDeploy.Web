@@ -1,123 +1,181 @@
 ﻿<!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<html lang="en">
+
 <head>
     <title>@ViewBag.Title - Code-Build-Deploy</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="~/favicon.ico">
 
     <!-- Web Fonts -->
-    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CRoboto%7CRaleway%7CSpectral%7CRubik">
 
     <!-- CSS Global Compulsory -->
-    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/Content/bootstrap-theme.min.css" />
-    <link rel="stylesheet" href="~/Content/unify/style.css" />
-    <link rel="stylesheet" href="~/Content/unify/headers/header-default.css" />
-    <link rel="stylesheet" href="~/Content/unify/footers/footer-default.css" />
-    <link rel="stylesheet" href="~/Content/unify/custom.css" />
- 
-    <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="~/Plugins/animate.css" />
-    <link rel="stylesheet" href="~/Plugins/box-shadows.css" />
-    <link rel="stylesheet" href="~/Plugins/line-icons/line-icons.css" />
-    <link rel="stylesheet" href="~/Plugins/font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="~/Plugins/parallax-slider/css/parallax-slider.css" />
-    <link rel="stylesheet" href="~/Plugins/owl-carousel/owl.carousel.css" />
+    <link rel="stylesheet" href="~/assets/vendor/bootstrap/bootstrap.min.css">
+    <!-- CSS Global Icons -->
+    <link rel="stylesheet" href="~/assets/vendor/icon-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/assets/vendor/icon-line/css/simple-line-icons.css">
+    <link rel="stylesheet" href="~/assets/vendor/icon-etlinefont/style.css">
+    <link rel="stylesheet" href="~/assets/vendor/icon-line-pro/style.css">
+    <link rel="stylesheet" href="~/assets/vendor/icon-hs/style.css">
+    <link rel="stylesheet" href="~/assets/vendor/dzsparallaxer/dzsparallaxer.css">
+    <link rel="stylesheet" href="~/assets/vendor/dzsparallaxer/dzsscroller/scroller.css">
+    <link rel="stylesheet" href="~/assets/vendor/dzsparallaxer/advancedscroller/plugin.css">
+    <link rel="stylesheet" href="~/assets/vendor/animate.css">
+    <link rel="stylesheet" href="~/assets/vendor/fancybox/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="~/assets/vendor/slick-carousel/slick/slick.css">
+    <link rel="stylesheet" href="~/assets/vendor/typedjs/typed.css">
+    <link rel="stylesheet" href="~/assets/vendor/hs-megamenu/src/hs.megamenu.css">
+    <link rel="stylesheet" href="~/assets/vendor/hamburgers/hamburgers.min.css">
 
-    <!-- CSS Theme (id should be style_color) -->
-    <link rel="stylesheet" href="~/Content/unify/theme-colors/dark-blue.css" />
+    <!-- CSS Unify -->
+    <link rel="stylesheet" href="~/assets/css/unify-core.css">
+    <link rel="stylesheet" href="~/assets/css/unify-components.css">
+    <link rel="stylesheet" href="~/assets/css/unify-globals.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="~/assets/css/custom.css">
 
     @RenderSection("styles", required: false)
-
-    <!-- Can this be moved to the bottom -->
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
-    <div class="wrapper">
+    <main>
 
-        <div class="header">
-            <!-- Topbar -->
-            @{
-                Html.RenderPartial("_Topbar");
-            }
-            <!-- End Topbar -->
-            <!-- Navbar -->
-            @{
-                Html.RenderPartial("_Navbar");
-            }
-            <!-- End Navbar -->
-        </div>
-        <!--=== End Header ===-->
-
-        <!--=== Midbars Part ===-->
+        <!-- Header -->
+        <header id="js-header" class="u-header u-header--static">
+            <div class="u-header__section u-header__section--light g-bg-white g-transition-0_3 g-py-10">
+                <!-- Navbar -->
+                @{
+                    Html.RenderPartial("_Navbar");
+                }
+                <!-- End Navbar -->
+            </div>
+        </header>
+        <!-- End Header -->
+        <!-- Midbars Part -->
         @{
             Html.RenderPartial("_Midbars");
-        }        
+        }
         <!-- End Midbars Part -->
-
-        <!--=== Content Part ===-->
+        <!-- Content Part -->
         @RenderBody()
         <!-- End Content Part -->
-    
-        <!--=== Footer Version 1 ===-->
-        <div class="footer-default">
-            <!--=== Footer ===-->
-            @{
-                Html.RenderPartial("_Footer");
-            }
-            <!--=== End Footer ===-->
-            <!--=== Copyright ===-->
-            @{
-                Html.RenderPartial("_Copyright");
-            }
-            <!--=== End Copyright ===-->
-        </div>
-        <!--=== End Footer Version 1 ===-->
 
-    </div><!--/wrapper-->
+        <!-- Footer -->
+        @{
+            Html.RenderPartial("_Footer");
+        }
+        <!-- End Footer -->
+        <!-- Copyright -->
+        @{
+            Html.RenderPartial("_Copyright");
+        }
+        <!-- End Copyright -->
+
+        <!-- Back to top icon -->
+        <a class="js-go-to u-go-to-v1" href="#" data-type="fixed" data-position='{
+             "bottom": 15,
+             "right": 15
+           }' data-offset-top="400" data-compensation="#js-header" data-show-effect="zoomIn">
+            <i class="hs-icon hs-icon-arrow-top"></i>
+        </a>
+        <!-- End Back to top icon -->
+
+    </main>
+
+    <div class="u-outer-spaces-helper"></div>
 
     <!-- JS Global Compulsory -->
-    <script src="~/Scripts/jquery-1.11.2.min.js"></script>
-    <script src="~/Scripts/jquery-migrate-1.2.1.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="~/assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
+    <script src="~/assets/vendor/popper.js/popper.min.js"></script>
+    <script src="~/assets/vendor/bootstrap/bootstrap.min.js"></script>
+
 
     <!-- JS Implementing Plugins -->
-    <script src="~/Plugins/back-to-top.js"></script>
-    <script src="~/Plugins/smoothScroll.js"></script>
-    <script src="~/Plugins/parallax-slider/js/jquery.cslider.js"></script>
-    <script src="~/Scripts/unify/plugins/parallax-slider/parallax-slider.js"></script>
-    <script src="~/Plugins/owl-carousel/owl.carousel.js"></script>
-    <script src="~/Scripts/unify/plugins/owl-carousel/owl-carousel.js"></script>
+    <script src="~/assets/vendor/slick-carousel/slick/slick.js"></script>
+    <script src="~/assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+    <script src="~/assets/vendor/dzsparallaxer/dzsparallaxer.js"></script>
+    <script src="~/assets/vendor/dzsparallaxer/dzsscroller/scroller.js"></script>
+    <script src="~/assets/vendor/dzsparallaxer/advancedscroller/plugin.js"></script>
+    <script src="~/assets/vendor/fancybox/jquery.fancybox.min.js"></script>
+    <script src="~/assets/vendor/masonry/dist/masonry.pkgd.min.js"></script>
+    <script src="~/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="~/assets/vendor/typedjs/typed.min.js"></script>
 
-    <!-- JS Page Level -->
-    <script src="~/Scripts/unify/app.js"></script>
-    <script type="text/javascript" src="~/Scripts/unify/pages/index.js"></script>
+    <!-- JS Unify -->
+    <script src="~/assets/js/hs.core.js"></script>
+    <script src="~/assets/js/components/hs.carousel.js"></script>
+    <script src="~/assets/js/components/hs.header.js"></script>
+    <script src="~/assets/js/helpers/hs.hamburgers.js"></script>
+    <script src="~/assets/js/components/hs.tabs.js"></script>
+    <script src="~/assets/js/components/hs.popup.js"></script>
+    <script src="~/assets/js/components/text-animation/hs.text-slideshow.js"></script>
+    <script src="~/assets/js/components/hs.go-to.js"></script>
     
     @RenderSection("scripts", required: false)
 
-    <script type="text/javascript">
-        jQuery(document).ready(function () {
-            App.init();
-            OwlCarousel.initOwlCarousel();
-            ParallaxSlider.initParallaxSlider();
+    <!-- JS Plugins Init. -->
+    <script>
+      $(document).on('ready', function () {
+        // initialization of carousel
+        $.HSCore.components.HSCarousel.init('.js-carousel');
+
+        // initialization of tabs
+        $.HSCore.components.HSTabs.init('[role="tablist"]');
+
+        // initialization of popups
+        $.HSCore.components.HSPopup.init('.js-fancybox');
+
+        // initialization of go to
+        $.HSCore.components.HSGoTo.init('.js-go-to');
+
+        // initialization of text animation (typing)
+        $(".u-text-animation.u-text-animation--typing").typed({
+          strings: [
+            "an awesome template",
+            "perfect template",
+            "just like a boss"
+          ],
+          typeSpeed: 60,
+          loop: true,
+          backDelay: 1500
         });
+      });
+
+      $(window).on('load', function () {
+        // initialization of header
+        $.HSCore.components.HSHeader.init($('#js-header'));
+        $.HSCore.helpers.HSHamburgers.init('.hamburger');
+
+        // initialization of HSMegaMenu component
+        $('.js-mega-menu').HSMegaMenu({
+          event: 'hover',
+          pageContainer: $('.container'),
+          breakpoint: 991
+        });
+
+        // initialization of masonry
+        $('.masonry-grid').imagesLoaded().then(function () {
+          $('.masonry-grid').masonry({
+            columnWidth: '.masonry-grid-sizer',
+            itemSelector: '.masonry-grid-item',
+            percentPosition: true
+          });
+        });
+      });
+
+      $(window).on('resize', function () {
+        setTimeout(function () {
+          $.HSCore.components.HSTabs.init('[role="tablist"]');
+        }, 200);
+      });
     </script>
-    <!--[if lt IE 9]>
-        <script src="~/Scripts/respond.min.js"></script>
-        <script src="~/Plugins/html5shiv.js"></script>
-    <![endif]-->
 
 </body>
 </html>

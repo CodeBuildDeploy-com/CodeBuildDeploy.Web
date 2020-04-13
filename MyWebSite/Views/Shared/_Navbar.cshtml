@@ -1,116 +1,140 @@
-﻿<!-- Collect the nav links, forms, and other content for toggling -->
-<div class="collapse navbar-collapse mega-menu navbar-responsive-collapse margin-top-20">
+﻿<nav class="js-mega-menu navbar navbar-expand-lg hs-menu-initialized hs-menu-horizontal">
     <div class="container">
-        <ul class="nav navbar-nav">
+
+        <!-- Responsive Toggle Button -->
+        <button class="navbar-toggler navbar-toggler-right btn g-line-height-1 g-brd-none g-pa-0 g-pos-abs g-top-minus-3 g-right-0" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navBar" data-toggle="collapse" data-target="#navBar">
+            <span class="hamburger hamburger--slider">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </span>
+        </button>
+        <!-- End Responsive Toggle Button -->
+
+        <!-- Logo -->
+        <a href="@Url.Action("Index", "Home")" class="navbar-brand d-flex">
+            <img src="@Url.Content("~/assets/img/codebuilddeploy_logo.jpg")" alt="Logo">
+        </a>
+        <!-- End Logo -->
+
+        <!-- Navigation -->
+        <div class="collapse navbar-collapse align-items-center flex-sm-row g-pt-10 g-pt-5--lg g-mr-40--lg" id="navBar">
+          <ul class="navbar-nav text-uppercase g-pos-rel g-font-weight-600 ml-auto">
+            
             <!-- Home -->
-            <li class="dropdown active">
-                @Html.ActionLink("Home", "Index", "Home")
+            <li class="nav-item  g-mx-10--lg g-mx-15--xl">
+                @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link g-py-7 g-px-0" })
             </li>
             <!-- End Home -->
+
             <!-- Blog -->
-            <li class="dropdown">
-                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                    Blog
-                </a>
-                <ul class="dropdown-menu">
-                    <!-- PowerShell Pages -->
-                    <li class="dropdown-submenu">
-                        <a href="javascript:void(0);">PowerShell</a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("PowerShell Remoting", "ViewBlogEntry", "Blog", new { urlSlug = "PowerShellRemoting" }, null)</li>
-                            <li>@Html.ActionLink("PowerShell Grep", "ViewBlogEntry", "Blog", new { urlSlug = "PowerShellGrep" }, null)</li>
-                            <li>@Html.ActionLink("PowerShell Policy", "ViewBlogEntry", "Blog", new { urlSlug = "PowerShellPolicy" }, null)</li>
+            <li class="hs-has-sub-menu nav-item  g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
+                <a id="nav-link-blog" class="nav-link g-py-7 g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-blog">Blog</a>
+
+                <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-18 g-mt-8--lg--scrolling" id="nav-submenu-blog" aria-labelledby="nav-link-blog">
+                    <!-- Blog - PowerShell -->
+                    <li class="dropdown-item hs-has-sub-menu ">
+                        <a id="nav-link--pages--blogps" class="nav-link" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--blogps">PowerShell</a>
+
+                        <!-- Submenu (level 2) -->
+                        <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-minus-2" id="nav-submenu--pages--blogps" aria-labelledby="nav-link--pages--blogps">
+                            <li class="dropdown-item ">@Html.ActionLink("PowerShell Remoting", "ViewBlogEntry", "Blog", new { urlSlug = "PowerShellRemoting" }, new { @class = "nav-link" })</li>
+                            <li class="dropdown-item ">@Html.ActionLink("PowerShell Grep", "ViewBlogEntry", "Blog", new { urlSlug = "PowerShellGrep" }, new { @class = "nav-link" })</li>
+                            <li class="dropdown-item ">@Html.ActionLink("PowerShell Policy", "ViewBlogEntry", "Blog", new { urlSlug = "PowerShellPolicy" }, new { @class = "nav-link" })</li>
                         </ul>
                     </li>
-                    <!-- Media Setup Pages -->
-                    <li class="dropdown-submenu">
-                        <a href="javascript:void(0);">Media Setup</a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("TVHeadend", "ViewBlogEntry", "Blog", new { urlSlug = "TVHeadend" }, null)</li>
-                            <li>@Html.ActionLink("MySql", "ViewBlogEntry", "Blog", new { urlSlug = "MySql" }, null)</li>
-                            <li>@Html.ActionLink("Mono", "ViewBlogEntry", "Blog", new { urlSlug = "Mono" }, null)</li>
-                            <li>@Html.ActionLink("Sonarr", "ViewBlogEntry", "Blog", new { urlSlug = "Sonarr" }, null)</li>
-                            <li>@Html.ActionLink("Utorrent", "ViewBlogEntry", "Blog", new { urlSlug = "Utorrent" }, null)</li>
-                            <li>@Html.ActionLink("Couch Potatoe", "ViewBlogEntry", "Blog", new { urlSlug = "CouchPotatoe" }, null)</li>
+
+                    <!-- Blog - Media Setup -->
+                    <li class="dropdown-item hs-has-sub-menu ">
+                        <a id="nav-link--pages--blogms" class="nav-link" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--blogms">Media Setup</a>
+
+                        <!-- Submenu (level 2) -->
+                        <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-minus-2" id="nav-submenu--pages--blogms" aria-labelledby="nav-link--pages--blogms">
+                            <li class="dropdown-item ">@Html.ActionLink("TVHeadend", "ViewBlogEntry", "Blog", new { urlSlug = "TVHeadend" }, new { @class = "nav-link" })</li>
+                            <li class="dropdown-item ">@Html.ActionLink("MySql", "ViewBlogEntry", "Blog", new { urlSlug = "MySql" }, new { @class = "nav-link" })</li>
+                            <li class="dropdown-item ">@Html.ActionLink("Mono", "ViewBlogEntry", "Blog", new { urlSlug = "Mono" }, new { @class = "nav-link" })</li>
+                            <li class="dropdown-item ">@Html.ActionLink("Sonarr", "ViewBlogEntry", "Blog", new { urlSlug = "Sonarr" }, new { @class = "nav-link" })</li>
+                            <li class="dropdown-item ">@Html.ActionLink("Utorrent", "ViewBlogEntry", "Blog", new { urlSlug = "Utorrent" }, new { @class = "nav-link" })</li>
+                            <li class="dropdown-item ">@Html.ActionLink("Couch Potatoe", "ViewBlogEntry", "Blog", new { urlSlug = "CouchPotatoe" }, new { @class = "nav-link" })</li>
                         </ul>
                     </li>
-                    <!-- End PowerShell Pages -->
-                    <li>@Html.ActionLink("Tools", "ViewBlogEntry", "Blog", new { urlSlug = "tools" }, null)</li>
-                    <li>@Html.ActionLink("Libraries", "ViewBlogEntry", "Blog", new { urlSlug = "libraries" }, null)</li>
-                    <li>@Html.ActionLink("Links", "ViewBlogEntry", "Blog", new { urlSlug = "links" }, null)</li>
+
+                    <!-- Blog - Tools -->
+                    <li class="dropdown-item ">@Html.ActionLink("Tools", "ViewBlogEntry", "Blog", new { urlSlug = "tools" }, new { @class = "nav-link" })</li>
+
+                    <!-- Blog - Libraries -->
+                    <li class="dropdown-item ">@Html.ActionLink("Libraries", "ViewBlogEntry", "Blog", new { urlSlug = "libraries" }, new { @class = "nav-link" })</li>
+
+                    <!-- Blog - Links -->
+                    <li class="dropdown-item ">@Html.ActionLink("Links", "ViewBlogEntry", "Blog", new { urlSlug = "links" }, new { @class = "nav-link" })</li>
                 </ul>
             </li>
             <!-- End Blog -->
-            <!-- Pages -->
-            <li class="dropdown">
-                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                    Pages
-                </a>
-                <ul class="dropdown-menu">
-                    <!-- About Pages -->
-                    <li class="dropdown-submenu">
-                        <a href="javascript:void(0);">About Pages</a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("About Me", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact Me", "Contact", "Home")</li>
-                            <li class="dropdown-submenu">
-                                <a href="javascript:void(0);">About Our Team</a>
-                                <ul class="dropdown-menu">
-                                    <li><a target="_blank" href="#">Mark</a></li>
-                                    <li><a target="_blank" href="#">Jacqueline</a></li>
-                                    <li><a target="_blank" href="#">Lewis</a></li>
-                                    <li><a target="_blank" href="#">Summer</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- End About Pages -->
-                    <!-- Coming Soon -->
-                    <li><a href="page_coming_soon.html">Coming Soon</a></li>
-                    <!-- End Coming Soon -->
-                    <!-- FAQs Pages -->
-                    <li><a href="javascript:void(0);">FAQs</a></li>
-                    <!-- End FAQs Pages -->
-                    <!-- Login and Registration -->
-                    <li class="dropdown-submenu">
-                        <a href="javascript:void(0);">Login and Registration</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="javascript:void(0);">Registration Page</a></li>
-                            <li><a href="javascript:void(0);">Login Page</a></li>
-                            <li><a href="javascript:void(0);">Registration Option</a></li>
-                            <li><a href="javascript:void(0);">Login Option</a></li>
-                        </ul>
-                    </li>
+
+            <!-- Account -->
+            <li class="hs-has-sub-menu nav-item  g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
+                <a id="nav-link-account" class="nav-link g-py-7 g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-account">Account</a>
+
+                <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-18 g-mt-8--lg--scrolling" id="nav-submenu-account" aria-labelledby="nav-link-account">
+                    <!-- Pages - Login and Registration -->
+                    @{
+                        Html.RenderPartial("_LoginPartial");
+                    }
                     <!-- End Login and Registration -->
-                    <!-- Privacy Policy -->
-                    <li><a href="javascript:void(0);">Privacy Policy</a></li>
-                    <!-- End Privacy Policy -->
-                    <!-- Terms Of Service -->
-                    <li><a href="javascript:void(0);">Terms Of Service</a></li>
-                    <!-- End Terms Of Service -->
+                </ul>
+            </li>
+            <!-- End Account -->
+
+            <!-- About -->
+            <li class="hs-has-sub-menu nav-item  g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
+                <a id="nav-link-pages" class="nav-link g-py-7 g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-pages">About</a>
+
+                <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-18 g-mt-8--lg--scrolling" id="nav-submenu-pages" aria-labelledby="nav-link-pages">
+                    <!-- About - About -->
+                    <li class="dropdown-item ">@Html.ActionLink("About Me", "About", "Home", null, new { @class = "nav-link" })</li>
+                    <li class="dropdown-item ">@Html.ActionLink("Contact Me", "Contact", "Home", null, new { @class = "nav-link" })</li>
+
+                    <!-- Pages - About - About Our Team -->
+                    <li class="dropdown-item hs-has-sub-menu ">
+                        <a id="nav-link--pages--aboutourteam" class="nav-link" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--aboutourteam">About Our Team</a>
+
+                        <!-- Submenu (level 2) -->
+                        <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-minus-2 " id="nav-submenu--pages--aboutourteam" aria-labelledby="nav-link--pages--aboutourteam">
+                            <li class="dropdown-item "><a class="nav-link" target="_blank" href="#">Mark</a></li>
+                            <li class="dropdown-item "><a class="nav-link" target="_blank" href="#">Jacqueline</a></li>
+                            <li class="dropdown-item "><a class="nav-link" target="_blank" href="#">Lewis</a></li>
+                            <li class="dropdown-item "><a class="nav-link" target="_blank" href="#">Summer</a></li>
+                        </ul>
+                    </li>
+                    <!-- End About - About -->
+
+                    <!-- About - Coming Soon -->
+                    <li class="dropdown-item ">
+                        <a class="nav-link" href="javascript:void(0);">Coming Soon</a>
+                    </li>
+                    <!-- End About - Coming Soon -->
+                    
+                    <!-- About - FAQs -->
+                    <li class="dropdown-item ">
+                        <a class="nav-link" href="javascript:void(0);">FAQs</a>
+                    </li>
+                    <!-- End About - FAQs -->
+
+                    <!-- About - Privacy Policy -->
+                    <li class="dropdown-item ">
+                        <a class="nav-link" href="javascript:void(0);">Privacy Policy</a>
+                    </li>
+                    <!-- End About - Privacy Policy -->
+                    
+                    <!-- About - Terms Of Service -->
+                    <li class="dropdown-item ">
+                        <a class="nav-link" href="javascript:void(0);">Terms Of Service</a>
+                    </li>
+                    <!-- End About - Terms Of Service -->
                 </ul>
             </li>
             <!-- End Pages -->
-            <!-- Contacts -->
-            <li class="dropdown">
-                <a href="javascript:void(0);">
-                    Contacts
-                </a>
-            </li>
-            <!-- End Contacts -->
-            <!-- Search Block
-            <li>
-                <i class="search fa fa-search search-btn"></i>
-                <div class="search-open">
-                    <div class="input-group animated fadeInDown">
-                        <input type="text" class="form-control" placeholder="Search">
-                        <span class="input-group-btn">
-                            <button class="btn-u" type="button">Go</button>
-                        </span>
-                    </div>
-                </div>
-            </li>-->
-            <!-- End Search Block -->
-        </ul>
-    </div><!--/navbar-collapse-->
-</div>
+          </ul>
+        </div>
+    </div>
+</nav>

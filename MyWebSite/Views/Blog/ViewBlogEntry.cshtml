@@ -1,40 +1,83 @@
 ﻿@model MyWebSite.DataAccess.Post
 
-<!--=== Blog Posts ===-->
-<div class="bg-color-light">
-    <div class="container content-sm">
-        <!-- News v3 -->
-        <div class="news-v3 margin-bottom-30">
-            <div class="news-v3-in">
-                <ul class="list-inline posted-info">
-                    <li>By <a href="#">Mark Pollard</a></li>
-                    <li>In <a href="#">Design</a></li>
-                    <li>Posted @Model.PostedOn.ToString("dddd, dd MMMM yyyy")</li>
-                </ul>
-                <h2>@Model.Title</h2>
-                @{
-                    Html.RenderPartial(Model.Content);
-                }
-            </div>
-        </div>
-        <!-- End News v3 -->
-    
-        <!-- Blog Post Author -->
-        <div class="blog-author margin-bottom-30">
-            <img src="/img/logo1-default.jpg" alt="">
-            <div class="blog-author-desc">
-                <div class="overflow-h">
-                    <h4>Mark Pollard</h4>
-                    <ul class="list-inline">
-                        <li><a href="https://www.facebook.com/m4rkpollard"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="https://twitter.com/m4rk5"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="https://plus.google.com/100391612500164447413/posts"><i class="fa fa-google-plus"></i></a></li>
-                    </ul>
-                </div>
-                <p>In auctor fringilla turpis eu rhoncus. Vivamus quis nisi vel dui ultrices lacinia ac eu massa. Quis que vitae consequat sapien. Vivamus sit amet tincidunt ipsum, nec blandit ipsum. Lorem ipsu m dolor sit amet, consectetur adipiscing elit...</p>
-            </div>
-        </div>
-        <!-- End Blog Post Author -->
+<!-- Blog Posts -->
+
+<section class="container g-pt-100 g-pb-50">
+    <div class="row justify-content-center">
+        <h2>@Model.Title</h2>
+        @{
+            Html.RenderPartial(Model.Content);
+        }
     </div><!--/end container-->
-</div>
-<!--=== End Blog Posts ===-->
+</section>
+
+<!-- Blog Post Author -->
+<section class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <!-- Tags -->
+            <div class="g-mb-40">
+                <ul class="u-list-inline mb-5">
+                    <li class="list-inline-item g-mb-10">
+                        <a class="u-tags-v1 g-brd-around g-brd-gray-dark-v5 g-brd-primary--hover g-color-black g-color-white--hover g-bg-primary--hover g-font-weight-600 g-font-size-12 g-rounded-50 g-py-4 g-px-15" href="#">PowerShell</a>
+                    </li>
+                    <li class="list-inline-item g-mb-10">
+                        <a class="u-tags-v1 g-brd-around g-brd-gray-dark-v5 g-brd-primary--hover g-color-black g-color-white--hover g-bg-primary--hover g-font-weight-600 g-font-size-12 g-rounded-50 g-py-4 g-px-15" href="#">Windows Remote Access</a>
+                    </li>
+                    <li class="list-inline-item g-mb-10">
+                        <a class="u-tags-v1 g-brd-around g-brd-gray-dark-v5 g-brd-primary--hover g-color-black g-color-white--hover g-bg-primary--hover g-font-weight-600 g-font-size-12 g-rounded-50 g-py-4 g-px-15" href="#">@Model.PostedOn.ToString("dddd, dd MMMM yyyy")</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- End Tags -->
+            <!-- Social Icons -->
+            <div class="text-center">
+                <h3 class="h6 g-color-black g-font-weight-600 text-uppercase mb-3">Share:</h3>
+                <ul class="list-inline g-mb-60">
+                    <li class="list-inline-item g-mx-2">
+                        <a class="u-icon-v1 u-icon-slide-up--hover g-color-gray-dark-v4 g-color-facebook--hover" href="https://www.facebook.com/m4rkpollard">
+                            <i class="g-font-size-default g-line-height-1 u-icon__elem-regular fa fa-facebook"></i>
+                            <i class="g-font-size-default g-line-height-0_8 u-icon__elem-hover fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item g-mx-2">
+                        <a class="u-icon-v1 u-icon-slide-up--hover g-color-gray-dark-v4 g-color-twitter--hover" href="https://twitter.com/m4rk5">
+                            <i class="g-font-size-default g-line-height-1 u-icon__elem-regular fa fa-twitter"></i>
+                            <i class="g-font-size-default g-line-height-0_8 u-icon__elem-hover fa fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item g-mx-2">
+                        <a class="u-icon-v1 u-icon-slide-up--hover g-color-gray-dark-v4 g-color-google-plus--hover" href="https://plus.google.com/100391612500164447413/posts">
+                            <i class="g-font-size-default g-line-height-1 u-icon__elem-regular fa fa-google-plus"></i>
+                            <i class="g-font-size-default g-line-height-0_8 u-icon__elem-hover fa fa-google-plus"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item g-mx-2">
+                        <a class="u-icon-v1 u-icon-slide-up--hover g-color-gray-dark-v4 g-color-linkedin--hover" href="https://www.linkedin.com/profile/view?id=226646701">
+                            <i class="g-font-size-default g-line-height-1 u-icon__elem-regular fa fa-linkedin"></i>
+                            <i class="g-font-size-default g-line-height-0_8 u-icon__elem-hover fa fa-linkedin"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- End Social Icons -->
+            <!-- Author -->
+            <div class="g-brd-top g-brd-gray-light-v3 g-pt-60 g-pb-100">
+                <div class="row justify-content-between">
+                    <div class="media">
+                        <img class="d-flex g-width-100 g-height-100 rounded-circle g-mr-30" src="../../assets/img/about/me-profile-sm.jpg" alt="Image Description">
+                        <div class="media-body">
+                            <h4 class="h5 g-color-black g-font-weight-600">Mark Pollard</h4>
+                            <p class="g-color-gray-dark-v5 mb-4">I am an ambitious workaholic, but apart from that, pretty simple person. I strive to figure out the right solutions to stand out amongst the rest.</p>
+                            <a class="btn u-btn-outline-black g-brd-gray-light-v1 g-font-weight-600 g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">All author posts</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Author -->
+        </div>
+    </div>
+</section>
+<!-- End Blog Post Author -->
+
+<!-- End Blog Posts -->

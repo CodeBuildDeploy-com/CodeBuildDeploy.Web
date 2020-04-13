@@ -1,59 +1,78 @@
-﻿<div class="footer">
+﻿<!-- Footer -->
+<div id="contacts-section" class="g-bg-black-opacity-0_9 g-color-white-opacity-0_8 g-py-60">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 md-margin-bottom-40">
-                <!-- About -->
-                <div class="headline"><h2>About</h2></div>
-                <p class="margin-bottom-25 md-margin-bottom-40">This is all about me.</p>
+
+            <!-- Footer Content - About -->
+            <div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
+                <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+                    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">About</h2>
+                </div>
+                <p>Code Build deploy is a reference site on topics I have found useful, inspired by continuous delivery approaches</p>
                 <!-- End About -->
-                <!-- Monthly Newsletter -->
-                <div class="headline"><h2>Monthly Newsletter</h2></div>
+            </div>
+            <!-- End Footer Content - About -->
+
+            <!-- Footer Content - Newsletter -->
+            <div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
+                <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+                    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">Monthly Newsletter</h2>
+                </div>
                 <p>Subscribe to our newsletter and stay up to date with the latest news from mark pollard web!</p>
-                <form class="footer-subsribe">
+                <form>
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Email Address">
-                        <span class="input-group-btn">
-                            <button class="btn-u" type="button">Subscribe</button>
+                        <input type="text" class="form-control" placeholder="Email Address">&nbsp;
+                        <span>
+                            <button class="btn btn-sm u-btn-white text-uppercase g-font-weight-600 g-font-size-12" type="button">Subscribe</button>
                         </span>
                     </div>
                 </form>
-                <!-- End Monthly Newsletter -->
-            </div><!--/col-md-4-->
+            </div>
+            <!-- End Footer Content - Newsletter -->
 
-            <div class="col-md-4 md-margin-bottom-40">
-                <!-- Recent Blogs -->
-                <div class="posts">
-                    <div class="headline"><h2>Recent Blog Entries</h2></div>
-                    <dl class="dl-horizontal">
-                        <dt><a href="~/Blog/ViewBlogEntry?urlSlug=tools"><img src="~/img/blog/tools.jpg" alt=""></a></dt>
-                        <dd>
-                            <p><a href="~/Blog/ViewBlogEntry?urlSlug=tools">My favourite software tools</a></p>
-                        </dd>
-                    </dl>
-                    <dl class="dl-horizontal">
-                        <dt><a href="~/Blog/ViewBlogEntry?urlSlug=libraries"><img src="~/img/blog/libraries.jpg" alt=""></a></dt>
-                        <dd>
-                            <p><a href="~/Blog/ViewBlogEntry?urlSlug=libraries">libraries you may like</a></p>
-                        </dd>
-                    </dl>
-                    <dl class="dl-horizontal">
-                        <dt><a href="~/Blog/ViewBlogEntry?urlSlug=links"><img src="~/img/blog/links.jpg" alt=""></a></dt>
-                        <dd>
-                            <p><a href="~/Blog/ViewBlogEntry?urlSlug=links">Useful links and resources</a></p>
-                        </dd>
-                    </dl>
+            <!-- Recent Blogs -->
+            <div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
+                <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+                    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">Recent Blog Entries</h2>
                 </div>
-                <!-- End Recent Blogs -->
-            </div><!--/col-md-4-->
+                <article>
+                    <h3 class="h6 g-mb-2">
+                        <a class="g-color-white-opacity-0_8 g-color-white--hover" href="~/Blog/ViewBlogEntry?urlSlug=tools">My favourite software tools</a>
+                    </h3>
+                    <div class="small g-color-white-opacity-0_6">May 8, 2017</div>
+                </article>
 
-            <div class="col-md-4 map-img">
-                <!-- Contact Us -->
-                <div class="headline"><h2>Contact</h2></div>
+                <hr class="g-brd-white-opacity-0_1 g-my-10">
+
+                <article>
+                    <h3 class="h6 g-mb-2">
+                        <a class="g-color-white-opacity-0_8 g-color-white--hover" href="~/Blog/ViewBlogEntry?urlSlug=libraries">libraries you may like</a>
+                    </h3>
+                    <div class="small g-color-white-opacity-0_6">May 8, 2017</div>
+                </article>
+
+                <hr class="g-brd-white-opacity-0_1 g-my-10">
+
+                <article>
+                    <h3 class="h6 g-mb-2">
+                        <a class="g-color-white-opacity-0_8 g-color-white--hover" href="~/Blog/ViewBlogEntry?urlSlug=links">Useful links and resources</a>
+                    </h3>
+                    <div class="small g-color-white-opacity-0_6">May 8, 2017</div>
+                </article>
+            </div>
+            <!-- End Recent Blogs -->
+
+            <!-- Contact Us -->
+            <div class="col-lg-3 col-md-6">
+                <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+                    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">Contact</h2>
+                </div>
                 @{
                     Html.RenderPartial("_Contact");
                 }
-                <!-- End Contact Us -->
-            </div><!--/col-md-4-->
+            </div>
+            <!-- End Contact Us -->
         </div>
     </div>
-</div><!--/footer-->
+</div>
+<!-- End Footer -->

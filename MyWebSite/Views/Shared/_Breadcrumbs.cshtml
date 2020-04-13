@@ -1,11 +1,17 @@
-﻿<!--=== Breadcrumbs ===-->
-<div class="breadcrumbs">
-    <div class="container">
-        <h1 class="pull-left">@ViewBag.Title</h1>
-        <ul class="pull-right breadcrumb">
-            <li><a href="#">@ViewContext.RouteData.Values["controller"].ToString()</a></li>
-            <li class="active">@ViewContext.RouteData.Values["action"].ToString()</li>
+﻿<!-- Breadcrumbs -->
+<section class="g-bg-gray-light-v5 g-py-20">
+    <div class="container text-right">
+        <p class="h3 g-color-black g-font-weight-600">@ViewBag.Title</p>
+
+        <ul class="u-list-inline">
+            <li class="list-inline-item g-mr-5">
+                <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">@ViewContext.RouteData.Values["controller"].ToString()</a>
+                <i class="g-color-gray-light-v2 g-ml-5">/</i>
+            </li>
+            <li class="list-inline-item g-color-primary">
+                <span>@ViewContext.RouteData.Values["action"].ToString()</span>
+            </li>
         </ul>
     </div>
-</div><!--/breadcrumbs-->
-<!--=== End Breadcrumbs ===-->
+</section>
+<!-- End Breadcrumbs -->
