@@ -12,15 +12,23 @@
             <!-- Tags -->
             <div class="g-mb-40">
                 <ul class="u-list-inline mb-5">
-                    <li class="list-inline-item g-mb-10">
-                        <a class="u-tags-v1 g-brd-around g-brd-gray-dark-v5 g-brd-primary--hover g-color-black g-color-white--hover g-bg-primary--hover g-font-weight-600 g-font-size-12 g-rounded-50 g-py-4 g-px-15" href="#">PowerShell</a>
-                    </li>
-                    <li class="list-inline-item g-mb-10">
-                        <a class="u-tags-v1 g-brd-around g-brd-gray-dark-v5 g-brd-primary--hover g-color-black g-color-white--hover g-bg-primary--hover g-font-weight-600 g-font-size-12 g-rounded-50 g-py-4 g-px-15" href="#">Windows Remote Access</a>
-                    </li>
-                    <li class="list-inline-item g-mb-10">
-                        <a class="u-tags-v1 g-brd-around g-brd-gray-dark-v5 g-brd-primary--hover g-color-black g-color-white--hover g-bg-primary--hover g-font-weight-600 g-font-size-12 g-rounded-50 g-py-4 g-px-15" href="#">@Model.PostedOn.ToString("dddd, dd MMMM yyyy")</a>
-                    </li>
+                    @{
+                        if (Model.PostTags == null || Model.PostTags.Count == 0)
+                        {
+                            <li class="list-inline-item g-mb-10">
+                                <a class="u-tags-v1 g-brd-around g-brd-gray-dark-v5 g-brd-primary--hover g-color-black g-color-white--hover g-bg-primary--hover g-font-weight-600 g-font-size-12 g-rounded-50 g-py-4 g-px-15" href="javascript:void(0);">No Tags</a>
+                            </li>
+                        }
+                        else
+                        {
+                            foreach (var posttag in Model.PostTags)
+                            {
+                                <li class="list-inline-item g-mb-10">
+                                    <a class="u-tags-v1 g-brd-around g-brd-gray-dark-v5 g-brd-primary--hover g-color-black g-color-white--hover g-bg-primary--hover g-font-weight-600 g-font-size-12 g-rounded-50 g-py-4 g-px-15" href="javascript:void(0);">@posttag.Tag.Name</a>
+                                </li>
+                            }
+                        }
+                    }
                 </ul>
             </div>
             <!-- End Tags -->

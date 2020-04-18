@@ -33,6 +33,7 @@ namespace MyWebSite.DataAccess
         [Column("Category_Id")]
         public virtual int CategoryId { get; set; }
 
+        [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
 
         public virtual IList<PostTag> PostTags { get; set; }
