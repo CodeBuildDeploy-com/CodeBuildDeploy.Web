@@ -7,10 +7,9 @@
 
 SET IDENTITY_INSERT [dbo].[Category] ON
 
-INSERT INTO [dbo].[Category] ([Id], [Name], [Description]) VALUES (1, N'Tools', N'My favourite software tools')
-INSERT INTO [dbo].[Category] ([Id], [Name], [Description]) VALUES (2, N'Libraries', N'Libraries you may like')
-INSERT INTO [dbo].[Category] ([Id], [Name], [Description]) VALUES (3, N'Links', N'Useful links to external articles and resources')
-INSERT INTO [dbo].[Category] ([Id], [Name], [Description]) VALUES (5, N'PowerShell', N'Windows command-line shell and scripting language')
-INSERT INTO [dbo].[Category] ([Id], [Name], [Description]) VALUES (6, N'Media', N'Home Media Setup')
+INSERT INTO [dbo].[Category] ([Id], [Name], [Description]) VALUES (1, N'General', N'General Info')
+INSERT INTO [dbo].[Category] ([Id], [Name], [Description]) VALUES (2, N'Automation', N'Automation and Continuous Delivery')
+INSERT INTO [dbo].[Category] ([Id], [Name], [Description]) VALUES (5, N'Workstation Setup', N'Blogs on setting up my workstation')
+INSERT INTO [dbo].[Category] ([Id], [Name], [Description]) VALUES (6, N'Media Setup', N'Home Media Setup')
 
 SET IDENTITY_INSERT [dbo].[Category] OFF
