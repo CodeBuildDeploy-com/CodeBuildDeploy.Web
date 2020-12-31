@@ -38,6 +38,7 @@
 
                         <!-- Submenu (level 2) -->
                         <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-minus-2" id="nav-submenu--pages--blogps" aria-labelledby="nav-link--pages--blogps">
+                            <li class="dropdown-item ">@Html.ActionLink("Ansible on WSL", "ViewBlogEntry", "Blog", new { urlSlug = "WslAnsible" }, new { @class = "nav-link" })</li>
                             <li class="dropdown-item ">@Html.ActionLink("PowerShell Remoting", "ViewBlogEntry", "Blog", new { urlSlug = "PowerShellRemoting" }, new { @class = "nav-link" })</li>
                             <li class="dropdown-item ">@Html.ActionLink("PowerShell Grep", "ViewBlogEntry", "Blog", new { urlSlug = "PowerShellGrep" }, new { @class = "nav-link" })</li>
                             <li class="dropdown-item ">@Html.ActionLink("Tools", "ViewBlogEntry", "Blog", new { urlSlug = "tools" }, new { @class = "nav-link" })</li>

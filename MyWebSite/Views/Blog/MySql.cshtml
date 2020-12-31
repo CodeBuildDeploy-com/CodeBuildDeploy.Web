@@ -2,16 +2,18 @@
     <div class="row justify-content-center">
         <div class="col-lg-9">
             <h3 class="h4 g-color-black g-font-weight-600">@Model.Title</h3>
-            <code>sudo apt-get install mysql-server</code><br />
-            Create a password when asked<br />
-            <code>sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf</code><br />
-            Modify bind-address to 0.0.0.0<br />
-            <code>sudo service mysql start</code><br />
-            <code>mysql -u root -p</code><br />
-            <code>CREATE USER 'kodi' IDENTIFIED BY 'kodi';</code><br />
-            <code>GRANT ALL ON *.* TO 'kodi';</code><br />
-            <code>flush privileges;</code>
-            <code>\q</code>
+            <div class="g-my-10">
+                <pre><code class="language-bash">sudo apt-get install mysql-server</code></pre>
+                Create a password when asked
+                <pre><code class="language-bash">sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf</code></pre>
+                Modify bind-address to 0.0.0.0
+                <pre><code class="language-bash">sudo service mysql start
+mysql -u root -p
+CREATE USER 'kodi' IDENTIFIED BY 'kodi';
+GRANT ALL ON *.* TO 'kodi';
+flush privileges;
+\q</code></pre>
+            </div>
         </div>
     </div>
 </section>

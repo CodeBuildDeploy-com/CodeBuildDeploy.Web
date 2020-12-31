@@ -15,5 +15,6 @@ INSERT INTO [dbo].[Tag] ([Id], [Name], [Description]) VALUES (5, N'UNIX', N'Unix
 INSERT INTO [dbo].[Tag] ([Id], [Name], [Description]) VALUES (6, N'Linux', N'Linux Operating System')
 INSERT INTO [dbo].[Tag] ([Id], [Name], [Description]) VALUES (7, N'Python', N'Python scripting language')
 INSERT INTO [dbo].[Tag] ([Id], [Name], [Description]) VALUES (8, N'Media', N'Home Media Setup')
+INSERT INTO [dbo].[Tag] ([Id], [Name], [Description]) VALUES (9, N'Ansible', N'Ansible Automation')
 
 SET IDENTITY_INSERT [dbo].[Tag] OFF

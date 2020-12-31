@@ -1,5 +1,19 @@
-﻿@model MyWebSite.DataAccess.Post
+﻿@section styles {
+    <link rel="stylesheet" href="~/vendor/prism/themes/prism-okaidia.css">
 
+    <!-- Custom Styles -->
+    <style type="text/css">
+        :not(pre) > code[class*="language-"],
+        pre[class*="language-"] {
+            background: #212529;
+        }
+
+        pre[class*="language-"] {
+            border-radius: 3px;
+        }
+    </style>
+}
+@model MyWebSite.DataAccess.Post
 <!-- Blog Posts -->
 @{
     Html.RenderPartial(Model.Content);
@@ -75,5 +89,18 @@
     </div>
 </section>
 <!-- End Blog Post Author -->
-
 <!-- End Blog Posts -->
+
+@section scripts {
+    <script src="~/vendor/prism/prism.js"></script>
+    <script src="~/vendor/prism/components/prism-core.min.js"></script>
+    <script src="~/vendor/prism/components/prism-markup.min.js"></script>
+    <script src="~/vendor/prism/components/prism-css.min.js"></script>
+    <script src="~/vendor/prism/components/prism-clike.min.js"></script>
+    <script src="~/vendor/prism/components/prism-javascript.min.js"></script>
+    <script src="~/vendor/prism/components/prism-bash.min.js"></script>
+    <script src="~/vendor/prism/components/prism-batch.min.js"></script>
+    <script src="~/vendor/prism/components/prism-powershell.min.js"></script>
+    <script src="~/vendor/prism/components/prism-docker.min.js"></script>
+    <script src="~/vendor/prism/components/prism-git.min.js"></script>
+}

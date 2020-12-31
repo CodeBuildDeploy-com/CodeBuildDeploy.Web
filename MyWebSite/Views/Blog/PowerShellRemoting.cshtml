@@ -10,27 +10,26 @@
             <h4>Enabling access</h4>
             <p>Using a PowerShell session as Administrator.</p>
             <ul>
-                <li>Ensure the WinRM service is running</li>
-                <ul><li><code>get-service winrm</code></li></ul>
-                <li>Run the WinRM service and enable PowerShell remoting</li>
-                <ul><li><code>Enable-PSRemoting –force</code></li></ul>
-                <li>Enable users for access</li>
-                <ul><li><code>winrm s winrm/config/client ''&#64;{TrustedHosts="RemoteComputer"}''</code></li></ul>
-                <li>Enable for all remote machines</li>
-                <ul><li><code>Set-Item WSMan:\localhost\Client\TrustedHosts *</code></li></ul>
-                <li>Restarting the WinRM service</li>
-                <ul><li><code>Restart-Service winrm -Force</code></li></ul>
-                <li>Checking the status of the WinRM service</li>
-                <ul><li><code>winrm quickconfig</code></li></ul>
+                <li>Ensure the WinRM service is running
+                <pre><code class="language-powershell">get-service winrm</code></pre></li>
+                <li>Run the WinRM service and enable PowerShell remoting
+                <pre><code class="language-powershell">Enable-PSRemoting –force</code></pre></li>
+                <li>Enable users for access
+                <pre><code class="language-batch">winrm s winrm/config/client '&#64;{TrustedHosts="RemoteComputer"}'</code></pre></li>
+                <li>Enable for all remote machines
+                <pre><code class="language-powershell">Set-Item WSMan:\localhost\Client\TrustedHosts *</code></pre></li>
+                <li>Restarting the WinRM service
+                <pre><code class="language-powershell">Restart-Service winrm -Force</code></pre></li>
+                <li>Checking the status of the WinRM service
+                <pre><code class="language-batch">winrm quickconfig</code></pre></li>
             </ul>
 
             <h4>Running commands</h4>
 
-            <p>
-                The Invoke-Command cmdlet is used to run a command on a remote machine. The command looks as follows: <br />
-
-                <code>Invoke-Command -ComputerName COMPUTER -ScriptBlock { COMMAND } -credential USERNAME</code>
-            </p>
+            <div class="g-my-10">
+                The Invoke-Command cmdlet is used to run a command on a remote machine. The command looks as follows:
+                <pre><code class="language-powershell">    Invoke-Command -ComputerName COMPUTER -ScriptBlock { COMMAND } -credential USERNAME</code></pre>
+            </div>
         </div>
     </div>
 </section>

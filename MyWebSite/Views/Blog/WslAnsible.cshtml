@@ -1,0 +1,74 @@
+﻿<section class="container g-pt-100 g-pb-50">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <h3 class="h4 g-color-black g-font-weight-600">@Model.Title</h3>
+            <p>
+                Ansible is a powerful open source automation language. It’s also a complete deployment and orchestration tool.
+                It provides drop-in replacements for many core capabilities in other automation solutions, whilst also seeking to solve IT challenges, such as CI/CD.
+                Ansible is an agentless automation tool that by default manages machines over the SSH protocol or WinRM on Windows.
+                Ansible can be installed on many Linux distros however it can't be installed directly on Windows.
+            </p>
+            <p>
+                The Windows Subsystem for Linux (WSL) is a compatibility layer for running GNU/Linux binary executables natively on Windows 10 and Windows Server 2019.
+                It supports running most command-line tools, utilities, and applications unmodified, without the overhead of a traditional virtual machine or dualboot setup
+                You can install many GNU/Linux distributions ontop of the subsystem kernel. In this article we will be using Ubuntu.
+            </p>
+            <p>
+                I often find it useful to have Ansible installed on your development machine for simple commands like encrypting / decrypting password in ansible-vault.
+            </p>
+            <h4>Installing/Enabling WSL and Ubunti</h4>
+
+            <p>First enable the Sub System through the Windows Features settings</p>
+
+            <div class="col-md-8 offset-md-2 col-lg-4 offset-lg-0 g-mb-30">
+                <img class="w-100" src="~/img/blog/WslAnsible/WindowsFeatureClip.png" alt="Enable Windows Feature">
+            </div>
+
+            <div class="col-md-8 offset-md-2 col-lg-4 offset-lg-0 g-mb-30">
+                <img class="w-100" src="~/img/blog/WslAnsible/WSLFeatureClip.png" alt="Enable WSL">
+            </div>
+
+            <p>
+                Then install ubuntu from the Microsoft Store
+            </p>
+
+            <div class="col-md-8 offset-md-2 col-lg-4 offset-lg-0 g-mb-30">
+                <img class="w-100" src="~/img/blog/WslAnsible/UbuntuStoreClip.png" alt="Install Ubuntu">
+            </div>
+
+            <div class="g-my-10">
+                Launch Ubuntu and configure your user details.
+
+                In the terminal run the following commands
+
+                <pre><code class="language-bash">    sudo apt update
+    sudo apt upgrade
+    sudo apt install -y python3-pip
+    python3 -m pip update pip
+    sudo python3 -m pip install git+https://github.com/ansible/ansible.git@v2.10.4</code></pre>
+            </div>
+
+            <div class="g-my-10">
+
+                <h4>WSL Interop</h4>
+
+                Its useful to expose some of the commands such as ansible-vault to the Powershell console in Windows. This saves you the time switching between shells.<br />
+
+                Open a Powershell windows and run the following
+                <pre><code class="language-powershell">    Install-Module WslInterop</code></pre>
+            </div>
+
+            <div class="g-my-10">
+                Then open your powershell profile
+                <pre><code class="language-batch">    notepad $profile</code></pre>
+            </div>
+
+            <div class="g-my-10">
+                Add the following lines
+                <pre><code class="language-powershell">    Import-WslCommand ansible-vault
+    Import-WslCommand ansible
+    Import-WslCommand ssh
+    Import-WslCommand grep</code></pre>
+            </div>
+    </div>
+</section>
