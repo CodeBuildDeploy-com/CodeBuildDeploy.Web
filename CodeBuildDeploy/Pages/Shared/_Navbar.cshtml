@@ -12,7 +12,7 @@
         <!-- End Responsive Toggle Button -->
 
         <!-- Logo -->
-        <a href="@Url.Action("Index", "Home")" class="navbar-brand d-flex">
+        <a href="@Url.Page("Index")" class="navbar-brand d-flex">
             <img src="@Url.Content("~/img/codebuilddeploy_logo.jpg")" alt="Logo">
         </a>
         <!-- End Logo -->
@@ -23,7 +23,7 @@
             
             <!-- Home -->
             <li class="nav-item  g-mx-10--lg g-mx-15--xl">
-                @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link g-py-7 g-px-0" })
+                <a class="nav-link g-py-7 g-px-0" asp-area="" asp-page="/Index">Home</a>
             </li>
             <!-- End Home -->
 
@@ -38,11 +38,11 @@
 
                         <!-- Submenu (level 2) -->
                         <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-minus-2" id="nav-submenu--pages--blogps" aria-labelledby="nav-link--pages--blogps">
-                            <li class="dropdown-item ">@Html.ActionLink("Ansible on WSL", "ViewBlogEntry", "Blog", new { urlSlug = "WslAnsible" }, new { @class = "nav-link" })</li>
-                            <li class="dropdown-item ">@Html.ActionLink("PowerShell Remoting", "ViewBlogEntry", "Blog", new { urlSlug = "PowerShellRemoting" }, new { @class = "nav-link" })</li>
-                            <li class="dropdown-item ">@Html.ActionLink("PowerShell Grep", "ViewBlogEntry", "Blog", new { urlSlug = "PowerShellGrep" }, new { @class = "nav-link" })</li>
-                            <li class="dropdown-item ">@Html.ActionLink("Tools", "ViewBlogEntry", "Blog", new { urlSlug = "tools" }, new { @class = "nav-link" })</li>
-                            <li class="dropdown-item ">@Html.ActionLink("Libraries", "ViewBlogEntry", "Blog", new { urlSlug = "libraries" }, new { @class = "nav-link" })</li>
+                            <li class="dropdown-item "><a class="nav-link" asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="WslAnsible">Ansible on WSL</a></li>
+                            <li class="dropdown-item "><a class="nav-link" asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="PowerShellRemoting">PowerShell Remoting</a></li>
+                            <li class="dropdown-item "><a class="nav-link" asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="PowerShellGrep">PowerShell Grep</a></li>
+                            <li class="dropdown-item "><a class="nav-link" asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="tools">Tools</a></li>
+                            <li class="dropdown-item "><a class="nav-link" asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="libraries">Libraries</a></li>
                         </ul>
                     </li>
 
@@ -52,13 +52,13 @@
 
                         <!-- Submenu (level 2) -->
                         <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-minus-2" id="nav-submenu--pages--blogms" aria-labelledby="nav-link--pages--blogms">
-                            <li class="dropdown-item ">@Html.ActionLink("TVHeadend", "ViewBlogEntry", "Blog", new { urlSlug = "TVHeadend" }, new { @class = "nav-link" })</li>
-                            <li class="dropdown-item ">@Html.ActionLink("MySql", "ViewBlogEntry", "Blog", new { urlSlug = "MySql" }, new { @class = "nav-link" })</li>
+                            <li class="dropdown-item "><a class="nav-link" asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="TVHeadend">TVHeadend</a></li>
+                            <li class="dropdown-item "><a class="nav-link" asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="MySql">MySql</a></li>
                         </ul>
                     </li>
                     
                     <!-- Blog - Links -->
-                    <li class="dropdown-item ">@Html.ActionLink("Links", "ViewBlogEntry", "Blog", new { urlSlug = "links" }, new { @class = "nav-link" })</li>
+                    <li class="dropdown-item "><a class="nav-link" asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="links">Links</a></li>
                 </ul>
             </li>
             <!-- End Blog -->
@@ -83,8 +83,8 @@
 
                 <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-18 g-mt-8--lg--scrolling" id="nav-submenu-pages" aria-labelledby="nav-link-pages">
                     <!-- About - About -->
-                    <li class="dropdown-item ">@Html.ActionLink("About Me", "About", "Home", null, new { @class = "nav-link" })</li>
-                    <li class="dropdown-item ">@Html.ActionLink("Contact Me", "Contact", "Home", null, new { @class = "nav-link" })</li>
+                    <li class="dropdown-item "><a class="nav-link" asp-area="" asp-page="/Home/About">About Me</a></li>
+                    <li class="dropdown-item "><a class="nav-link" asp-area="" asp-page="/Home/Contact">Contact Me</a></li>
 
                     <!-- Pages - About - My Team -->
                     <li class="dropdown-item hs-has-sub-menu ">

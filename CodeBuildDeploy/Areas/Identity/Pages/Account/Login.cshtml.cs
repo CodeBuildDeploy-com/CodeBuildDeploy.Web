@@ -31,6 +31,9 @@ namespace CodeBuildDeploy.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
+        [ViewData]
+        public string Title { get; } = "Log in";
+
         [BindProperty]
         public InputModel Input { get; set; }
 

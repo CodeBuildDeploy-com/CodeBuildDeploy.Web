@@ -37,6 +37,9 @@ namespace CodeBuildDeploy.Areas.Identity.Pages.Account
             _emailSender = emailSender;
         }
 
+        [ViewData]
+        public string Title { get; } = "Register";
+
         [BindProperty]
         public InputModel Input { get; set; }
 

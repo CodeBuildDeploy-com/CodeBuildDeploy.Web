@@ -1,0 +1,40 @@
+﻿<!-- Breadcrumbs -->
+<section class="g-bg-gray-light-v5 g-py-20">
+    <div class="container text-right">
+        <p class="h3 g-color-black g-font-weight-600">@ViewData["Title"]</p>
+        
+        @if (ViewContext.RouteData.Values.ContainsKey("page")
+             && ViewContext.RouteData.Values["page"]?.ToString() is { } pageRouteValue)
+        {
+            var pageRoutes = pageRouteValue.Split('/');
+            <ul class="u-list-inline">
+                @if (pageRoutes != null && pageRoutes.Length > 0)
+                {
+                    var first = true;
+                    for (var i = 0; i < pageRoutes.Length; i++)
+                    {
+                        var pageRoute = pageRoutes[i];
+                        if (string.IsNullOrEmpty(pageRoute)) continue;
+                        if (pageRoute == "Index") pageRoute = "Home";
+                        if (pageRoute == "ViewBlogEntry") pageRoute = Model.Post.UrlSlug;
+
+                        if (first && i != pageRoutes.Length-1)
+                        {
+                            <li class="list-inline-item g-mr-5">
+                                <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">@pageRoute</a>
+                                <i class="g-color-gray-light-v2 g-ml-5">/</i>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="list-inline-item g-color-primary">
+                                <span>@pageRoute</span>
+                            </li>                            
+                        }
+                    }
+                }
+            </ul>
+        }
+    </div>
+</section>
+<!-- End Breadcrumbs -->

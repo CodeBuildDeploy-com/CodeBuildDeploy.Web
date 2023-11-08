@@ -42,8 +42,6 @@ namespace CodeBuildDeploy
                 //.AddGoogle(googleOptions => {})
                 //.AddTwitter(twitterOptions => {})
                 //.AddFacebook(facebookOptions => {});
-            //services.AddMvc();
-            services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddTransient<IBlogRepository,BlogRepository>();
         }
@@ -72,9 +70,6 @@ namespace CodeBuildDeploy
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
