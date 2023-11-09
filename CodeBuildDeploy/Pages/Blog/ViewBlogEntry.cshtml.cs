@@ -17,12 +17,12 @@ public class ViewBlogEntryModel : PageModel
     private readonly IBlogRepository _blogsRepository;
 
     [ViewData]
-    public string Title { get; private set; }
+    public string Title { get; private set; } = "";
 
     [ViewData]
     public string Message { get; private set; }
 
-    [BindProperty]
+    [BindProperty(SupportsGet = true)]
     public Post? Post { get; set; }
 
     public ViewBlogEntryModel(ILogger<ViewBlogEntryModel> logger, IBlogRepository blogsRepository)
@@ -33,8 +33,7 @@ public class ViewBlogEntryModel : PageModel
 
     public void OnGet(string urlSlug)
     {
-        IList<Post> posts = _blogsRepository.Posts(0, 10);
-        Post = posts.Single(p => p.UrlSlug.ToLower().Equals(urlSlug.ToLower()));
+        Post = _blogsRepository.PostByUrlSlug(urlSlug);
 
         Title = Post.Title;
         Message = Post.Description;

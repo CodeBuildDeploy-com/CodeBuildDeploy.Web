@@ -49,7 +49,7 @@ namespace CodeBuildDeploy.Repositories
                     .Include(p => p.Category)
                     .Include(p => p.PostTags)
                     .ThenInclude(pt => pt.Tag)
-                    .SingleOrDefault(p => p.UrlSlug.ToLower().Equals(urlSlug.ToLower()));
+                    .Single(p => p.UrlSlug == urlSlug);
         }
 
         public int TotalPosts()

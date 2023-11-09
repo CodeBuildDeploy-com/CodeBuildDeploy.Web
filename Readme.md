@@ -1,10 +1,12 @@
+[[_TOC_]]
+
 # Code Build Deploy Blog Website
 
 The Code Build Deploy Website and Blog (https://www.codebuilddeploy.com / https://www.codebuilddeploy.co.uk).
 
-The Site is deployed to Azure App Services.
+The site is deployed to [Azure App Services](https://azure.microsoft.com/en-gb/products/app-service).
 
-[[_TOC_]]
+# Standard DotNet Build
 
 ## Building
 
@@ -22,4 +24,30 @@ dotnet publish ./CodeBuildDeploy/CodeBuildDeploy.csproj -v n --framework net6.0 
 
 ```bash
  dotnet run ./CodeBuildDeploy/CodeBuildDeploy.csproj
+```
+
+# Docker Build
+
+## Building
+
+```powershell
+. .\build.ps1
+```
+
+## Publishing
+
+```powershell
+docker push codebuilddeploy.azurecr.io/code-build-deploy
+```
+
+## Pulling
+
+```powershell
+docker push codebuilddeploy.azurecr.io/code-build-deploy
+```
+
+## Running
+
+```powershell
+. .\run.ps1
 ```

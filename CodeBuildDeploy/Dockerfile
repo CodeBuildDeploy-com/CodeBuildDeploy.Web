@@ -1,10 +1,18 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine AS base
+# Turn off Invariant mode and install icu packages for EntityFramework. 
+# See: https://github.com/dotnet/SqlClient/issues/220
+RUN apk add --no-cache icu-libs
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine AS build
+# Turn off Invariant mode and install icu packages for EntityFramework. 
+# See: https://github.com/dotnet/SqlClient/issues/220
+RUN apk add --no-cache icu-libs
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 WORKDIR /src
 COPY ["CodeBuildDeploy/CodeBuildDeploy.csproj", "CodeBuildDeploy/"]
 RUN dotnet restore "CodeBuildDeploy/CodeBuildDeploy.csproj"

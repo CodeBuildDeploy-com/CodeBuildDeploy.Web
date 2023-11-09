@@ -19,7 +19,7 @@
 
 <!-- Blog Posts -->
 @{
-    Html.RenderPartial(Model.Post.Content);
+    if (Model.Post is { }) await Html.RenderPartialAsync(Model.Post.Content);
 }
 
 <!-- Blog Post Author -->
@@ -30,7 +30,7 @@
             <div class="g-mb-40">
                 <ul class="u-list-inline mb-5">
                     @{
-                        if (Model.Post.PostTags == null || Model.Post.PostTags.Count == 0)
+                        if (Model.Post == null || Model.Post.PostTags == null || Model.Post.PostTags.Count == 0)
                         {
                             <li class="list-inline-item g-mb-10">
                                 <a class="u-tags-v1 g-brd-around g-brd-gray-dark-v5 g-brd-primary--hover g-color-black g-color-white--hover g-bg-primary--hover g-font-weight-600 g-font-size-12 g-rounded-50 g-py-4 g-px-15" href="javascript:void(0);">No Tags</a>
