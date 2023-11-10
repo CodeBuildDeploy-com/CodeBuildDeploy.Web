@@ -37,13 +37,13 @@ dotnet publish ./CodeBuildDeploy/CodeBuildDeploy.csproj -v n --framework net6.0 
 ## Publishing
 
 ```powershell
-docker push codebuilddeploy.azurecr.io/code-build-deploy
+docker push codebuilddeploy.azurecr.io/code-build-deploy:latest
 ```
 
 ## Pulling
 
 ```powershell
-docker push codebuilddeploy.azurecr.io/code-build-deploy
+docker pull codebuilddeploy.azurecr.io/code-build-deploy:latest
 ```
 
 ## Running
