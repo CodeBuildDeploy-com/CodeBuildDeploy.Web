@@ -9,10 +9,10 @@ public class AboutModel : PageModel
     private readonly ILogger<AboutModel> _logger;
 
     [ViewData]
-    public string Title { get; } = "About Me";
+    public string Title { get; } = "About Code Build Deploy";
 
     [ViewData]
-    public string Message { get; } = "All about me..";
+    public string Message { get; } = "Who are we..";
 
     public AboutModel(ILogger<AboutModel> logger)
     {
