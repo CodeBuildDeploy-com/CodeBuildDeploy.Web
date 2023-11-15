@@ -1,1 +1,1 @@
-docker run --rm -it -p 5000:443 --env-file local_variables.env codebuilddeploy.azurecr.io/code-build-deploy:latest
+docker run --rm -it -p 5000:8080 --env-file local_variables.env codebuilddeploy.azurecr.io/code-build-deploy:latest
