@@ -1,5 +1,5 @@
 
-FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine AS base
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS base
 # Turn off Invariant mode and install icu packages for EntityFramework. 
 # See: https://github.com/dotnet/SqlClient/issues/220
 RUN apk add --no-cache icu-libs
@@ -8,7 +8,7 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
 # Turn off Invariant mode and install icu packages for EntityFramework. 
 # See: https://github.com/dotnet/SqlClient/issues/220
 RUN apk add --no-cache icu-libs

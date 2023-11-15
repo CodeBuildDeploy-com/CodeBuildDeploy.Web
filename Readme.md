@@ -17,7 +17,7 @@ dotnet build
 ## Publishing
 
 ```bash
-dotnet publish ./CodeBuildDeploy/CodeBuildDeploy.csproj -v n --framework net6.0 --self-contained:false --no-restore -o ./publish/net6.0
+dotnet publish ./CodeBuildDeploy/CodeBuildDeploy.csproj -v n --framework net8.0 --self-contained:false --no-restore -o ./publish/net8.0
 ```
 
 ## Running
