@@ -3,7 +3,11 @@
         <div class="col-lg-9">
             <h3 class="h4 g-color-black g-font-weight-600">@Model.Title</h3>
             <div class="g-my-10">
-                <p><a href="https://trunkbaseddevelopment.com/" target="_blank">Trunk Based Development</a> is a branching strategy that operates with no long-running branches. Releases come from builds of main.</p>
+                <p><a href="https://trunkbaseddevelopment.com/" target="_blank">Trunk Based Development</a> is a branching strategy that operates with no long-running branches. Commits are made directly on main and releases come from builds of main.</p>
+                <p>In large teams, short lived branches can be used for short term collaboration. The commits to main should be regularly taken into the branch and its a good idea to rebased the branch changes onto the head.</p>
+                <img class="w-100" src="~/img/blog/TrunkBasedDev/trunkbaseddev.png" alt="Branches">
+                <p>This strategy is popular among DevOps teams and teams practicing continuous delivery. In fact it is a key enabler of continuous integration and by extension continuous delivery, as teams committing directly to main at least every 24hours is a CI core requirement.</p>
+                <p>For comparison, an opposing branching stratagy would be <a href="https://www.gitkraken.com/learn/git/git-flow" target="_blank">GitFlow</a>. This model uses long running feature, release and hotfix branches where your code would not be continuously integrated.</p>
             </div>
         </div>
     </div>
