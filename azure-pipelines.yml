@@ -54,7 +54,7 @@ stages:
         ConnectedServiceName: $(azureWebAppConnectedServiceName)
         WebAppKind: webAppContainer
         WebAppName: $(webAppName)
-        DockerNamespace: $(dockerRegistryServiceConnection)
+        DockerNamespace: $(containerRegistry)
         DockerRepository: $(imageRepository)
         DockerImageTag: $(tag)
 ...
