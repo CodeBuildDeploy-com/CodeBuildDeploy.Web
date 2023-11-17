@@ -1,0 +1,57 @@
+trigger:
+  branches:
+    include:
+    - refs/heads/master
+  batch: True
+
+resources:
+- repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: 'c3dcf114-3b01-4424-bee8-4c608be4829b'
+  imageRepository: 'code-build-deploy'
+  containerRegistry: 'codebuilddeploy.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/CodeBuildDeploy/Dockerfile'
+  tag: '$(Build.BuildId)'
+  webAppName: 'codebuilddeploy'
+  azureWebAppConnectedServiceName: '5c6d34de-1699-43f1-9578-9d0e64ae81f2'
+
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+stages:
+- stage: Build
+  displayName: Build and push stage
+  jobs:
+  - job: Build
+    displayName: Docker Build and Deploy
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - checkout: self
+    - task: Docker@2
+      displayName: buildAndPush
+      inputs:
+        containerRegistry: $(dockerRegistryServiceConnection)
+        repository: $(imageRepository)
+        Dockerfile: $(dockerfilePath)
+        buildContext: .
+        tags: 'latest'
+- stage: DeployProd
+  displayName: Deploy Prod
+  jobs:
+  - job: DeployProd
+    displayName: Deploy Prod
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: AzureRmWebAppDeployment@4
+      displayName: 'Azure App Service Deploy: codebuilddeploy'
+      inputs:
+        ConnectedServiceName: $(azureWebAppConnectedServiceName)
+        WebAppKind: webAppContainer
+        WebAppName: $(webAppName)
+        DockerNamespace: $(dockerRegistryServiceConnection)
+        DockerRepository: $(imageRepository)
+...
