@@ -1,3 +1,5 @@
+name: 1.0.$(Rev:r)
+
 trigger:
   branches:
     include:
@@ -13,7 +15,7 @@ variables:
   imageRepository: 'code-build-deploy'
   containerRegistry: 'codebuilddeploy.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/CodeBuildDeploy/Dockerfile'
-  tag: '$(Build.BuildId)'
+  tag: '$(Build.BuildNumber)'
   webAppName: 'codebuilddeploy'
   azureWebAppConnectedServiceName: '5c6d34de-1699-43f1-9578-9d0e64ae81f2'
 
@@ -37,7 +39,7 @@ stages:
         repository: $(imageRepository)
         Dockerfile: $(dockerfilePath)
         buildContext: .
-        tags: 'latest'
+        tags: $(tag)
 - stage: DeployProd
   displayName: Deploy Prod
   jobs:
@@ -54,4 +56,5 @@ stages:
         WebAppName: $(webAppName)
         DockerNamespace: $(dockerRegistryServiceConnection)
         DockerRepository: $(imageRepository)
+        DockerImageTag: $(tag)
 ...
