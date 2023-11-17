@@ -6,6 +6,8 @@ The Code Build Deploy Website and Blog (https://www.codebuilddeploy.com / https:
 
 The site is deployed to [Azure App Services](https://azure.microsoft.com/en-gb/products/app-service).
 
+[![Build Status](https://markpollard.visualstudio.com/CodeBuildDeploy/_apis/build/status%2FCodeBuildDeploy?branchName=master)](https://markpollard.visualstudio.com/CodeBuildDeploy/_build/latest?definitionId=4&branchName=master)
+
 # Standard DotNet Build
 
 ## Building
