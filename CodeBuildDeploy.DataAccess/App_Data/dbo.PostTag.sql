@@ -18,5 +18,6 @@ INSERT INTO [dbo].[PostTag] ([Id], [Post_Id], [Tag_Id]) VALUES (6, 6, 4)
 INSERT INTO [dbo].[PostTag] ([Id], [Post_Id], [Tag_Id]) VALUES (7, 6, 5)
 INSERT INTO [dbo].[PostTag] ([Id], [Post_Id], [Tag_Id]) VALUES (8, 6, 6)
 INSERT INTO [dbo].[PostTag] ([Id], [Post_Id], [Tag_Id]) VALUES (9, 6, 9)
+INSERT INTO [dbo].[PostTag] ([Id], [Post_Id], [Tag_Id]) VALUES (10, 7, 10)
 
 SET IDENTITY_INSERT [dbo].[PostTag] OFF

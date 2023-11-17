@@ -16,5 +16,6 @@ INSERT INTO [dbo].[Tag] ([Id], [Name], [Description]) VALUES (6, N'Linux', N'Lin
 INSERT INTO [dbo].[Tag] ([Id], [Name], [Description]) VALUES (7, N'Python', N'Python scripting language')
 INSERT INTO [dbo].[Tag] ([Id], [Name], [Description]) VALUES (8, N'Azure', N'Azure Cloud')
 INSERT INTO [dbo].[Tag] ([Id], [Name], [Description]) VALUES (9, N'Ansible', N'Ansible Automation')
+INSERT INTO [dbo].[Tag] ([Id], [Name], [Description]) VALUES (10, N'Git', N'Git Source Control')
 
 SET IDENTITY_INSERT [dbo].[Tag] OFF
