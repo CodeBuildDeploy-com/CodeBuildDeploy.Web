@@ -16,8 +16,8 @@ variables:
   containerRegistry: 'codebuilddeploy.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/CodeBuildDeploy/Dockerfile'
   tag: '$(Build.BuildNumber)'
-  webAppName: 'codebuilddeploy'
-  azureWebAppConnectedServiceName: '5c6d34de-1699-43f1-9578-9d0e64ae81f2'
+  resourceGroup: 'codebuilddeploy-rg'
+  containerAppName: 'codebuilddeploy'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -48,13 +48,12 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - task: AzureRmWebAppDeployment@4
-      displayName: 'Azure App Service Deploy: codebuilddeploy'
+    - task: AzureContainerApps@1
+      displayName: 'Azure Container App Deploy: codebuilddeploy'
       inputs:
-        ConnectedServiceName: $(azureWebAppConnectedServiceName)
-        WebAppKind: webAppContainer
-        WebAppName: $(webAppName)
-        DockerNamespace: $(containerRegistry)
-        DockerRepository: $(imageRepository)
-        DockerImageTag: $(tag)
+        azureSubscription: 'Visual Studio Premium with MSDN (a8c29995-b368-4d2a-b32a-db619e53639d)'
+        containerAppName: $(containerAppName)
+        resourceGroup: $(resourceGroup)
+        imageToDeploy: '$(containerRegistry)/$(imageRepository):$(tag)'
+        targetPort: '8080'
 ...
