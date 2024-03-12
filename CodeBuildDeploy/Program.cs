@@ -1,4 +1,6 @@
 using System;
+using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -7,13 +9,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 using Serilog;
-
-using CodeBuildDeploy;
-using CodeBuildDeploy.DataAccess;
-using CodeBuildDeploy.Repositories;
 using Serilog.Formatting.Json;
-using System.Threading.Tasks;
 using Serilog.Extensions.Hosting;
+
+using CodeBuildDeploy.Repositories;
+using CodeBuildDeploy.DataAccess;
+using System.Net.Http.Headers;
 
 var logConfiguration = new LoggerConfiguration().Enrich.FromLogContext().WriteTo.Async(a => a.Console(new JsonFormatter()));
 var reloadableLogger = logConfiguration.CreateBootstrapLogger();
@@ -81,8 +82,6 @@ static async Task ConfigureServicesAsync(WebApplicationBuilder builder)
             builder.Configuration.GetConnectionString("AccountConnection")));
     builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
             .AddEntityFrameworkStores<ApplicationDbContext>();
-    builder.Services.AddDbContext<DAContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("BlogConnection")));
     builder.Services.AddAuthentication();
         //.AddMicrosoftAccount(microsoftOptions => {})
         //.AddGoogle(googleOptions => {})
@@ -90,6 +89,12 @@ static async Task ConfigureServicesAsync(WebApplicationBuilder builder)
         //.AddFacebook(facebookOptions => {});
     builder.Services.AddRazorPages();
     builder.Services.AddTransient<IBlogRepository, BlogRepository>();
+    builder.Services.AddHttpClient(BlogRepository.ClientName, client =>
+    {
+        var blogsEndpointUri = builder.Configuration.GetSection("BlogsEndpointUrl").Get<string>() ?? "http://blogs/";
+        client.BaseAddress = new Uri(blogsEndpointUri);
+        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+    });
 
     await Task.CompletedTask;
 }

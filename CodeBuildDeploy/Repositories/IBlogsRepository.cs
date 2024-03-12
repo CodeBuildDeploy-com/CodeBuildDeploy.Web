@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
-
-using CodeBuildDeploy.DataAccess;
+using System.Threading.Tasks;
+using CodeBuildDeploy.Models;
 
 namespace CodeBuildDeploy.Repositories
 {
     public interface IBlogRepository
     {
-        IList<Category> AllCategories();
-        IList<Post> AllPosts();
-        IList<Post> Posts(int pageNo, int pageSize);
-        Post PostByUrlSlug(string urlSlug);
-        int TotalPosts();
+        Task<IList<Category>> AllCategoriesAsync();
+        Task<IList<Post>> AllPostsAsync();
+        Task<IList<Post>> PostsAsync(int pageNo, int pageSize);
+        Task<Post> PostByUrlSlugAsync(string urlSlug);
+        Task<int> TotalPostsAsync();
     }
 }

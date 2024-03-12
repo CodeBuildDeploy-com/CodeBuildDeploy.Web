@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-using CodeBuildDeploy.DataAccess;
+using CodeBuildDeploy.Models;
 using CodeBuildDeploy.Repositories;
 
 namespace CodeBuildDeploy.Pages.Blog;
@@ -31,9 +30,9 @@ public class ViewBlogEntryModel : PageModel
         _blogsRepository = blogsRepository;
     }
 
-    public void OnGet(string urlSlug)
+    public async Task OnGetAsync(string urlSlug)
     {
-        Post = _blogsRepository.PostByUrlSlug(urlSlug);
+        Post = await _blogsRepository.PostByUrlSlugAsync(urlSlug);
 
         Title = Post.Title;
         Message = Post.Description;
