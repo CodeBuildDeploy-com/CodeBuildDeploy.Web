@@ -5,6 +5,8 @@ param(
 
 $buildParams = @()
 
+$buildParams += @('--build-arg')
+$buildParams += @("CBD_FEED_ACCESSTOKEN=$($Env:CBD_FEED_ACCESSTOKEN)")
 if ($NoCache) {
     $buildParams += @('--no-cache')
 }

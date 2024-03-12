@@ -15,7 +15,6 @@ variables:
   imageRepository: 'code-build-deploy'
   containerRegistry: 'codebuilddeploy.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/CodeBuildDeploy/Dockerfile'
-  tag: '$(Build.BuildNumber)'
   resourceGroup: 'codebuilddeploy-rg'
   containerAppName: 'codebuilddeploy'
 
@@ -32,14 +31,30 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - checkout: self
+      displayName: 'Checkout Blogs Repo'
+    - task: NuGetAuthenticate@1
+      displayName: 'Authenticate to NuGet'
     - task: Docker@2
-      displayName: buildAndPush
+      displayName: Docker Build
       inputs:
+        command: build
         containerRegistry: $(dockerRegistryServiceConnection)
         repository: $(imageRepository)
+        tags: |
+          latest
+          $(Build.BuildNumber)
         Dockerfile: $(dockerfilePath)
         buildContext: .
-        tags: $(tag)
+        arguments: '--build-arg CBD_FEED_ACCESSTOKEN=$(VSS_NUGET_ACCESSTOKEN)'
+    - task: Docker@2
+      displayName: Docker Push
+      inputs:
+        command: push
+        containerRegistry: $(dockerRegistryServiceConnection)
+        repository: $(imageRepository)
+        tags: |
+          latest
+          $(Build.BuildNumber)
 - stage: DeployProd
   displayName: Deploy Prod
   jobs:
@@ -54,6 +69,6 @@ stages:
         azureSubscription: 'Visual Studio Premium with MSDN (a8c29995-b368-4d2a-b32a-db619e53639d)'
         containerAppName: $(containerAppName)
         resourceGroup: $(resourceGroup)
-        imageToDeploy: '$(containerRegistry)/$(imageRepository):$(tag)'
+        imageToDeploy: '$(containerRegistry)/$(imageRepository):$(Build.BuildNumber)'
         targetPort: '8080'
 ...
