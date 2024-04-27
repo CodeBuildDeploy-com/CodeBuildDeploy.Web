@@ -11,14 +11,14 @@
                 <pre><code class="language-bash">    $ git checkout master
     $ git pull  // get latest from master
     $ git checkout mybranch
-    $ git rebase master  // get masters updates and make them the base of my branch</code></pre>
+    $ git rebase master  // get masters updates and make them the base of my branch
+    $ git push --force-with-lease</code></pre>
                 <p>Another useful technique is to use reset to merge commits to remove any unnecessary noise.</p>
                 <pre><code class="language-bash">    $ git commit -am "feature x"
     $ git commit -am "fix spelling mistake"
     $ git reset --soft HEAD~2
     $ git commit -am "feature x"
-    $ git rebase origin/master
-    $ git push --force</code></pre>
+    $ git push --force-with-lease</code></pre>
                 <p>This branching strategy is often popular among DevOps teams and teams practicing continuous delivery. In fact it is a key enabler of continuous integration and by extension continuous delivery, as teams committing directly to main at least every 24hours is a CI core requirement.</p>
                 <p>For comparison, an opposing branching stratagy would be <a href="https://www.gitkraken.com/learn/git/git-flow" target="_blank">GitFlow</a>. This model uses long running feature, release and hotfix branches where your code would not be continuously integrated. It can be challenging for teams and engineers coming from a GitFlow type strategy to shift their way of thinking.</p>
             </div>
