@@ -1,0 +1,29 @@
+name: code-build-deploy
+
+networks:
+  development:
+    name: code-build-deploy
+    driver: bridge
+
+services:
+  code-build-deploy:
+    image: codebuilddeploy.azurecr.io/code-build-deploy:latest
+    build:
+      context: .
+      dockerfile: ./src/CodeBuildDeploy/Dockerfile
+      target: final
+      args:
+        FEED_ACCESSTOKEN: $FEED_ACCESSTOKEN
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: https://+:5000
+      ASPNETCORE_Kestrel__Certificates__Default__Password: $CERT_PASSWORD
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/code-build-deploy.pfx
+    volumes:
+      - ~/.aspnet/https:/https:ro
+    ports:
+      - 5000:5000
+    networks:
+      - development
+    container_name: code-build-deploy
+    hostname: code-build-deploy
