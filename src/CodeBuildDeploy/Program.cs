@@ -95,6 +95,7 @@ static async Task ConfigureServicesAsync(WebApplicationBuilder builder)
         client.BaseAddress = new Uri(blogsEndpointUri);
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
     });
+    builder.Services.AddHealthChecks();
 
     await Task.CompletedTask;
 }
@@ -125,6 +126,8 @@ static async Task ConfigureAppAsync(WebApplication app)
     {
         endpoints.MapRazorPages();
     });
+
+    app.UseHealthChecks($"/v1/healthcheck");
 
     await Task.CompletedTask;
 }
