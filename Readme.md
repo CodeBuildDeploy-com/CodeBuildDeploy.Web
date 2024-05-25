@@ -19,13 +19,13 @@ dotnet build
 ## Publishing
 
 ```bash
-dotnet publish ./CodeBuildDeploy/CodeBuildDeploy.csproj --framework net8.0 --self-contained:false --no-restore -o ./publish/net8.0
+dotnet publish ./CodeBuildDeploy.Web/CodeBuildDeploy.Web.csproj --framework net8.0 --self-contained:false --no-restore -o ./publish/net8.0
 ```
 
 ## Running
 
 ```bash
- dotnet run ./CodeBuildDeploy/CodeBuildDeploy.csproj
+ dotnet run ./CodeBuildDeploy.Web/CodeBuildDeploy.Web.csproj
 ```
 
 # Docker Build

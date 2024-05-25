@@ -1,6 +1,6 @@
 {{ $env := .Values.env.name | required "env.name is required" }}
 {{ $envShort := .Values.env.shortName | required "env.shortName is required" }}
-{{ $serviceName := "codebuilddeploy" }}
+{{ $serviceName := "codebuilddeploy-web" }}
 {{ $instanceName := printf "%s-%s" $env $serviceName }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress

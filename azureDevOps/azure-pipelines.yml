@@ -19,7 +19,7 @@ resources:
 
 variables:
 - name: Service.Name.KebabCase
-  value: "codebuilddeploy"
+  value: "codebuilddeploy-web"
 
 - template: azureDevOps/variables-infrastructure.yml@subplatform
 - template: azureDevOps/variables-infrastructure.yml@appplatform
@@ -70,7 +70,7 @@ stages:
         tags: |
           latest
           $(Build.Number)
-        Dockerfile: '$(Build.SourcesDirectory)/src/CodeBuildDeploy/Dockerfile'
+        Dockerfile: '$(Build.SourcesDirectory)/src/CodeBuildDeploy.Web/Dockerfile'
         buildContext: .
         arguments: '--build-arg FEED_ACCESSTOKEN=$(VSS_NUGET_ACCESSTOKEN) --build-arg VERSION=$(Build.Number) --build-arg ASSEMBLY_VERSION=$(Version.Assembly) --build-arg FILE_VERSION=$(Version.File) --build-arg INFORMATIONAL_VERSION=$(Version.Informational) --build-arg PACKAGE_VERSION=$(Build.Number)'
 

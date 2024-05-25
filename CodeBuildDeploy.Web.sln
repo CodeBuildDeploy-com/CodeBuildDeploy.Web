@@ -15,12 +15,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "azureDevOps", "azureDevOps", "{CC58BA74-0CB4-4481-B77C-76D207E2B478}"
 	ProjectSection(SolutionItems) = preProject
 		azureDevOps\azure-pipelines.yml = azureDevOps\azure-pipelines.yml
-		azureDevOps\versioning-variables.yml = azureDevOps\versioning-variables.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{78F5A4B0-84B0-4437-A46D-0B1DE6C8F78F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeBuildDeploy", "src\CodeBuildDeploy\CodeBuildDeploy.csproj", "{B4064984-4F06-4D22-9DD7-53CBC635EF79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeBuildDeploy.Web", "src\CodeBuildDeploy.Web\CodeBuildDeploy.Web.csproj", "{B4064984-4F06-4D22-9DD7-53CBC635EF79}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeBuildDeploy.DataAccess", "src\CodeBuildDeploy.DataAccess\CodeBuildDeploy.DataAccess.csproj", "{BFD5FB71-D65A-4231-820B-59C4B12087F6}"
 EndProject

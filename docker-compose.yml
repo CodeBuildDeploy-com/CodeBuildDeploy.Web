@@ -6,11 +6,11 @@ networks:
     driver: bridge
 
 services:
-  codebuilddeploy:
-    image: codebuilddeploy.azurecr.io/codebuilddeploy:latest
+  codebuilddeploy-web:
+    image: codebuilddeploy.azurecr.io/codebuilddeploy-web:latest
     build:
       context: .
-      dockerfile: ./src/CodeBuildDeploy/Dockerfile
+      dockerfile: ./src/CodeBuildDeploy.Web/Dockerfile
       target: final
       args:
         FEED_ACCESSTOKEN: $FEED_ACCESSTOKEN
@@ -25,5 +25,5 @@ services:
       - 5000:5000
     networks:
       - development
-    container_name: codebuilddeploy
-    hostname: codebuilddeploy
+    container_name: codebuilddeploy-web
+    hostname: codebuilddeploy-web
