@@ -2,11 +2,11 @@
 
 # Code Build Deploy Blog Website
 
-The Code Build Deploy Website and Blog (https://www.codebuilddeploy.com / https://www.codebuilddeploy.co.uk).
+The Code Build Deploy Website (https://www.codebuilddeploy.com / https://www.codebuilddeploy.co.uk).
 
-The site is deployed to [Azure Container Apps](https://azure.microsoft.com/en-gb/products/container-apps).
+The site is deployed as a container, into [AKS](https://azure.microsoft.com/en-gb/products/kubernetes-service/).
 
-[![Build Status](https://markpollard.visualstudio.com/CodeBuildDeploy/_apis/build/status%2FCodeBuildDeploy?branchName=master)](https://markpollard.visualstudio.com/CodeBuildDeploy/_build/latest?definitionId=4&branchName=master)
+[![Build Status](https://markpollard.visualstudio.com/CodeBuildDeploy/_apis/build/status%2FCodeBuildDeploy.Web?branchName=master)](https://markpollard.visualstudio.com/CodeBuildDeploy/_build/latest?definitionId=4&branchName=master)
 
 # Standard DotNet Build
 
@@ -19,7 +19,7 @@ dotnet build
 ## Publishing
 
 ```bash
-dotnet publish ./CodeBuildDeploy.Web/CodeBuildDeploy.Web.csproj --framework net8.0 --self-contained:false --no-restore -o ./publish/net8.0
+dotnet publish ./CodeBuildDeploy.Web/CodeBuildDeploy.Web.csproj --framework net8.0 --self-contained:false --no-restore -o ./publish
 ```
 
 ## Running
@@ -43,7 +43,6 @@ Create a .env file based on the .env.example
 FEED_ACCESSTOKEN=Access_Token_To_AzureDevOps_Feeds
 CERT_PASSWORD=SOME_PASSWORD
 ASPNETCORE_ENVIRONMENT=Development
-ConnectionStrings__AccountsConnection=Connection_String_To_Accounts_Db
 ```
 
 ## Building and Running

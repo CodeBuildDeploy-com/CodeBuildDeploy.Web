@@ -26,7 +26,6 @@ WORKDIR /work
 FROM sdkbase AS build
 WORKDIR /work
 COPY ["src/CodeBuildDeploy.Web/CodeBuildDeploy.Web.csproj", "src/CodeBuildDeploy.Web/"]
-COPY ["src/CodeBuildDeploy.DataAccess/CodeBuildDeploy.DataAccess.csproj", "src/CodeBuildDeploy.DataAccess/"]
 COPY ["./nuget.config", "./"]
 RUN dotnet restore "./src/CodeBuildDeploy.Web/CodeBuildDeploy.Web.csproj"
 COPY . .

@@ -28,12 +28,6 @@ spec:
             - containerPort: 8080
 
           env:
-            - name: ConnectionStrings__AccountConnection
-              valueFrom:
-                secretKeyRef:
-                  name: cbd-{{ $env }}-secret
-                  key: ConnectionStrings__AccountConnection
-                  
             - name: BlogsEndpointUrl
               valueFrom:
                 secretKeyRef:
