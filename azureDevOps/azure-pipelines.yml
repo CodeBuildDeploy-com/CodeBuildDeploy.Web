@@ -62,7 +62,7 @@ stages:
       displayName: 'Authenticate to NuGet'
 
     - task: Docker@2
-      displayName: Docker Build
+      displayName: Build App Image
       inputs:
         command: build
         containerRegistry: $(Acr.Repository.Connect)
