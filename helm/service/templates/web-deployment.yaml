@@ -28,17 +28,29 @@ spec:
             - containerPort: 8080
 
           env:
-            - name: ConnectionStrings__AccountConnection
-              valueFrom:
-                secretKeyRef:
-                  name: cbd-{{ $env }}-secret
-                  key: ConnectionStrings__AccountConnection
-                  
             - name: BlogsEndpointUrl
               valueFrom:
                 secretKeyRef:
                   name: cbd-{{ $env }}-secret
                   key: BlogsEndpointUrl
+            
+            - name: Authentication__DataProtection__AzureStorage__ConnectionString
+              valueFrom:
+                secretKeyRef:
+                  name: cbd-{{ $env }}-secret
+                  key: Authentication__DataProtection__AzureStorage__ConnectionString
+            
+            - name: Authentication__DataProtection__AzureStorage__ContainerName
+              valueFrom:
+                configMapKeyRef:
+                  name: cbd-{{ $env }}-configmap
+                  key: Authentication__DataProtection__AzureStorage__ContainerName
+            
+            - name: Authentication__DataProtection__AzureStorage__BlobName
+              valueFrom:
+                configMapKeyRef:
+                  name: cbd-{{ $env }}-configmap
+                  key: Authentication__DataProtection__AzureStorage__BlobName
 
             - name: ServiceIdentifiers__OwnerId
               value: "codebuilddeploy-web"
