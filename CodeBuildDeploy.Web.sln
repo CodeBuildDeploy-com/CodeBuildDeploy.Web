@@ -21,8 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{78F5A4B0-84B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeBuildDeploy.Web", "src\CodeBuildDeploy.Web\CodeBuildDeploy.Web.csproj", "{B4064984-4F06-4D22-9DD7-53CBC635EF79}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeBuildDeploy.DataAccess", "src\CodeBuildDeploy.DataAccess\CodeBuildDeploy.DataAccess.csproj", "{BFD5FB71-D65A-4231-820B-59C4B12087F6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,17 +31,12 @@ Global
 		{B4064984-4F06-4D22-9DD7-53CBC635EF79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4064984-4F06-4D22-9DD7-53CBC635EF79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4064984-4F06-4D22-9DD7-53CBC635EF79}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BFD5FB71-D65A-4231-820B-59C4B12087F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFD5FB71-D65A-4231-820B-59C4B12087F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BFD5FB71-D65A-4231-820B-59C4B12087F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BFD5FB71-D65A-4231-820B-59C4B12087F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B4064984-4F06-4D22-9DD7-53CBC635EF79} = {78F5A4B0-84B0-4437-A46D-0B1DE6C8F78F}
-		{BFD5FB71-D65A-4231-820B-59C4B12087F6} = {78F5A4B0-84B0-4437-A46D-0B1DE6C8F78F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0BBB5FD7-3BF8-4099-BBBB-0F4B4B658976}

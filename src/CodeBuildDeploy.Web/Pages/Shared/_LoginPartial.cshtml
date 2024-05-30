@@ -1,8 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@using CodeBuildDeploy.DataAccess
-@inject SignInManager<ApplicationUser> SignInManager
 
-@if (SignInManager.IsSignedIn(User))
+@if (User.Identity!.IsAuthenticated)
 {
     <li class="dropdown-item ">
         <a  class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
@@ -16,9 +14,9 @@
 else
 {
     <li class="dropdown-item ">
-        <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        <a class="nav-link" href="/Identity/Account/Register">Register</a>
     </li>
     <li class="dropdown-item ">
-        <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        <a class="nav-link" href="/Identity/Account/Login">Login</a>
     </li>
 }

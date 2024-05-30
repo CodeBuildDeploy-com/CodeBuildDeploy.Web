@@ -1,9 +1,9 @@
 using System;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -12,9 +12,11 @@ using Serilog;
 using Serilog.Formatting.Json;
 using Serilog.Extensions.Hosting;
 
+using CodeBuildDeploy.Identity.DA.EF.DI;
+using CodeBuildDeploy.Identity.DA.Entities;
+using CodeBuildDeploy.Identity.DA;
 using CodeBuildDeploy.Repositories;
-using CodeBuildDeploy.DataAccess;
-using System.Net.Http.Headers;
+using CodeBuildDeploy.Web.DI;
 
 var logConfiguration = new LoggerConfiguration().Enrich.FromLogContext().WriteTo.Async(a => a.Console(new JsonFormatter()));
 var reloadableLogger = logConfiguration.CreateBootstrapLogger();
@@ -77,16 +79,13 @@ static async Task ConfigureLoggingAsync(WebApplicationBuilder builder, Reloadabl
 
 static async Task ConfigureServicesAsync(WebApplicationBuilder builder)
 {
-    builder.Services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(
-            builder.Configuration.GetConnectionString("AccountConnection")));
-    builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            .AddEntityFrameworkStores<ApplicationDbContext>();
-    builder.Services.AddAuthentication();
-        //.AddMicrosoftAccount(microsoftOptions => {})
-        //.AddGoogle(googleOptions => {})
-        //.AddTwitter(twitterOptions => {})
-        //.AddFacebook(facebookOptions => {});
+    builder.Services.ConfigureDataServices();
+
+    builder.Services.ConfigureAuthentication(builder.Configuration);
+    
+    builder.Services.AddDefaultIdentity<ApplicationUser>()
+                    .AddEntityFrameworkStores<ApplicationDbContext>();
+    
     builder.Services.AddRazorPages();
     builder.Services.AddTransient<IBlogRepository, BlogRepository>();
     builder.Services.AddHttpClient(BlogRepository.ClientName, client =>
@@ -106,11 +105,10 @@ static async Task ConfigureAppAsync(WebApplication app)
     if (app.Environment.IsDevelopment())
     {
         app.UseDeveloperExceptionPage();
-        app.UseDatabaseErrorPage();
     }
     else
     {
-        app.UseExceptionHandler("/Home/Error");
+        app.UseExceptionHandler("/Error");
         // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
         app.UseHsts();
     }
