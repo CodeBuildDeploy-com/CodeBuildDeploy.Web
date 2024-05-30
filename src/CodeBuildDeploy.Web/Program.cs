@@ -12,8 +12,11 @@ using Serilog;
 using Serilog.Formatting.Json;
 using Serilog.Extensions.Hosting;
 
+using CodeBuildDeploy.Identity.DA.EF.DI;
+using CodeBuildDeploy.Identity.DA.Entities;
+using CodeBuildDeploy.Identity.DA;
 using CodeBuildDeploy.Repositories;
-using Microsoft.AspNetCore.Identity;
+using CodeBuildDeploy.Web.DI;
 
 var logConfiguration = new LoggerConfiguration().Enrich.FromLogContext().WriteTo.Async(a => a.Console(new JsonFormatter()));
 var reloadableLogger = logConfiguration.CreateBootstrapLogger();
@@ -76,8 +79,13 @@ static async Task ConfigureLoggingAsync(WebApplicationBuilder builder, Reloadabl
 
 static async Task ConfigureServicesAsync(WebApplicationBuilder builder)
 {
-    //builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true);
-    builder.Services.AddAuthentication();
+    builder.Services.ConfigureDataServices();
+
+    builder.Services.ConfigureAuthentication(builder.Configuration);
+    
+    builder.Services.AddDefaultIdentity<ApplicationUser>()
+                    .AddEntityFrameworkStores<ApplicationDbContext>();
+    
     builder.Services.AddRazorPages();
     builder.Services.AddTransient<IBlogRepository, BlogRepository>();
     builder.Services.AddHttpClient(BlogRepository.ClientName, client =>
