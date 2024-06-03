@@ -2,18 +2,6 @@
 
 @if (User.Identity!.IsAuthenticated)
 {
-    <!-- Log off -->
-    <li class="nav-item ms-lg-auto">
-        <form id="logoutForm" class="navbar-right">
-            <a class="btn btn-ghost-dark me-2 me-lg-0" href="javascript:document.getElementById('logoutForm').submit()" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Log off</a>
-        </form>
-    </li>
-    <!-- End Log off -->
-    <!-- Manage -->
-    <li class="nav-item">
-        <a class="btn btn-dark d-none d-lg-inline-block" asp-area="Identity" asp-page="/Account/Manage/Index">Manage</a>
-    </li>
-    <!-- End Manage -->
 }
 else
 {
