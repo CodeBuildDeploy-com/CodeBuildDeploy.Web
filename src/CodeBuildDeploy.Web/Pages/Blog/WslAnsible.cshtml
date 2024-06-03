@@ -1,7 +1,7 @@
-﻿<section class="container g-pt-100 g-pb-50">
+﻿<div class="container pt-10 pb-5">
     <div class="row justify-content-center">
         <div class="col-lg-9">
-            <h3 class="h4 g-color-black g-font-weight-600">@Model.Title</h3>
+            <h3 class="h4">@Model.Title</h3>
             <p>
                 Ansible is a powerful open source automation language. It’s also a complete deployment and orchestration tool.
                 It provides drop-in replacements for many core capabilities in other automation solutions, whilst also seeking to solve IT challenges, such as CI/CD.
@@ -20,11 +20,11 @@
 
             <p>First enable the Sub System through the Windows Features settings</p>
 
-            <div class="col-md-8 offset-md-2 col-lg-4 offset-lg-0 g-mb-30">
+            <div class="col-md-8 offset-md-2 col-lg-4 offset-lg-0 mb-3">
                 <img class="w-100" src="~/img/blog/WslAnsible/WindowsFeatureClip.png" alt="Enable Windows Feature">
             </div>
 
-            <div class="col-md-8 offset-md-2 col-lg-4 offset-lg-0 g-mb-30">
+            <div class="col-md-8 offset-md-2 col-lg-4 offset-lg-0 mb-3">
                 <img class="w-100" src="~/img/blog/WslAnsible/WSLFeatureClip.png" alt="Enable WSL">
             </div>
 
@@ -32,11 +32,11 @@
                 Then install ubuntu from the Microsoft Store
             </p>
 
-            <div class="col-md-8 offset-md-2 col-lg-4 offset-lg-0 g-mb-30">
+            <div class="col-md-8 offset-md-2 col-lg-4 offset-lg-0 mb-3">
                 <img class="w-100" src="~/img/blog/WslAnsible/UbuntuStoreClip.png" alt="Install Ubuntu">
             </div>
 
-            <div class="g-my-10">
+            <div class="my-1">
                 Launch Ubuntu and configure your user details.
 
                 In the terminal run the following commands
@@ -48,7 +48,7 @@
     sudo python3 -m pip install git+https://github.com/ansible/ansible.git@v2.10.4</code></pre>
             </div>
 
-            <div class="g-my-10">
+            <div class="my-1">
 
                 <h4>WSL Interop</h4>
 
@@ -58,17 +58,18 @@
                 <pre><code class="language-powershell">    Install-Module WslInterop</code></pre>
             </div>
 
-            <div class="g-my-10">
+            <div class="my-1">
                 Then open your powershell profile
                 <pre><code class="language-batch">    notepad $profile</code></pre>
             </div>
 
-            <div class="g-my-10">
+            <div class="my-1">
                 Add the following lines
                 <pre><code class="language-powershell">    Import-WslCommand ansible-vault
     Import-WslCommand ansible
     Import-WslCommand ssh
     Import-WslCommand grep</code></pre>
             </div>
+        </div>
     </div>
-</section>
+</div>

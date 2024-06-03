@@ -1,78 +1,93 @@
-﻿<!-- Footer -->
-<div id="contacts-section" class="g-bg-black-opacity-0_9 g-color-white-opacity-0_8 g-py-60">
-    <div class="container">
-        <div class="row">
+﻿<div class="border-bottom border-white-10">
+    <div class="row py-6">
 
-            <!-- Footer Content - About -->
-            <div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
-                <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
-                    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">About</h2>
-                </div>
-                <p>Code Build deploy is a reference site on topics I have found useful, inspired by continuous delivery approaches</p>
-                <!-- End About -->
-            </div>
-            <!-- End Footer Content - About -->
-
-            <!-- Footer Content - Newsletter -->
-            <div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
-                <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
-                    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">Monthly Newsletter</h2>
-                </div>
-                <p>Subscribe to our newsletter and stay up to date with the latest news from mark pollard web!</p>
-                <form>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Email Address">&nbsp;
-                        <span>
-                            <button class="btn btn-sm u-btn-white text-uppercase g-font-weight-600 g-font-size-12" type="button">Subscribe</button>
-                        </span>
-                    </div>
-                </form>
-            </div>
-            <!-- End Footer Content - Newsletter -->
-
-            <!-- Recent Blogs -->
-            <div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
-                <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
-                    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">Recent Blog Entries</h2>
-                </div>
-                <article>
-                    <h3 class="h6 g-mb-2">
-                        <a class="g-color-white-opacity-0_8 g-color-white--hover" href="~/Blog/ViewBlogEntry?urlSlug=tools">My favourite software tools</a>
-                    </h3>
-                    <div class="small g-color-white-opacity-0_6">May 8, 2017</div>
-                </article>
-
-                <hr class="g-brd-white-opacity-0_1 g-my-10">
-
-                <article>
-                    <h3 class="h6 g-mb-2">
-                        <a class="g-color-white-opacity-0_8 g-color-white--hover" href="~/Blog/ViewBlogEntry?urlSlug=libraries">libraries you may like</a>
-                    </h3>
-                    <div class="small g-color-white-opacity-0_6">May 8, 2017</div>
-                </article>
-
-                <hr class="g-brd-white-opacity-0_1 g-my-10">
-
-                <article>
-                    <h3 class="h6 g-mb-2">
-                        <a class="g-color-white-opacity-0_8 g-color-white--hover" href="~/Blog/ViewBlogEntry?urlSlug=links">Useful links and resources</a>
-                    </h3>
-                    <div class="small g-color-white-opacity-0_6">May 8, 2017</div>
-                </article>
-            </div>
-            <!-- End Recent Blogs -->
-
-            <!-- Contact Us -->
-            <div class="col-lg-3 col-md-6">
-                <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
-                    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">Contact</h2>
-                </div>
-                @{
-                    Html.RenderPartial("_Contact");
-                }
-            </div>
-            <!-- End Contact Us -->
+        <!-- Footer Content - About -->
+        <div class="col-6 col-sm-4 col-lg mb-7 mb-sm-0">
+            <span class="text-cap text-white">About</span>
+            <p class="text-white-70">Code Build deploy is a reference site on topics I have found useful, inspired by continuous delivery approaches</p>
+            <!-- End About -->
         </div>
+        <!-- End Footer Content - About -->
+
+        <!-- Footer Content - Newsletter -->
+        <div class="col-6 col-sm-4 col-lg mb-7 mb-sm-0">
+            <span class="text-cap text-white">Monthly News Letter</span>
+            <p class="text-white-70">Subscribe to our newsletter and stay up to date with the latest news from mark pollard web!</p>
+            <form>
+                <input type="text" class="form-control" placeholder="Email Address">&nbsp;
+                <span>
+                    <button class="btn btn-sm u-btn-white text-uppercase" type="button">Subscribe</button>
+                </span>
+            </form>
+        </div>
+        <!-- End Footer Content - Newsletter -->
+
+        <!-- Recent Blogs -->
+        <div class="col-6 col-sm-4 col-lg mb-7 mb-sm-0">
+            <span class="text-cap text-white">Recent Blog Entries</span>
+
+            <!-- List -->
+            <ul class="list-unstyled list-py-1 mb-0">
+                <li><a class="link link-light link-light-75" href="~/Blog/ViewBlogEntry?urlSlug=tools">My favourite software tools</a></li>
+                <li><a class="link link-light link-light-75" href="~/Blog/ViewBlogEntry?urlSlug=libraries">libraries you may like</a></li>
+                <li><a class="link link-light link-light-75" href="~/Blog/ViewBlogEntry?urlSlug=links">Useful links and resources</a></li>
+            </ul>
+            <!-- End List -->
+        </div>
+        <!-- End Recent Blogs -->
+
+        <!-- Follow Us -->
+        <div class="col-6 col-sm-4 col-lg">
+            <span class="text-cap text-white">Follow us</span>
+
+            <!-- List -->
+            <ul class="list-unstyled list-py-2 mb-0">
+
+                <li>
+                    <a class="link link-light link-light-75" href="https://www.facebook.com/m4rkpollard">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <i class="bi-facebook"></i>
+                            </div>
+
+                            <div class="flex-grow-1 ms-2">
+                                <span>Facebook</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="link link-light link-light-75" href="https://www.linkedin.com/in/mark-pollard-351aa163">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <i class="bi-linkedin"></i>
+                            </div>
+
+                            <div class="flex-grow-1 ms-2">
+                                <span>Linkedin</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="link link-light link-light-75" href="https://twitter.com/m4rk5">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <i class="bi-twitter"></i>
+                            </div>
+
+                            <div class="flex-grow-1 ms-2">
+                                <span>Twitter</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+            </ul>
+            <!-- End List -->
+        </div>
+        <!-- End Follow Us -->
     </div>
 </div>
-<!-- End Footer -->
