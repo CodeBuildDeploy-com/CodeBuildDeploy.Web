@@ -1,7 +1,7 @@
-﻿<section class="container g-pt-100 g-pb-50">
+﻿<div class="container pt-10 pb-5">
     <div class="row justify-content-center">
         <div class="col-lg-9">
-            <h3 class="h4 g-color-black g-font-weight-600">@Model.Title</h3>
+            <h3 class="h4 color-black font-weight-600">@Model.Title</h3>
             <p>
                 Windows PowerShell remoting gives you complete control over your Windows system remotely similar to the Linux Shell Terminal with SSH.
                 This is extreamly useful especial when combined with configuration management tools such as Ansible. By default PowerShell remoting is disabled
@@ -26,10 +26,10 @@
 
             <h4>Running commands</h4>
 
-            <div class="g-my-10">
+            <div class="my-1">
                 The Invoke-Command cmdlet is used to run a command on a remote machine. The command looks as follows:
                 <pre><code class="language-powershell">    Invoke-Command -ComputerName COMPUTER -ScriptBlock { COMMAND } -credential USERNAME</code></pre>
             </div>
         </div>
     </div>
-</section>
+</div>
