@@ -1,13 +1,13 @@
 ﻿<!-- Breadcrumbs -->
-<section class="g-bg-gray-light-v5 g-py-20">
-    <div class="container text-right">
-        <p class="h3 g-color-black g-font-weight-600">@ViewData["Title"]</p>
-        
+<div class="bg-light">
+    <div class="container pt-4 pb-2 text-end">
+        <span class="h3">@ViewData["Title"]</span>
+
         @if (ViewContext.RouteData.Values.ContainsKey("page")
-             && ViewContext.RouteData.Values["page"]?.ToString() is { } pageRouteValue)
+        && ViewContext.RouteData.Values["page"]?.ToString() is { } pageRouteValueOld)
         {
-            var pageRoutes = pageRouteValue.Split('/');
-            <ul class="u-list-inline">
+            var pageRoutes = pageRouteValueOld.Split('/');
+            <ul class="mt-2">
                 @if (pageRoutes != null && pageRoutes.Length > 0)
                 {
                     var first = true;
@@ -18,23 +18,23 @@
                         if (pageRoute == "Index") pageRoute = "Home";
                         if (pageRoute == "ViewBlogEntry") pageRoute = Model.Post.UrlSlug;
 
-                        if (first && i != pageRoutes.Length-1)
+                        if (first && i != pageRoutes.Length - 1)
                         {
-                            <li class="list-inline-item g-mr-5">
-                                <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">@pageRoute</a>
-                                <i class="g-color-gray-light-v2 g-ml-5">/</i>
+                            <li class="list-inline-item">
+                                <a asp-area="" asp-page="/Index">@pageRoute</a>
+                                <i class="text-black-50">/</i>
                             </li>
                         }
                         else
                         {
-                            <li class="list-inline-item g-color-primary">
+                            <li class="list-inline-item text-black-50">
                                 <span>@pageRoute</span>
-                            </li>                            
+                            </li>
                         }
                     }
                 }
             </ul>
         }
     </div>
-</section>
+</div>
 <!-- End Breadcrumbs -->

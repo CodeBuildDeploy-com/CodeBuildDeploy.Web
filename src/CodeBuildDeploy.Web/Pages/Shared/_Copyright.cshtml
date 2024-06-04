@@ -1,46 +1,16 @@
-﻿<footer class="g-bg-gray-dark-v1 g-color-white-opacity-0_8 g-py-20">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 text-center text-md-left g-mb-10 g-mb-0--md">
-                <div class="d-lg-flex">
-                    <small class="d-block g-font-size-default g-mr-10 g-mb-10 g-mb-0--md">@DateTime.Now.Year CodeBuildDeploy &copy; ALL Rights Reserved.</small>
-                    <ul class="u-list-inline">
-                        <li class="list-inline-item">
-                            <a class="g-color-white-opacity-0_8 g-color-white--hover" href="#">Privacy Policy</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <span>|</span>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="g-color-white-opacity-0_8 g-color-white--hover" href="#">Terms of Use</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <span>|</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Social Links -->
-            <div class="col-md-4 align-self-center">
-                <ul class="list-inline text-center text-md-right mb-0">
-                    <li class="list-inline-item g-mx-10" data-toggle="tooltip" data-placement="top" title="Facebook">
-                        <a href="https://www.facebook.com/m4rkpollard" class="g-color-white-opacity-0_5 g-color-white--hover">
-                            <i class="fa fa-facebook"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item g-mx-10" data-toggle="tooltip" data-placement="top" title="Linked In">
-                        <a href="https://www.linkedin.com/in/mark-pollard-351aa163" class="g-color-white-opacity-0_5 g-color-white--hover">
-                            <i class="fa fa-linkedin"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item g-mx-10" data-toggle="tooltip" data-placement="top" title="Twitter">
-                        <a href="https://twitter.com/m4rk5" class="g-color-white-opacity-0_5 g-color-white--hover">
-                            <i class="fa fa-twitter"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!-- End Social Links -->
-        </div>
+﻿<div class="row align-items-md-center py-6">
+    <div class="col-md mb-3 mb-md-0">
+        <!-- List -->
+        <ul class="list-inline list-px-2 mb-0">
+            <li class="list-inline-item"><a class="link link-light link-light-75" asp-area="" asp-page="/Home/Privacy">Privacy and Policy</a></li>
+            <li class="list-inline-item"><a class="link link-light link-light-75" asp-area="" asp-page="/Home/Terms">Terms</a></li>
+        </ul>
+        <!-- End List -->
     </div>
-</footer>
+    <!-- End Col -->
+
+    <div class="col-md-auto">
+        <p class="fs-5 text-white-70 mb-0">&copy; CodeBuildDeploy @DateTime.Now.Year</p>
+    </div>
+    <!-- End Col -->
+</div>

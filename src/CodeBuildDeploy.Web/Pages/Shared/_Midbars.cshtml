@@ -1,12 +1,12 @@
-﻿<!--=== Slider ===-->
-@if (ViewContext.RouteData.Values.ContainsKey("page") && (ViewContext.RouteData.Values["page"].ToString() == "/Index" || ViewContext.RouteData.Values["page"].ToString().Contains("/Home")))
+﻿<!-- Slider -->
+@if (ViewContext.RouteData.Values.ContainsKey("page") && (ViewContext.RouteData.Values["page"].ToString() == "/Index"))
 {
     Html.RenderPartial("_Slider");
 }
-<!--=== End Slider ===-->
+<!-- End Slider -->
 
-<!--=== Breadcrumbs ===-->
+<!-- Breadcrumbs -->
 @{
     Html.RenderPartial("_Breadcrumbs");
 }
-<!--=== End Breadcrumbs ===-->
+<!-- End Breadcrumbs -->
