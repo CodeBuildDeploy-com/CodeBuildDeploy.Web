@@ -2,46 +2,35 @@
 @model CodeBuildDeploy.Pages.Blog.ViewBlogEntryModel
 
 @section styles {
-    <link rel="stylesheet" href="~/vendor/prism/themes/prism-okaidia.css">
-
-    <!-- Custom Styles -->
-    <style type="text/css">
-        :not(pre) > code[class*="language-"],
-        pre[class*="language-"] {
-            background: #212529;
-        }
-
-        pre[class*="language-"] {
-            border-radius: 3px;
-        }
-    </style>
+    <link rel="stylesheet" href="~/vendor/prism/prism.css">
 }
 
-<!-- Blog Posts -->
+<!-- Blog Post -->
 @{
     if (Model.Post is { }) await Html.RenderPartialAsync(Model.Post.Content);
 }
 
-<!-- Blog Post Author -->
-<section class="container">
-    <div class="row justify-content-center">
+<!-- Blog Post Tags -->
+<div class="container">
+    <div class="row justify-content-center pt-6 pb-4">
         <div class="col-lg-9">
             <!-- Tags -->
-            <div class="g-mb-40">
-                <ul class="u-list-inline mb-5">
+            <div class="mb-4 text-center">
+                <h3 class="h6 text-uppercase mb-4">Tags:</h3>
+                <ul class="u-list-inline mb-2">
                     @{
                         if (Model.Post == null || Model.Post.Tags.Count == 0)
                         {
-                            <li class="list-inline-item g-mb-10">
-                                <a class="u-tags-v1 g-brd-around g-brd-gray-dark-v5 g-brd-primary--hover g-color-black g-color-white--hover g-bg-primary--hover g-font-weight-600 g-font-size-12 g-rounded-50 g-py-4 g-px-15" href="javascript:void(0);">No Tags</a>
+                            <li class="list-inline-item mb-1">
+                                <a class="btn btn-outline-secondary btn-sm" href="javascript:void(0);">No Tags</a>
                             </li>
                         }
                         else
                         {
                             foreach (var tag in Model.Post.Tags)
                             {
-                                <li class="list-inline-item g-mb-10">
-                                    <a class="u-tags-v1 g-brd-around g-brd-gray-dark-v5 g-brd-primary--hover g-color-black g-color-white--hover g-bg-primary--hover g-font-weight-600 g-font-size-12 g-rounded-50 g-py-4 g-px-15" href="javascript:void(0);">@tag.Name</a>
+                                <li class="list-inline-item mb-1">
+                                    <a class="btn btn-outline-secondary btn-sm" href="javascript:void(0);">@tag.Name</a>
                                 </li>
                             }
                         }
@@ -49,61 +38,60 @@
                 </ul>
             </div>
             <!-- End Tags -->
-            <!-- Social Icons -->
-            <div class="text-center">
-                <h3 class="h6 g-color-black g-font-weight-600 text-uppercase mb-3">Share:</h3>
-                <ul class="list-inline g-mb-60">
-                    <li class="list-inline-item g-mx-2">
-                        <a class="u-icon-v1 u-icon-slide-up--hover g-color-gray-dark-v4 g-color-facebook--hover" href="https://www.facebook.com/m4rkpollard">
-                            <i class="g-font-size-default g-line-height-1 u-icon__elem-regular fa fa-facebook"></i>
-                            <i class="g-font-size-default g-line-height-0_8 u-icon__elem-hover fa fa-facebook"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item g-mx-2">
-                        <a class="u-icon-v1 u-icon-slide-up--hover g-color-gray-dark-v4 g-color-twitter--hover" href="https://twitter.com/m4rk5">
-                            <i class="g-font-size-default g-line-height-1 u-icon__elem-regular fa fa-twitter"></i>
-                            <i class="g-font-size-default g-line-height-0_8 u-icon__elem-hover fa fa-twitter"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item g-mx-2">
-                        <a class="u-icon-v1 u-icon-slide-up--hover g-color-gray-dark-v4 g-color-linkedin--hover" href="https://www.linkedin.com/in/mark-pollard-351aa163">
-                            <i class="g-font-size-default g-line-height-1 u-icon__elem-regular fa fa-linkedin"></i>
-                            <i class="g-font-size-default g-line-height-0_8 u-icon__elem-hover fa fa-linkedin"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!-- End Social Icons -->
-            <!-- Author -->
-            <div class="g-brd-top g-brd-gray-light-v3 g-pt-60 g-pb-100">
-                <div class="row justify-content-between">
-                    <div class="media">
-                        <img class="d-flex g-width-100 g-height-100 rounded-circle g-mr-30" src="~/img/about/me-profile-sm.jpg" alt="Image Description">
-                        <div class="media-body">
-                            <h4 class="h5 g-color-black g-font-weight-600">Mark Pollard</h4>
-                            <p class="g-color-gray-dark-v5 mb-4">I am a technical, delivery and engineering leader / Microsoft technologies technical architect, with a strong passion for software engineering. I am a firm believer in empowered teams with true DevOps cultures. I encourage responsibility over role, high quality and full stack engineers, showing ownership of the software and its behaviour, end to end, from requirements maturing through to its continual and successful running in Production.</p>
-                            <a class="btn u-btn-outline-black g-brd-gray-light-v1 g-font-weight-600 g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">All author posts</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Author -->
         </div>
     </div>
-</section>
-<!-- End Blog Post Author -->
-<!-- End Blog Posts -->
+</div>
+<!-- End Blog Post Tags -->
 
+<!-- Blog Post Author -->
+<div class="container bg-light content-space-1 mb-5">
+    <div class="row justify-content-lg-center">
+        <div class="col-lg-8">
+            <div class="mb-5">
+                <h5>About the author:</h5>
+            </div>
+            <div class="d-sm-flex">
+                <div class="flex-shrink-0 mb-3 mb-sm-0">
+                    <img class="avatar avatar-xl avatar-circle" src="/img/about/me-profile-sm.jpg" alt="Mark Pollard">
+                </div>
+
+                <div class="flex-grow-1 ms-sm-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h4 class="mb-0">
+                            <span class="text-dark">Mark Pollard</span>
+                        </h4>
+                        <div class="col-lg-6">
+                            <div class="d-flex justify-content-lg-end">
+                                <ul class="list-inline mb-0">
+                                    <li class="list-inline-item">
+                                        <a class="btn btn-soft-secondary btn-icon btn-sm rounded-circle" href="https://www.facebook.com/m4rkpollard">
+                                            <i class="bi-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="btn btn-soft-secondary btn-icon btn-sm rounded-circle" href="https://www.linkedin.com/in/mark-pollard-351aa163">
+                                            <i class="bi-linkedin"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="btn btn-soft-secondary btn-icon btn-sm rounded-circle" href="https://twitter.com/m4rk5">
+                                            <i class="bi-twitter-x"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>I am a technical, delivery and engineering leader / Microsoft technologies technical architect, with a strong passion for software engineering. I am a firm believer in empowered teams with true DevOps cultures. I encourage responsibility over role, high quality and full stack engineers, showing ownership of the software and its behaviour, end to end, from requirements maturing through to its continual and successful running in Production.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Blog Post Author -->
+
+<!-- End Blog Post -->
 @section scripts {
     <script src="~/vendor/prism/prism.js"></script>
-    <script src="~/vendor/prism/components/prism-core.min.js"></script>
-    <script src="~/vendor/prism/components/prism-markup.min.js"></script>
-    <script src="~/vendor/prism/components/prism-css.min.js"></script>
-    <script src="~/vendor/prism/components/prism-clike.min.js"></script>
-    <script src="~/vendor/prism/components/prism-javascript.min.js"></script>
-    <script src="~/vendor/prism/components/prism-bash.min.js"></script>
-    <script src="~/vendor/prism/components/prism-batch.min.js"></script>
-    <script src="~/vendor/prism/components/prism-powershell.min.js"></script>
-    <script src="~/vendor/prism/components/prism-docker.min.js"></script>
-    <script src="~/vendor/prism/components/prism-git.min.js"></script>
 }

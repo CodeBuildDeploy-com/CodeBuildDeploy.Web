@@ -2,21 +2,29 @@
 
 @if (User.Identity!.IsAuthenticated)
 {
-    <li class="dropdown-item ">
-        <a  class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
-    </li>
-    <li class="dropdown-item ">
-        <form id="logoutForm" class="navbar-right" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+    <!-- Log off -->
+    <li class="nav-item ms-lg-auto">
+        <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <a class="btn btn-ghost-dark me-2 me-lg-0" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
         </form>
     </li>
+    <!-- End Log off -->
+    <!-- Manage -->
+    <li class="nav-item">
+        <a class="btn btn-dark d-none d-lg-inline-block" asp-area="Identity" asp-page="/Account/Manage/Index">Manage</a>
+    </li>
+    <!-- End Manage -->
 }
 else
 {
-    <li class="dropdown-item ">
-        <a class="nav-link" href="/Identity/Account/Register">Register</a>
+    <!-- Log in -->
+    <li class="nav-item ms-lg-auto">
+        <a class="btn btn-ghost-dark me-2 me-lg-0" asp-area="Identity" asp-page="/Account/Login" asp-route-returnUrl="@Context.Request.Path">Log in</a>
     </li>
-    <li class="dropdown-item ">
-        <a class="nav-link" href="/Identity/Account/Login">Login</a>
+    <!-- End Log in -->
+    <!-- Sign up -->
+    <li class="nav-item">
+        <a class="btn btn-dark d-none d-lg-inline-block" asp-area="Identity" asp-page="/Account/Register" asp-route-returnUrl="@Context.Request.Path">Sign up</a>
     </li>
+    <!-- End Sign up -->
 }
