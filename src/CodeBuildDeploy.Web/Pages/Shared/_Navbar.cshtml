@@ -1,104 +1,136 @@
-﻿<nav class="js-mega-menu navbar navbar-expand-lg hs-menu-initialized hs-menu-horizontal">
-    <div class="container">
+﻿<nav class="js-mega-menu navbar-nav-wrap">
 
-        <!-- Responsive Toggle Button -->
-        <button class="navbar-toggler navbar-toggler-right btn g-line-height-1 g-brd-none g-pa-0 g-pos-abs g-top-minus-3 g-right-0" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navBar" data-toggle="collapse" data-target="#navBar">
-            <span class="hamburger hamburger--slider">
-                <span class="hamburger-box">
-                    <span class="hamburger-inner"></span>
-                </span>
-            </span>
-        </button>
-        <!-- End Responsive Toggle Button -->
+    <!-- Logo -->
+    <a asp-area="" asp-page="/Index" class="navbar-brand" aria-label="CBD">
+        <img src="/svg/codebuilddeploy_logo_padded.svg")" class="navbar-brand-logo" alt="CBD">
+    </a>
+    <!-- End Logo -->
 
-        <!-- Logo -->
-        <a href="@Url.Page("Index")" class="navbar-brand d-flex">
-            <img src="@Url.Content("~/img/codebuilddeploy_logo.jpg")" alt="Logo">
-        </a>
-        <!-- End Logo -->
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-default">
+            <i class="bi-list"></i>
+        </span>
+        <span class="navbar-toggler-toggled">
+            <i class="bi-x"></i>
+        </span>
+    </button>
+    <!-- End Toggler -->
 
-        <!-- Navigation -->
-        <div class="collapse navbar-collapse align-items-center flex-sm-row g-pt-10 g-pt-5--lg g-mr-40--lg" id="navBar">
-          <ul class="navbar-nav text-uppercase g-pos-rel g-font-weight-600 ml-auto">
-            
-            <!-- Home -->
-            <li class="nav-item  g-mx-10--lg g-mx-15--xl">
-                <a class="nav-link g-py-7 g-px-0" asp-area="" asp-page="/Index">Home</a>
+    <!-- Collapse -->
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav nav-pills">
+
+            <!-- Software Delivery -->
+            <li class="hs-has-mega-menu nav-item"
+                data-hs-mega-menu-item-options='{
+                  "desktop": {
+                    "maxWidth": "40rem"
+                  }
+                }'>
+                <a id="sdMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle " aria-current="page" href="#" role="button" aria-expanded="false">Software Delivery</a>
+
+                <!-- Mega Menu -->
+                <div class="hs-mega-menu dropdown-menu" aria-labelledby="sdMegaMenu" style="min-width: 25rem;">
+                    <!-- Main Content -->
+                    <div class="row">
+                        <div class="col-lg d-none d-lg-block">
+                            <div class="d-flex align-items-start flex-column bg-light rounded-3 h-100 p-4">
+                                <span class="fs-3 fw-bold d-block">Software Delivery</span>
+                                <p class="text-body">Blogs on topics like Continuous Delivery, DevOps Cultures, Automation, Continuous Improvement, Software Engineering Practices and all things Software Delivery.</p>
+                            </div>
+                        </div>
+
+                        <div class="col-sm">
+                            <div class="navbar-dropdown-menu-inner">
+                                <a class="dropdown-item " asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="TrunkBasedDev"><i class="bi-chat-right-dots me-2"></i> Trunk based development <span class="badge text-primary">New</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Main Content -->
+                </div>
+                <!-- End Mega Menu -->
             </li>
-            <!-- End Home -->
+            <!-- End Software Delivery -->
 
-            <!-- Blog -->
-            <li class="hs-has-sub-menu nav-item  g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
-                <a id="nav-link-blog" class="nav-link g-py-7 g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-blog">Blog</a>
+            <!-- Workstation Setup -->
+            <li class="hs-has-mega-menu nav-item"
+                data-hs-mega-menu-item-options='{
+                  "desktop": {
+                    "maxWidth": "40rem"
+                  }
+                }'>
+                <a id="wsMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle " aria-current="page" href="#" role="button" aria-expanded="false">Workstation Setup</a>
 
-                <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-18 g-mt-8--lg--scrolling" id="nav-submenu-blog" aria-labelledby="nav-link-blog">
-                    <!-- Blog - Software Delivery -->
-                    <li class="dropdown-item hs-has-sub-menu ">
-                        <a id="nav-link--pages--blogms" class="nav-link" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--blogms">Software Delivery</a>
+                <!-- Mega Menu -->
+                <div class="hs-mega-menu dropdown-menu" aria-labelledby="wsMegaMenu" style="min-width: 25rem;">
+                    <!-- Main Content -->
+                    <div class="row">
+                        <div class="col-lg d-none d-lg-block">
+                            <div class="d-flex align-items-start flex-column bg-light rounded-3 h-100 p-4">
+                                <span class="fs-3 fw-bold d-block">Workstation Setup</span>
+                                <p class="text-body">Blogs on setting up my workstation.</p>
+                            </div>
+                        </div>
 
-                        <!-- Submenu (level 2) -->
-                        <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-minus-2" id="nav-submenu--pages--blogms" aria-labelledby="nav-link--pages--blogms">
-                            <li class="dropdown-item "><a class="nav-link" asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="TrunkBasedDev">Trunk based development</a></li>
-                        </ul>
-                    </li>
-
-                    <!-- Blog - Workstation Setup -->
-                    <li class="dropdown-item hs-has-sub-menu ">
-                        <a id="nav-link--pages--blogps" class="nav-link" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--blogps">Workstation Setup</a>
-
-                        <!-- Submenu (level 2) -->
-                        <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-minus-2" id="nav-submenu--pages--blogps" aria-labelledby="nav-link--pages--blogps">
-                            <li class="dropdown-item "><a class="nav-link" asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="WslAnsible">Ansible on WSL</a></li>
-                            <li class="dropdown-item "><a class="nav-link" asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="PowerShellRemoting">PowerShell Remoting</a></li>
-                            <li class="dropdown-item "><a class="nav-link" asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="PowerShellGrep">PowerShell Grep</a></li>
-                            <li class="dropdown-item "><a class="nav-link" asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="tools">Tools</a></li>
-                            <li class="dropdown-item "><a class="nav-link" asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="libraries">Libraries</a></li>
-                        </ul>
-                    </li>
-                    
-                    <!-- Blog - Links -->
-                    <li class="dropdown-item "><a class="nav-link" asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="links">Links</a></li>
-                </ul>
+                        <div class="col-sm">
+                            <div class="navbar-dropdown-menu-inner">
+                                <a class="dropdown-item " asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="WslAnsible">Ansible on WSL</a>
+                                <a class="dropdown-item " asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="PowerShellRemoting">PowerShell Remoting</a>
+                                <a class="dropdown-item " asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="PowerShellGrep">PowerShell Grep</a>
+                                <a class="dropdown-item " asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="tools">Tools</a>
+                                <a class="dropdown-item " asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="libraries">Libraries</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Main Content -->
+                </div>
+                <!-- End Mega Menu -->
             </li>
-            <!-- End Blog -->
-
-            <!-- Account -->
-            <li class="hs-has-sub-menu nav-item  g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
-                <a id="nav-link-account" class="nav-link g-py-7 g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-account">Account</a>
-
-                <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-18 g-mt-8--lg--scrolling" id="nav-submenu-account" aria-labelledby="nav-link-account">
-                    <!-- Pages - Login and Registration -->
-                    @{
-                        Html.RenderPartial("_LoginPartial");
-                    }
-                    <!-- End Login and Registration -->
-                </ul>
-            </li>
-            <!-- End Account -->
+            <!-- End Workstation Setup -->
 
             <!-- About -->
-            <li class="hs-has-sub-menu nav-item  g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
-                <a id="nav-link-pages" class="nav-link g-py-7 g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-pages">About</a>
+            <li class="hs-has-mega-menu nav-item"
+                data-hs-mega-menu-item-options='{
+                  "desktop": {
+                    "maxWidth": "40rem"
+                  }
+                }'>
+                <a id="aboutMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle " aria-current="page" href="#" role="button" aria-expanded="false">About</a>
 
-                <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-18 g-mt-8--lg--scrolling" id="nav-submenu-pages" aria-labelledby="nav-link-pages">
-                    <!-- About - About -->
-                    <li class="dropdown-item "><a class="nav-link" asp-area="" asp-page="/Home/About">About CBD</a></li>
-                    <li class="dropdown-item "><a class="nav-link" asp-area="" asp-page="/Home/Contact">Contact Us</a></li>
+                <!-- Mega Menu -->
+                <div class="hs-mega-menu dropdown-menu" aria-labelledby="aboutMegaMenu" style="min-width: 25rem;">
+                    <!-- Main Content -->
+                    <div class="row">
+                        <div class="col-lg d-none d-lg-block">
+                            <div class="d-flex align-items-start flex-column bg-light rounded-3 h-100 p-4">
+                                <span class="fs-3 fw-bold d-block">About</span>
+                                <p class="text-body">Details about CodeBuildDeploy and it's founders'.</p>
+                                <div class="mt-auto">
+                                    <p class="mb-1"><a class="link link-dark link-pointer" asp-area="" asp-page="/Home/About">Learn more</a></p>
+                                </div>
+                            </div>
+                        </div>
 
-                        <!-- Pages - About - CBD Team -->
-                    <li class="dropdown-item hs-has-sub-menu ">
-                        <a id="nav-link--pages--aboutourteam" class="nav-link" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--aboutourteam">CBD Team</a>
-
-                        <!-- Submenu (level 2) -->
-                        <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-minus-2 " id="nav-submenu--pages--aboutourteam" aria-labelledby="nav-link--pages--aboutourteam">
-                            <li class="dropdown-item "><a class="nav-link" asp-area="" asp-page="/Home/AboutMark">Mark</a></li>
-                        </ul>
-                    </li>
-                    <!-- End About - About -->
-                </ul>
+                        <div class="col-sm">
+                            <div class="navbar-dropdown-menu-inner">
+                                <a class="dropdown-item " asp-area="" asp-page="/Home/Contact"><i class="bi-chat-right-dots me-2"></i> Contact Us</a>
+                                <a class="dropdown-item " asp-area="" asp-page="/Home/AboutMark"><i class="bi-briefcase me-2"></i> Our founder</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Main Content -->
+                </div>
+                <!-- End Mega Menu -->
             </li>
-            <!-- End Pages -->
-          </ul>
-        </div>
+            <!-- End About -->
+
+            <!-- Account -->
+            @{
+                Html.RenderPartial("_LoginPartial");
+            }
+            <!-- End Account -->
+        </ul>
     </div>
+    <!-- End Collapse -->
 </nav>

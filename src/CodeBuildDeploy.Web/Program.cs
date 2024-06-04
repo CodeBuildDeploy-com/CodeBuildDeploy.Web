@@ -82,10 +82,10 @@ static async Task ConfigureServicesAsync(WebApplicationBuilder builder)
     builder.Services.ConfigureDataServices();
 
     builder.Services.ConfigureAuthentication(builder.Configuration);
-    
+
     builder.Services.AddDefaultIdentity<ApplicationUser>()
                     .AddEntityFrameworkStores<ApplicationDbContext>();
-    
+
     builder.Services.AddRazorPages();
     builder.Services.AddTransient<IBlogRepository, BlogRepository>();
     builder.Services.AddHttpClient(BlogRepository.ClientName, client =>
