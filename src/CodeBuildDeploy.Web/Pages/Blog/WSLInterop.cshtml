@@ -1,0 +1,82 @@
+﻿<div class="container pt-10 pb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <h3 class="h4">@Model.Title</h3>
+            <p>
+                The Windows Subsystem for Linux (WSL) is a compatibility layer for running GNU/Linux binary executables natively on Windows 10 and above and Windows Server 2019 and above.
+                It supports running most command-line tools, utilities, and applications unmodified, without the overhead of a traditional virtual machine or dualboot setup.
+                You can install many GNU/Linux distributions ontop of the subsystem kernel. In this article we will be using Ubuntu.
+            </p>
+
+            <div class="my-2">
+                <h4>Installing/Enabling WSL and Ubunti</h4>
+                <p>
+                    You can now install WSL with an Ubuntu disribution from a single command.
+                </p>
+                <p>
+                    From PowerShell running as administrator, run:
+                </p>
+                <pre><code class="language-powershell">    wsl --install -d Ubuntu</code></pre>
+
+                <p>
+                    Launch Ubuntu and configure your user details.
+                </p>
+                <p>
+                    Then, in the terminal run the following commands to make sure everything is up to date.
+                </p>
+
+                <pre><code class="language-bash">    sudo apt update
+    sudo apt upgrade</code></pre>
+            </div>
+
+            <div class="my-2">
+                <h4 class="mt-4">Configure to use WSL 2</h4>
+                <p>
+                    WSL 2 should already be the default on new istallations, so should be set to 2 already.
+                    However the following Powershell commands can be used to determine the selected version / distro and modify them accordingly if nessesary.
+                </p>
+                <p>
+                    To view a list of installed distros and the version of WSL they are running:
+                </p>
+                <pre><code class="language-powershell">    wsl -l -v</code></pre>
+                <p>
+                    To set the default wsl version 2:
+                </p>
+                <pre><code class="language-powershell">    wsl --set-default-version 2</code></pre>
+                <p>
+                    To select Ubuntu as the default distro:
+                </p>
+                <pre><code class="language-powershell">    wsl --set-default Ubuntu</code></pre>
+                <p>
+                    Finally, to modify the Ubunti distro to use WSL 2:
+                </p>
+                <pre><code class="language-powershell">    wsl --set-version Ubuntu 2</code></pre>
+            </div>
+
+            <div class="my-2">
+                <h4 class="mt-4">WSL Interop</h4>
+                <p>
+                    Its useful to expose some of the commands such as grep to the Powershell console in Windows. 
+                    This saves you the time switching between shells.
+                </p>
+                <p>
+                    Open a Powershell windows and run the following:
+                </p>
+                <pre><code class="language-powershell">    Install-Module WslInterop</code></pre>
+                <p>
+                    Then open your powershell profile.
+                </p>
+                <pre><code class="language-batch">    notepad $profile</code></pre>
+                <p>
+                    Add the following lines
+                </p>
+                <pre><code class="language-powershell">    Import-WslCommand grep
+    Import-WslCommand ssh
+    Import-WslCommand ssh-keygen
+    Import-WslCommand curl
+    Import-WslCommand vi
+    Import-WslCommand openssl</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
