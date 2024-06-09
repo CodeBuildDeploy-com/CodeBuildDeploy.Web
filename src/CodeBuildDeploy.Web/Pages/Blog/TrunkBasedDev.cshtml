@@ -8,10 +8,10 @@
                 <p>In large teams, short lived branches can be used for managing offline reviews through pull requests etc.</p>
                 <img class="w-100" src="~/img/blog/TrunkBasedDev/trunkbaseddev-slb.png" alt="Branches">
                 <p>When using short lived branches, all the ongoining commits to main should be pulled into the branch. To do this never merge, instead rebasing the branch to the new main head, leaving all the branch commits after the main build.</p>
-                <pre><code class="language-bash">    $ git checkout master
-    $ git pull  // get latest from master
+                <pre><code class="language-bash">    $ git checkout main
+    $ git pull  // get latest from main
     $ git checkout mybranch
-    $ git rebase master  // get masters updates and make them the base of my branch
+    $ git rebase main  // get mains updates and make them the base of my branch
     $ git push --force-with-lease</code></pre>
                 <p>Another useful technique is to use reset to merge commits to remove any unnecessary noise.</p>
                 <pre><code class="language-bash">    $ git commit -am "feature x"

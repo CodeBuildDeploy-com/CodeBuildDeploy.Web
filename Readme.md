@@ -6,7 +6,7 @@ The Code Build Deploy Website (https://www.codebuilddeploy.com / https://www.cod
 
 The site is deployed as a container, into [AKS](https://azure.microsoft.com/en-gb/products/kubernetes-service/).
 
-[![Build Status](https://markpollard.visualstudio.com/CodeBuildDeploy/_apis/build/status%2FCodeBuildDeploy.Web?branchName=master)](https://markpollard.visualstudio.com/CodeBuildDeploy/_build/latest?definitionId=4&branchName=master)
+[![Build Status](https://markpollard.visualstudio.com/CodeBuildDeploy/_apis/build/status%2FCodeBuildDeploy.Web?branchName=main)](https://markpollard.visualstudio.com/CodeBuildDeploy/_build/latest?definitionId=4&branchName=main)
 
 # Standard DotNet Build
 
