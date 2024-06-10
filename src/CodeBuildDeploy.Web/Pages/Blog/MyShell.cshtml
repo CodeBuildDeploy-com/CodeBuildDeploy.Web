@@ -1,0 +1,116 @@
+﻿<div class="container pt-10 pb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <h3 class="h4">@Model.Title</h3>
+            <p>
+                In this article we'll be having fun customizing the PowerShell terminal, making it look awesome.
+            </p>
+            <p>
+                We will be using <a href="https://github.com/microsoft/terminal" target="_blank">Windows Terminal</a> with             
+                <a href="https://ohmyposh.dev" target="_blank">oh-my-posh</a>, <a href="https://github.com/dahlbyk/posh-git" target="_blank">posh-git</a> 
+                and <a href="https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode" target="_blank">Fira Code with Nerd fonts patch</a>. 
+                It is assumed that you already have <a href="https://github.com/microsoft/terminal" target="_blank">Windows Terminal</a> installed.
+            </p>
+            <p>
+                Our shell has sections for the current logged on user, the current logged on Azure user (SP for service Principal), the currently selected
+                kubernetes cluster, the current directory, git information for the current directory, various code details for the current directory and 
+                finally a display of the status of the last command.
+            </p>
+
+            <img class="w-75 mx-auto d-block" src="~/img/blog/MyShell/card.png" alt="Branches">
+
+            <div class="my-2">
+                <h4 class="mt-4">Installing posh-git</h4>
+                <p>
+                    First we'll need to install the <a href="https://github.com/dahlbyk/posh-git" target="_blank">posh-git</a> PowerShell module. To do this 
+                    run the following command from PowerShell:
+                </p>
+                <pre><code class="language-powershell">    Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force</code></pre>
+                <p>
+                    That will install to your local PowerShell profile 'Modules' folder. Next open your PowerShell profile with:
+                </p>
+                <pre><code class="language-powershell">    code $profile</code></pre>
+                <p>
+                    Add the lines:
+                </p>
+                <pre><code class="language-powershell">    Import-Module posh-git
+    $GitPromptSettings.EnableStashStatus = $True</code></pre>
+            </div>
+
+            <div class="my-2">
+                <h4 class="mt-4">Installing oh-my-posh</h4>
+                <p>
+                    Next we want to install and configure <a href="https://ohmyposh.dev" target="_blank">oh-my-posh</a>. 
+                    Again form a PowerShell terminal, run:
+                </p>
+                <pre><code class="language-powershell">    Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://ohmyposh.dev/install.ps1'))</code></pre>
+                <p>
+                    Download <a href="https://github.com/MarkPollard/PowerShellProfile/blob/main/Theme/.ohmy.theme.omp.json" target="_blank">my 
+                    theme</a> and save it to your PowerShell profile directory under a Themes folder. 
+                    Then open your PowerShell profile as above and add:
+                </p>
+                <pre><code class="language-powershell">    $env:POSH_SESSION_DEFAULT_USER = [System.Environment]::UserName
+    $DocumentsFolder = [Environment]::GetFolderPath('Personal')
+    oh-my-posh init pwsh --config "$DocumentsFolder/PowerShell/Themes/.ohmy.theme.omp.json" | Invoke-Expression</code></pre>
+            </div>
+
+            <div class="my-2">
+                <h4 class="mt-4">Install the patched Fira Code font</h4>
+                <p>
+                    Download the latest <a href="https://github.com/ryanoasis/nerd-fonts/releases" target="_blank">Fira Code Nerd font zip</a>
+                    and extract the archive. Then right click "FiraCodeNerdFont-Regular.ttf" and select install.
+                </p>
+                <p>
+                    The font needs to be selected in Windows Terminal. Go to Settings > PowerShell > Appearance and select FiraCode Nerd Font for Font face.
+                    See my <a href="https://github.com/MarkPollard/PowerShellProfile/blob/main/terminal.settings.json" target="_blank">settings.json</a> for 
+                    more <a href="https://github.com/microsoft/terminal" target="_blank">Windows Terminal</a> profile settings.
+                </p>
+                <p>
+                    Tip! you can also configure the font and options for <a href="https://code.visualstudio.com" target="_blank">VSCode</a> to
+                    play nicely with oh-my-posh. Use 'Ctrl + Shift + P' and select Open User Settings (JSON) and add the following:
+                </p>
+                <pre><code class="language-json">    "editor.fontFamily": "FiraCode Nerd Font",
+    "terminal.integrated.fontFamily": "FiraCode Nerd Font",
+    "terminal.integrated.shellIntegration.enabled": false,</code></pre>
+            </div>
+
+            <div class="my-2">
+                <h4 class="mt-4">Installing Terminal Icons</h4>
+                <p>
+                    Now that we have icons with FiraCode Nerd font lets also use them in places like when we list the files in a directory.
+                    From the PowerShell terminal, install the module:
+                </p>
+                <pre><code class="language-powershell">    Install-Module -Name Terminal-Icons -Scope CurrentUser -Force -Repository PSGallery</code></pre>
+                <p>
+                    Then open your PowerShell profile as above and add:
+                </p>
+                <pre><code class="language-powershell">    Import-Module -Name Terminal-Icons</code></pre>
+                <p>
+                    Open a new PowerShell terminal window and run 'ls'.
+                </p>
+                <img class="w-75 mx-auto d-block mt-2" src="~/img/blog/MyShell/terminalicons.png" alt="Branches">
+            </div>
+
+            <div class="my-2">
+                <h4 class="mt-4">Installing PSReadLine and CompletionPredictor</h4>
+                <p>
+                    Finally we want to install PSReadLine and CompletionPredictor to get nice completion prompts.
+                    Again form a PowerShell terminal, run the following commands:
+                </p>
+                <pre><code class="language-powershell">    Install-Module -Name PSReadLine -AllowPrerelease -Scope CurrentUser -Force -SkipPublisherCheck
+    Install-Module CompletionPredictor -Scope CurrentUser -Force</code></pre>
+                <p>
+                    Then open your PowerShell profile as above and add:
+                </p>
+                <pre><code class="language-powershell">    Import-Module CompletionPredictor
+    Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+    Set-PSReadLineOption -PredictionSource HistoryAndPlugin
+    Set-PSReadLineOption -PredictionViewStyle ListView</code></pre>
+                <p>
+                    Open a new PowerShell terminal window and start typing a command 'git p'.
+                </p>
+                <img class="w-75 mx-auto d-block mt-2" src="~/img/blog/MyShell/completionpredictor.png" alt="Branches">
+            </div>
+        </div>
+    </div>
+</div>
