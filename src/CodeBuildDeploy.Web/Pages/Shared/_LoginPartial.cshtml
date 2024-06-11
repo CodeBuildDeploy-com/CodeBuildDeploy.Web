@@ -1,17 +1,18 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@using System.Web
+@using Microsoft.AspNetCore.Identity
 
 @if (User.Identity!.IsAuthenticated)
 {
     <!-- Log off -->
     <li class="nav-item ms-lg-auto">
-        <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+        <form id="logoutForm" asp-antiforgery="true" action="/Identity/Account/Logout?returnUrl=@HttpUtility.UrlEncode("/")" method="post">
             <a class="btn btn-ghost-dark me-2 me-lg-0" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
         </form>
     </li>
     <!-- End Log off -->
     <!-- Manage -->
     <li class="nav-item">
-        <a class="btn btn-dark d-none d-lg-inline-block" asp-area="Identity" asp-page="/Account/Manage/Index">Manage</a>
+        <a class="btn btn-dark d-none d-lg-inline-block" href="/Identity/Account/Manage/Index">Manage</a>
     </li>
     <!-- End Manage -->
 }
@@ -19,12 +20,12 @@ else
 {
     <!-- Log in -->
     <li class="nav-item ms-lg-auto">
-        <a class="btn btn-ghost-dark me-2 me-lg-0" asp-area="Identity" asp-page="/Account/Login" asp-route-returnUrl="@Context.Request.Path">Log in</a>
+        <a class="btn btn-ghost-dark me-2 me-lg-0" href="/Identity/Account/Login?returnUrl=@HttpUtility.UrlEncode(Context.Request.Path)">Log in</a>
     </li>
     <!-- End Log in -->
     <!-- Sign up -->
     <li class="nav-item">
-        <a class="btn btn-dark d-none d-lg-inline-block" asp-area="Identity" asp-page="/Account/Register" asp-route-returnUrl="@Context.Request.Path">Sign up</a>
+        <a class="btn btn-dark d-none d-lg-inline-block" href="/Identity/Account/Register?returnUrl=@HttpUtility.UrlEncode(Context.Request.Path)">Sign up</a>
     </li>
     <!-- End Sign up -->
 }

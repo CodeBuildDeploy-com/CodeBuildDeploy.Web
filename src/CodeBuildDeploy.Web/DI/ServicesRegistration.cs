@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.DataProtection;
+﻿using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,13 +22,13 @@ namespace CodeBuildDeploy.Web.DI
                     azureStorageDataProtectionSection["BlobName"]);
             }
 
-            services.ConfigureApplicationCookie(options => {
-                options.Cookie.Name = AuthCookieName;
-                options.Cookie.Path = "/";
-            });
-
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                                      .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme);
+            services.AddAuthentication(IdentityConstants.ApplicationScheme)
+                    .AddCookie(IdentityConstants.ApplicationScheme, o =>
+                    {
+                        o.Cookie.Name = AuthCookieName;
+                        o.Cookie.Path = "/";
+                        o.LoginPath = new PathString("/Account/Login");
+                    });
 
             return services;
         }
