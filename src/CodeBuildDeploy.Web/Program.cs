@@ -12,9 +12,6 @@ using Serilog;
 using Serilog.Formatting.Json;
 using Serilog.Extensions.Hosting;
 
-using CodeBuildDeploy.Identity.DA.EF.DI;
-using CodeBuildDeploy.Identity.DA.Entities;
-using CodeBuildDeploy.Identity.DA;
 using CodeBuildDeploy.Repositories;
 using CodeBuildDeploy.Web.DI;
 
@@ -79,12 +76,7 @@ static async Task ConfigureLoggingAsync(WebApplicationBuilder builder, Reloadabl
 
 static async Task ConfigureServicesAsync(WebApplicationBuilder builder)
 {
-    builder.Services.ConfigureDataServices();
-
     builder.Services.ConfigureAuthentication(builder.Configuration);
-
-    builder.Services.AddDefaultIdentity<ApplicationUser>()
-                    .AddEntityFrameworkStores<ApplicationDbContext>();
 
     builder.Services.AddRazorPages();
     builder.Services.AddTransient<IBlogRepository, BlogRepository>();
