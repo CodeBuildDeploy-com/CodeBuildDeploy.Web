@@ -8,6 +8,7 @@
         <form id="logoutForm" asp-antiforgery="true" action="/Identity/Account/Logout?returnUrl=@HttpUtility.UrlEncode("/")" method="post">
             <a class="btn btn-ghost-dark me-2 me-lg-0" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
         </form>
+        <a class="btn btn-dark d-lg-none" href="/Identity/Account/Manage/Index">Manage</a>
     </li>
     <!-- End Log off -->
     <!-- Manage -->
@@ -21,6 +22,7 @@ else
     <!-- Log in -->
     <li class="nav-item ms-lg-auto">
         <a class="btn btn-ghost-dark me-2 me-lg-0" href="/Identity/Account/Login?returnUrl=@HttpUtility.UrlEncode(Context.Request.Path)">Log in</a>
+        <a class="btn btn-dark d-lg-none" href="/Identity/Account/Register?returnUrl=@HttpUtility.UrlEncode(Context.Request.Path)">Sign up</a>
     </li>
     <!-- End Log in -->
     <!-- Sign up -->
