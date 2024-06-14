@@ -3,26 +3,51 @@
         <div class="col-lg-9">
             <h3 class="h4">@Model.Title</h3>
             <p>
-                In this article we'll be having fun customizing the PowerShell terminal, making it look awesome.
+                In this article we'll be having fun customizing the prompt of our <a href="https://github.com/microsoft/terminal" target="_blank">Windows Terminal</a> 
+                in both PowerShell and WSL Ubuntu, making it look awesome.
             </p>
             <p>
-                We will be using <a href="https://github.com/microsoft/terminal" target="_blank">Windows Terminal</a> with             
-                <a href="https://ohmyposh.dev" target="_blank">oh-my-posh</a>, <a href="https://github.com/dahlbyk/posh-git" target="_blank">posh-git</a> 
-                and <a href="https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode" target="_blank">Fira Code with Nerd fonts patch</a>. 
-                It is assumed that you already have <a href="https://github.com/microsoft/terminal" target="_blank">Windows Terminal</a> installed.
+                Primarily, we will be using <a href="https://github.com/microsoft/terminal" target="_blank">Windows Terminal</a> with 
+                <a href="https://ohmyposh.dev" target="_blank">oh-my-posh</a> and the 
+                <a href="https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode" target="_blank">Fira Code font with Nerd Fonts patch</a>. 
+                It is assumed that you already have <a href="https://github.com/microsoft/terminal" target="_blank">Windows Terminal</a> installed. 
+                See my <a href="https://github.com/MarkPollard/Tools.Settings_Profiles/blob/main/terminal.settings.json" target="_blank">settings.json</a> for
+                some <a href="https://github.com/microsoft/terminal" target="_blank">Windows Terminal</a> profile settings.
             </p>
             <p>
-                Our shell has sections for the current logged on user, the current logged on Azure user (SP for service Principal), the currently selected
-                kubernetes cluster, the current directory, git information for the current directory, various code details for the current directory and 
-                finally a display of the status of the last command.
+                Our shell prompt has sections for the os, the currently logged on user, the current logged on Azure user (SP for service Principal), the currently 
+                selected azure subscription, the currently selected kubernetes cluster, the current directory, git information for the current directory, various 
+                code details for the current directory and finally a display of the status of the last command. See 
+                <a href="https://github.com/MarkPollard/Tools.Settings_Profiles/blob/main/Theme/.ohmy.theme.omp.json" target="_blank">my theme</a> for more details.
             </p>
 
-            <img class="w-75 mx-auto d-block" src="~/img/blog/MyShell/card.png" alt="Branches">
+            <img class="w-75 mx-auto d-block" src="~/img/blog/MyShell/powershell.png" alt="Branches">
+
+            <div class="my-2">
+                <h4 class="mt-4">Install the patched Fira Code font</h4>
+                <p>
+                    The first thing we need to do is install the latest <a href="https://github.com/ryanoasis/nerd-fonts/releases" target="_blank">Fira 
+                    Code Nerd font zip</a>. Download it and extract the archive. Then right click "FiraCodeNerdFont-Regular.ttf" and select install.
+                </p>
+                <p>
+                    The font then needs to be selected in Windows Terminal. Go to Settings > PowerShell > Appearance and select FiraCode Nerd Font for Font face.
+                    Also do this your WSL Ubuntu profile. See my 
+                    <a href="https://github.com/MarkPollard/Tools.Settings_Profiles/blob/main/terminal.settings.json" target="_blank">settings.json</a> for
+                    more <a href="https://github.com/microsoft/terminal" target="_blank">Windows Terminal</a> profile settings.
+                </p>
+                <p>
+                    Tip! you can also configure the font and options for <a href="https://code.visualstudio.com" target="_blank">VSCode</a> to
+                    play nicely with this configuration. Use 'Ctrl + Shift + P' and select Open User Settings (JSON) and add the following:
+                </p>
+                <pre><code class="language-json">    "editor.fontFamily": "FiraCode Nerd Font",
+    "terminal.integrated.fontFamily": "FiraCode Nerd Font",
+    "terminal.integrated.shellIntegration.enabled": false,</code></pre>
+            </div>
 
             <div class="my-2">
                 <h4 class="mt-4">Installing posh-git</h4>
                 <p>
-                    First we'll need to install the <a href="https://github.com/dahlbyk/posh-git" target="_blank">posh-git</a> PowerShell module. To do this 
+                    Next we'll install the <a href="https://github.com/dahlbyk/posh-git" target="_blank">posh-git</a> PowerShell module. To do this 
                     run the following command from PowerShell:
                 </p>
                 <pre><code class="language-powershell">    Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force</code></pre>
@@ -38,9 +63,9 @@
             </div>
 
             <div class="my-2">
-                <h4 class="mt-4">Installing oh-my-posh</h4>
+                <h4 class="mt-4">Installing oh-my-posh for PowerShell</h4>
                 <p>
-                    Next we want to install and configure <a href="https://ohmyposh.dev" target="_blank">oh-my-posh</a>. 
+                    Now we want to install and configure <a href="https://ohmyposh.dev" target="_blank">oh-my-posh</a> for PowerShell. 
                     Again form a PowerShell terminal, run:
                 </p>
                 <pre><code class="language-powershell">    Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://ohmyposh.dev/install.ps1'))</code></pre>
@@ -52,26 +77,6 @@
                 <pre><code class="language-powershell">    $env:POSH_SESSION_DEFAULT_USER = [System.Environment]::UserName
     $DocumentsFolder = [Environment]::GetFolderPath('Personal')
     oh-my-posh init pwsh --config "$DocumentsFolder/PowerShell/Themes/.ohmy.theme.omp.json" | Invoke-Expression</code></pre>
-            </div>
-
-            <div class="my-2">
-                <h4 class="mt-4">Install the patched Fira Code font</h4>
-                <p>
-                    Download the latest <a href="https://github.com/ryanoasis/nerd-fonts/releases" target="_blank">Fira Code Nerd font zip</a>
-                    and extract the archive. Then right click "FiraCodeNerdFont-Regular.ttf" and select install.
-                </p>
-                <p>
-                    The font needs to be selected in Windows Terminal. Go to Settings > PowerShell > Appearance and select FiraCode Nerd Font for Font face.
-                    See my <a href="https://github.com/MarkPollard/Tools.Settings_Profiles/blob/main/terminal.settings.json" target="_blank">settings.json</a> for 
-                    more <a href="https://github.com/microsoft/terminal" target="_blank">Windows Terminal</a> profile settings.
-                </p>
-                <p>
-                    Tip! you can also configure the font and options for <a href="https://code.visualstudio.com" target="_blank">VSCode</a> to
-                    play nicely with oh-my-posh. Use 'Ctrl + Shift + P' and select Open User Settings (JSON) and add the following:
-                </p>
-                <pre><code class="language-json">    "editor.fontFamily": "FiraCode Nerd Font",
-    "terminal.integrated.fontFamily": "FiraCode Nerd Font",
-    "terminal.integrated.shellIntegration.enabled": false,</code></pre>
             </div>
 
             <div class="my-2">
@@ -94,8 +99,8 @@
             <div class="my-2">
                 <h4 class="mt-4">Installing PSReadLine and CompletionPredictor</h4>
                 <p>
-                    Finally we want to install PSReadLine and CompletionPredictor to get nice completion prompts.
-                    Again form a PowerShell terminal, run the following commands:
+                    Finally for PowerShell we want to install PSReadLine and CompletionPredictor to get nice completion prompts.
+                    Again from a PowerShell terminal, run the following commands:
                 </p>
                 <pre><code class="language-powershell">    Install-Module -Name PSReadLine -AllowPrerelease -Scope CurrentUser -Force -SkipPublisherCheck
     Install-Module CompletionPredictor -Scope CurrentUser -Force</code></pre>
@@ -110,6 +115,35 @@
                     Open a new PowerShell terminal window and start typing a command 'git p'.
                 </p>
                 <img class="w-75 mx-auto d-block mt-2" src="~/img/blog/MyShell/completionpredictor.png" alt="Branches">
+            </div>
+
+            <div class="my-2">
+                <h4 class="mt-4">Installing oh-my-posh on WSL Ubuntu</h4>
+                <p>
+                    Now that we have PowerShell looking nice, we want to make our WSL Ubuntu distro look just as good.
+                    From a WSL Ubuntu terminal, run the following commands:
+                </p>
+                <pre><code class="language-bash">    sudo apt install unzip
+    curl -s https://ohmyposh.dev/install.sh | sudo bash -s</code></pre>
+                <p>
+                    Now, copy the contents of <a href="https://github.com/MarkPollard/Tools.Settings_Profiles/blob/main/Theme/.ohmy.theme.omp.json" target="_blank">my 
+                    theme</a> into a file in your home directory and save it.
+                </p>
+                <pre><code class="language-bash">    vi ~/.ohmy.theme.omp.json</code></pre>
+                <p>
+                    Next, configure oh-my-posh to be loaded in your .bashrc and .profile. Add the line:
+                </p>
+                <pre><code class="language-bash">    eval "$(oh-my-posh init bash --config ~/.ohmy.theme.omp.json)"</code></pre>
+                <p>
+                    You'll need to install kubectl if you dont already have it installed and configured.
+                </p>
+                <pre><code class="language-bash">    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+    sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+    rm kubectl
+    az aks install-cli
+    -- create symlink to kube config
+    ln -s /mnt/c/Users/YOUR_USER_NAME/.kube ~/.kube</code></pre>
+                <img class="w-75 mx-auto d-block mt-4" src="~/img/blog/MyShell/wslubuntu.png" alt="Branches">
             </div>
         </div>
     </div>
