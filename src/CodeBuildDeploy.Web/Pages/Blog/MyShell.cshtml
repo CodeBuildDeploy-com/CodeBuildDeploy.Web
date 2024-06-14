@@ -15,10 +15,10 @@
                 some <a href="https://github.com/microsoft/terminal" target="_blank">Windows Terminal</a> profile settings.
             </p>
             <p>
-                Our shell prompt has sections for the os, the currently logged on user, the current logged on Azure user (SP for service Principal), the currently 
-                selected azure subscription, the currently selected kubernetes cluster, the current directory, git information for the current directory, various 
+                Our shell prompt has sections for the os, the currently logged on user, the current logged on Azure user (SP for service Principal) and the selected 
+                azure subscription, the currently selected kubernetes cluster and namespace, the current directory, git information for the current directory, various 
                 code details for the current directory and finally a display of the status of the last command. See 
-                <a href="https://github.com/MarkPollard/Tools.Settings_Profiles/blob/main/Theme/.ohmy.theme.omp.json" target="_blank">my theme</a> for more details.
+                <a href="https://github.com/MarkPollard/Tools.Settings_Profiles/blob/main/.ohmy.theme.omp.json" target="_blank">my theme</a> for more details.
             </p>
 
             <img class="w-75 mx-auto d-block" src="~/img/blog/MyShell/powershell.png" alt="Branches">
@@ -30,18 +30,26 @@
                     Code Nerd font zip</a>. Download it and extract the archive. Then right click "FiraCodeNerdFont-Regular.ttf" and select install.
                 </p>
                 <p>
-                    The font then needs to be selected in Windows Terminal. Go to Settings > PowerShell > Appearance and select FiraCode Nerd Font for Font face.
-                    Also do this your WSL Ubuntu profile. See my 
-                    <a href="https://github.com/MarkPollard/Tools.Settings_Profiles/blob/main/terminal.settings.json" target="_blank">settings.json</a> for
-                    more <a href="https://github.com/microsoft/terminal" target="_blank">Windows Terminal</a> profile settings.
+                    The font then needs to be selected in Windows Terminal. If you have setup your <a href="https://github.com/microsoft/terminal" target="_blank">Windows Terminal</a> 
+                    profiles as per <a href="https://github.com/MarkPollard/Tools.Settings_Profiles/blob/main/terminal.settings.json" target="_blank">settings.json</a>, then 
+                    go to Settings > PowerShell > Appearance and select FiraCode Nerd Font for Font face. Also do this for your WSL Ubuntu profile, under 
+                    Settings > Ubuntu > Appearance.
                 </p>
-                <p>
-                    Tip! you can also configure the font and options for <a href="https://code.visualstudio.com" target="_blank">VSCode</a> to
-                    play nicely with this configuration. Use 'Ctrl + Shift + P' and select Open User Settings (JSON) and add the following:
-                </p>
+                <div class="alert alert-soft-primary" role="alert">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0">
+                            <i class="bi-exclamation-triangle-fill"></i>
+                        </div>
+                        <div class="flex-grow-1 ms-2">
+                            Tip! you can also configure the font and options for <a href="https://code.visualstudio.com" target="_blank">VSCode</a> to
+                            play nicely with this configuration. Use 'Ctrl + Shift + P' and select Open User Settings (JSON) and add the following settings.
+                        </div>
+                    </div>
+                </div>
                 <pre><code class="language-json">    "editor.fontFamily": "FiraCode Nerd Font",
     "terminal.integrated.fontFamily": "FiraCode Nerd Font",
     "terminal.integrated.shellIntegration.enabled": false,</code></pre>
+                <img class="w-75 mx-auto d-block mt-4" src="~/img/blog/MyShell/vscode.png" alt="Branches">
             </div>
 
             <div class="my-2">
@@ -70,7 +78,7 @@
                 </p>
                 <pre><code class="language-powershell">    Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://ohmyposh.dev/install.ps1'))</code></pre>
                 <p>
-                    Download <a href="https://github.com/MarkPollard/Tools.Settings_Profiles/blob/main/Theme/.ohmy.theme.omp.json" target="_blank">my 
+                    Download <a href="https://github.com/MarkPollard/Tools.Settings_Profiles/blob/main/.ohmy.theme.omp.json" target="_blank">my 
                     theme</a> and save it to your PowerShell profile directory under a Themes folder. 
                     Then open your PowerShell profile as above and add:
                 </p>
@@ -91,7 +99,7 @@
                 </p>
                 <pre><code class="language-powershell">    Import-Module -Name Terminal-Icons</code></pre>
                 <p>
-                    Open a new PowerShell terminal window and run 'ls'.
+                    Open a new PowerShell terminal window and run 'ls' to see the results.
                 </p>
                 <img class="w-75 mx-auto d-block mt-2" src="~/img/blog/MyShell/terminalicons.png" alt="Branches">
             </div>
@@ -126,7 +134,7 @@
                 <pre><code class="language-bash">    sudo apt install unzip
     curl -s https://ohmyposh.dev/install.sh | sudo bash -s</code></pre>
                 <p>
-                    Now, copy the contents of <a href="https://github.com/MarkPollard/Tools.Settings_Profiles/blob/main/Theme/.ohmy.theme.omp.json" target="_blank">my 
+                    Now, copy the contents of <a href="https://github.com/MarkPollard/Tools.Settings_Profiles/blob/main/.ohmy.theme.omp.json" target="_blank">my 
                     theme</a> into a file in your home directory and save it.
                 </p>
                 <pre><code class="language-bash">    vi ~/.ohmy.theme.omp.json</code></pre>
@@ -143,6 +151,9 @@
     az aks install-cli
     -- create symlink to kube config
     ln -s /mnt/c/Users/YOUR_USER_NAME/.kube ~/.kube</code></pre>
+                <p>
+                    Open a new Ubuntu shell and see the results.
+                </p>
                 <img class="w-75 mx-auto d-block mt-4" src="~/img/blog/MyShell/wslubuntu.png" alt="Branches">
             </div>
         </div>
