@@ -1,121 +1,376 @@
-﻿<div class="container pt-10 pb-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-9">
-            <h3 class="h4 color-black font-weight-600">@Model.Title</h3>
+﻿<!-- Tools Heading -->
+<div class="container content-space-1">
+    <div class="row justify-content-lg-between align-items-md-center">
+        <div class="col-md-12 mb-0 mb-md-0">
+            <h2>Tools we like!</h2>
             <p>
                 Ok, so everyone has their favourite tools right?.. You know when you get a new machine and
                 there's that nice long list of tools you install on it with all the latest versions.
-                Well this is my lists. Some are development tools, others just general utility tools that
+                Well, this is the lists favoured at CBD. Some are development tools, others just general utility tools that
                 make general day to day working easier. I'm sure many of you will have differing experiences
-                and additions to the list but this is my list, making my day to day working a little
+                and additions to the list, this is our list, making day to day working a little
                 easier. Most are open source / free utilities but a few are not free but usually worth the
-                premium.
+                premium. We've also provided the winget command to install many of them.
             </p>
-            <h4>Source Control</h4>
-            <ul>
-                <li>
-                    <a href="http://www.git-scm.com/" target="_blank" class="text-info">Git</a> - Git version control system
-                </li>
-                <li>
-                    <a href="http://code.google.com/p/tortoisegit/" target="_blank" class="text-info">Tortoise Git</a> - Port of tortoise svn for git
-                </li>
-            </ul>
-            <h4>Command Line Interface tools</h4>
-            <ul>
-                <li>
-                    <a href="https://github.com/microsoft/terminal" target="_blank" class="text-info">Windows Terminal</a> - Decent Terminal on windows
-                </li>
-                <li>
-                    <a href="https://github.com/PowerShell/PowerShell" target="_blank" class="text-info">PowerShell</a>
-                </li>
-                <li>
-                    <a href="https://docs.microsoft.com/en-us/windows/wsl/install" target="_blank" class="text-info">Windows Subsystem for Linux</a>
-                </li>
-                <li>
-                    <a href="https://docs.docker.com/docker-for-windows" target="_blank" class="text-info">Docker Desktop</a>
-                </li>
-                <li>
-                    <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-windows" target="_blank" class="text-info">Kubectl</a>
-                </li>
-                <li>
-                    <a href="https://istio.io/latest/docs/ops/diagnostic-tools/istioctl" target="_blank" class="text-info">Istioctl</a>
-                </li>
-                <li>
-                    <a href="https://helm.sh/docs/intro/install" target="_blank" class="text-info">Helm</a>
-                </li>
-                <li>
-                    <a href="https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli" target="_blank" class="text-info">Azure CLI</a>
-                </li>
-                <li>
-                    <a href="https://developer.hashicorp.com/terraform/install#windows" target="_blank" class="text-info">Terraform</a>
-                </li>
-                <li>
-                    <a href="https://github.com/ansible/ansible" target="_blank" class="text-info">Ansible</a>
-                </li>
-            </ul>
-            <h4>Development</h4>
-            <ul>
-                <li>
-                    <a href="https://code.visualstudio.com" target="_blank" class="text-info">Visual Studio Code</a>
-                </li>
-                <li>
-                    <a href="https://visualstudio.microsoft.com" target="_blank" class="text-info">Visual Studio</a>
-                </li>
-                <li>
-                    <a href="http://www.jetbrains.com/resharper" target="_blank" class="text-info">ReSharper</a>
-                </li>
-                <li>
-                    <a href="https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/scanners/sonarscanner-for-dotnet" target="_blank" class="text-info">SonarScanner for .Net</a> - Publish .net projects to SonarQube.
-                </li>
-                <li>
-                    <a href="https://www.jetbrains.com/dotcover" target="_blank" class="text-info">dotCover</a>
-                </li>
-                <li>
-                    <a href="https://www.jetbrains.com/decompiler" target="_blank" class="text-info">dotPeak</a>
-                </li>
-                <li>
-                    <a href="https://azure.microsoft.com/en-gb/products/storage/storage-explorer" target="_blank" class="text-info">Azure Storage Explorer</a>
-                </li>
-                <li>
-                    <a href="https://learn.microsoft.com/en-us/azure-data-studio/download-azure-data-studio" target="_blank" class="text-info">Azure Data Studio</a>
-                </li>
-                <li>
-                    <a href="https://www.postman.com/downloads" target="_blank" class="text-info">Postman</a>
-                </li>
-            </ul>
-            <h4>Architecture / System Design</h4>
-            <ul>
-                <li>
-                    <a href="https://github.com/jgraph/drawio-desktop/releases" target="_blank" class="text-info">Draw IO Desktop</a>
-                </li>
-                <li>
-                    <a href="https://www.microsoft.com/en-us/microsoft-365/visio" target="_blank" class="text-info">Visio</a>
-                </li>
-            </ul>
-            <h4>Image and Video Editing</h4>
-            <ul>
-                <li>
-                    <a href="http://www.getpaint.net/" target="_blank" class="text-info">Paint .Net</a> - A free paint and photo editing tool
-                </li>
-                <li>
-                    <a href="https://obsproject.com/download" target="_blank" class="text-info">OBS</a> - Screen capture
-                </li>
-                <li>
-                    <a href="https://www.openshot.org/download" target="_blank" class="text-info">OpenShot</a> - Video editing
-                </li>
-            </ul>
-            <h4>General</h4>
-            <ul>
-                <li>
-                    <a href="https://learn.microsoft.com/en-us/windows/powertoys/install" target="_blank" class="text-info">PowerToys</a> - Numerous Windows utilities such as FancyZones and Advanced Paste
-                </li>
-                <li>
-                    <a href="http://technet.microsoft.com/en-us/sysinternals/bb896653.aspx" target="_blank" class="text-info">Process Explorer</a> - A better Task Manager
-                </li>
-                <li>
-                    <a href="http://www.7-zip.org/" target="_blank" class="text-info">7Zip</a> - for compressing and decompressing archeives
-                </li>
-            </ul>
         </div>
+        <!-- End Col -->
     </div>
+    <!-- End Row -->
 </div>
+<!-- End Tools Heading -->
+
+<!-- Source Control -->
+<div class="container">
+    <div class="row justify-content-lg-between align-items-md-center">
+        <div class="col-md-12 mb-0 mb-md-0">
+            <h3>Source Control</h3>
+
+            <div class="row my-6">
+                <div class="col-md-6">
+                    <!-- List Pointer -->
+                    <ul class="list-checked list-checked-primary mb-0">
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="http://www.git-scm.com/" target="_blank" class="text-info">Git</a>
+                            </div>
+                            <div>- Git version control system</div>
+                        </li>
+                    </ul>
+                    <!-- End List Pointer -->
+                </div>
+                <!-- End Col -->
+
+                <div class="col-md-6">
+                    <!-- List Pointer -->
+                    <ul class="list-checked list-checked-primary mb-0">
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="http://code.google.com/p/tortoisegit/" target="_blank" class="text-info">Tortoise Git</a>
+                            </div>
+                            <div>- Port of tortoise svn for git</div>
+                        </li>
+                    </ul>
+                    <!-- End List Pointer -->
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Row -->
+        </div>
+        <!-- End Col -->
+    </div>
+    <!-- End Row -->
+</div>
+<!-- End Source Control -->
+
+<!-- CLI -->
+<div class="container">
+    <div class="row justify-content-lg-between align-items-md-center">
+        <div class="col-md-12 mb-0 mb-md-0">
+            <h3>Command Line Interface tools</h3>
+
+            <div class="row my-6">
+                <div class="col-md-6">
+                    <!-- List Pointer -->
+                    <ul class="list-checked list-checked-primary mb-0">
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://github.com/microsoft/terminal" target="_blank" class="text-info">Windows Terminal</a>
+                            </div>
+                            <div>- Decent terminal on windows</div>
+                            <div>- Now comes preinstalled on Windows 11 23H2</div>
+                            <div>$ winget install -e Microsoft.WindowsTerminal --source winget</div>
+                        </li>
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://github.com/PowerShell/PowerShell" target="_blank" class="text-info">PowerShell</a>
+                            </div>
+                            <div>$ winget install -e --id Microsoft.Powershell --source winget</div>
+                            <div>- As Admin:</div>
+                            <div>$ Set-ExecutionPolicy RemoteSigned</div>
+                        </li>
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://docs.microsoft.com/en-us/windows/wsl/install" target="_blank" class="text-info">Windows Subsystem for Linux</a>
+                            </div>
+                            <div>- Checkout our post on installing WSL <a href="~/Blog/ViewBlogEntry?urlSlug=WSLInterop">here</a></div>
+                        </li>
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli" target="_blank" class="text-info">Azure CLI</a>
+                            </div>
+                            <div>$ winget install -e --id Microsoft.AzureCLI</div>
+                            <div>$ winget install -e --id Microsoft.Azure.Kubelogin</div>
+                        </li>
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://developer.hashicorp.com/terraform/install#windows" target="_blank" class="text-info">Terraform</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- End List Pointer -->
+                </div>
+                <!-- End Col -->
+
+                <div class="col-md-6">
+                    <!-- List Pointer -->
+                    <ul class="list-checked list-checked-primary mb-0">
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://docs.docker.com/docker-for-windows" target="_blank" class="text-info">Docker Desktop</a>
+                            </div>
+                        </li>
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-windows" target="_blank" class="text-info">Kubectl</a>
+                            </div>
+                            <div>- Installed with docker desktop</div>
+                            <div>$ winget install -e --id Kubernetes.kubectl</div>
+                        </li>
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://istio.io/latest/docs/ops/diagnostic-tools/istioctl" target="_blank" class="text-info">Istioctl</a>
+                            </div>
+                        </li>
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://helm.sh/docs/intro/install" target="_blank" class="text-info">Helm</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- End List Pointer -->
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Row -->
+        </div>
+        <!-- End Col -->
+    </div>
+    <!-- End Row -->
+</div>
+<!-- End CLI -->
+
+<!-- Source Development -->
+<div class="container">
+    <div class="row justify-content-lg-between align-items-md-center">
+        <div class="col-md-12 mb-0 mb-md-0">
+            <h3>Development</h3>
+
+            <div class="row my-6">
+                <div class="col-md-6">
+                    <!-- List Pointer -->
+                    <ul class="list-checked list-checked-primary mb-0">
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://code.visualstudio.com" target="_blank" class="text-info">Visual Studio Code</a>
+                            </div>
+                            <div>$ winget install -e --id Microsoft.VisualStudioCode</div>
+                            <div> --override '/VERYSILENT /SP /mergetasks="</div>
+                            <div> !runcode,!desktopicon,addcontextmenufiles,</div>
+                            <div> addcontextmenufolders,associatewithfiles,addtopath"'</div>
+                        </li>
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://visualstudio.microsoft.com" target="_blank" class="text-info">Visual Studio</a>
+                            </div>
+                        </li>
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="http://www.jetbrains.com/resharper" target="_blank" class="text-info">ReSharper</a>
+                            </div>
+                        </li>
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/scanners/sonarscanner-for-dotnet" target="_blank" class="text-info">SonarScanner for .Net</a> - Publish .net projects to SonarQube.
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- End List Pointer -->
+                </div>
+                <!-- End Col -->
+
+                <div class="col-md-6">
+                    <!-- List Pointer -->
+                    <ul class="list-checked list-checked-primary mb-0">
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://www.jetbrains.com/dotcover" target="_blank" class="text-info">dotCover</a>
+                            </div>
+                        </li>
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://www.jetbrains.com/decompiler" target="_blank" class="text-info">dotPeak</a>
+                            </div>
+                        </li>
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://learn.microsoft.com/en-us/azure-data-studio/download-azure-data-studio" target="_blank" class="text-info">Azure Data Studio</a>
+                            </div>
+                            <div>$ winget install "azure data studio" --override '/VERYSILENT /MERGETASKS=!runcode'</div>
+                        </li>
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://azure.microsoft.com/en-gb/products/storage/storage-explorer" target="_blank" class="text-info">Azure Storage Explorer</a>
+                            </div>
+                            <div>$ winget install -e --id=Microsoft.Azure.StorageExplorer</div>
+                            <div> --override '/VERYSILENT /MERGETASKS=!runcode'</div>
+                        </li>
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://www.postman.com/downloads" target="_blank" class="text-info">Postman</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- End List Pointer -->
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Row -->
+        </div>
+        <!-- End Col -->
+    </div>
+    <!-- End Row -->
+</div>
+<!-- End Development -->
+
+<!-- Arch -->
+<div class="container">
+    <div class="row justify-content-lg-between align-items-md-center">
+        <div class="col-md-12 mb-0 mb-md-0">
+            <h3>Architecture / System Design</h3>
+
+            <div class="row my-6">
+                <div class="col-md-6">
+                    <!-- List Pointer -->
+                    <ul class="list-checked list-checked-primary mb-0">
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://github.com/jgraph/drawio-desktop/releases" target="_blank" class="text-info">Draw IO Desktop</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- End List Pointer -->
+                </div>
+                <!-- End Col -->
+
+                <div class="col-md-6">
+                    <!-- List Pointer -->
+                    <ul class="list-checked list-checked-primary mb-0">
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://www.microsoft.com/en-us/microsoft-365/visio" target="_blank" class="text-info">Visio</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- End List Pointer -->
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Row -->
+        </div>
+        <!-- End Col -->
+    </div>
+    <!-- End Row -->
+</div>
+<!-- End Arch -->
+
+<!-- Editing -->
+<div class="container">
+    <div class="row justify-content-lg-between align-items-md-center">
+        <div class="col-md-12 mb-0 mb-md-0">
+            <h3>Image and Video Editing</h3>
+
+            <div class="row my-6">
+                <div class="col-md-6">
+                    <!-- List Pointer -->
+                    <ul class="list-checked list-checked-primary mb-0">
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="http://www.getpaint.net/" target="_blank" class="text-info">Paint .Net</a>
+                            </div>
+                            <div>- A free paint and photo editing tool</div>
+                            <div>$ winget install -e dotPDN.PaintDotNet</div>
+                        </li>
+                    </ul>
+                    <!-- End List Pointer -->
+                </div>
+                <!-- End Col -->
+
+                <div class="col-md-6">
+                    <!-- List Pointer -->
+                    <ul class="list-checked list-checked-primary mb-0">
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://obsproject.com/download" target="_blank" class="text-info">OBS</a>
+                            </div>
+                            <div>- Screen capture</div>
+                        </li>
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://www.openshot.org/download" target="_blank" class="text-info">OpenShot</a>
+                            </div>
+                            <div>- Video editing</div>
+                        </li>
+                    </ul>
+                    <!-- End List Pointer -->
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Row -->
+        </div>
+        <!-- End Col -->
+    </div>
+    <!-- End Row -->
+</div>
+<!-- End Editing -->
+
+<!-- General -->
+<div class="container">
+    <div class="row justify-content-lg-between align-items-md-center">
+        <div class="col-md-12 mb-0 mb-md-0">
+            <h3>General</h3>
+
+            <div class="row my-6">
+                <div class="col-md-6">
+                    <!-- List Pointer -->
+                    <ul class="list-checked list-checked-primary mb-0">
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://learn.microsoft.com/en-us/windows/powertoys/install" target="_blank" class="text-info">PowerToys</a>
+                            </div>
+                            <div>- Numerous Windows utilities such as FancyZones and Advanced Paste</div>
+                            <div>$ winget install -e Microsoft.Powertoys</div>
+                        </li>
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="http://technet.microsoft.com/en-us/sysinternals/bb896653.aspx" target="_blank" class="text-info">Process Explorer</a>
+                            </div>
+                            <div>- A better Task Manager</div>
+                            <div>$ winget install -e Microsoft.Sysinternals.ProcessExplorer</div>
+                        </li>
+                    </ul>
+                    <!-- End List Pointer -->
+                </div>
+                <!-- End Col -->
+
+                <div class="col-md-6">
+                    <!-- List Pointer -->
+                    <ul class="list-checked list-checked-primary mb-0">
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="http://www.7-zip.org/" target="_blank" class="text-info">7Zip</a>
+                            </div>
+                            <div>- for compressing and decompressing archeives</div>
+                            <div>$ winget install -e 7zip.7zip</div>
+                        </li>
+                    </ul>
+                    <!-- End List Pointer -->
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Row -->
+        </div>
+        <!-- End Col -->
+    </div>
+    <!-- End Row -->
+</div>
+<!-- End General -->

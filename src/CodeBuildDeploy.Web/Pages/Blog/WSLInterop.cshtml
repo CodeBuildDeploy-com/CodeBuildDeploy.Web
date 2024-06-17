@@ -19,7 +19,7 @@
                 <pre><code class="language-powershell">    wsl --install -d Ubuntu</code></pre>
 
                 <p>
-                    Launch Ubuntu and configure your user details.
+                    You'll need to restart after the install command has complete. Once started back up, launch Ubuntu and configure your user details.
                 </p>
                 <p>
                     Then, in the terminal run the following commands to make sure everything is up to date.
@@ -62,7 +62,7 @@
                 <p>
                     Open a Powershell windows and run the following:
                 </p>
-                <pre><code class="language-powershell">    Install-Module WslInterop</code></pre>
+                <pre><code class="language-powershell">    Install-Module WslInterop -Scope CurrentUser -Force</code></pre>
                 <p>
                     Then open your powershell profile.
                 </p>
