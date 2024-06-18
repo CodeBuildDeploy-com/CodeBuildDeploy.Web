@@ -16,12 +16,14 @@
                         var pageRoute = pageRoutes[i];
                         if (string.IsNullOrEmpty(pageRoute)) continue;
                         if (pageRoute == "Index") pageRoute = "Home";
-                        if (pageRoute == "ViewBlogEntry") pageRoute = Model.Post.UrlSlug;
+                        if (pageRoute == "ViewBlogEntry") pageRoute = Model.Post.Content;
 
                         if (first && i != pageRoutes.Length - 1)
                         {
                             <li class="list-inline-item">
                                 <a asp-area="" asp-page="/Index">@pageRoute</a>
+                            </li>
+                            <li class="list-inline-item">
                                 <i class="text-black-50">/</i>
                             </li>
                         }

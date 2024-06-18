@@ -1,7 +1,8 @@
-﻿<div class="container pt-10 pb-5">
+﻿<!-- MyShell Heading -->
+<div class="container pt-10 pb-5">
     <div class="row justify-content-center">
         <div class="col-lg-9">
-            <h3 class="h4">@Model.Title</h3>
+            <h3 class="pb-3">Having fun customizing my PowerShell terminal</h3>
             <p>
                 In this article we'll be having fun customizing the prompt of our <a href="https://github.com/microsoft/terminal" target="_blank">Windows Terminal</a> 
                 in both PowerShell and WSL Ubuntu, making it look awesome.
@@ -22,7 +23,15 @@
             </p>
 
             <img class="w-75 mx-auto d-block" src="~/img/blog/MyShell/powershell.png" alt="Branches">
+        </div>
+    </div>
+</div>
+<!-- End MyShell Heading -->
 
+<!-- Fira Code -->
+<div class="container pb-3">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
             <div class="my-2">
                 <h4 class="mt-4">Install the patched Fira Code font</h4>
                 <p>
@@ -51,7 +60,15 @@
     "terminal.integrated.shellIntegration.enabled": false,</code></pre>
                 <img class="w-75 mx-auto d-block mt-4" src="~/img/blog/MyShell/vscode.png" alt="Branches">
             </div>
+        </div>
+    </div>
+</div>
+<!-- End Fira Code -->
 
+<!-- posh-git -->
+<div class="container pb-3">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
             <div class="my-2">
                 <h4 class="mt-4">Installing posh-git</h4>
                 <p>
@@ -69,14 +86,22 @@
                 <pre><code class="language-powershell">    Import-Module posh-git
     $GitPromptSettings.EnableStashStatus = $True</code></pre>
             </div>
+        </div>
+    </div>
+</div>
+<!-- End posh-git -->
 
+<!-- oh-my-posh -->
+<div class="container pb-3">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
             <div class="my-2">
                 <h4 class="mt-4">Installing oh-my-posh for PowerShell</h4>
                 <p>
                     Now we want to install and configure <a href="https://ohmyposh.dev" target="_blank">oh-my-posh</a> for PowerShell. 
                     Again form a PowerShell terminal, run:
                 </p>
-                <pre><code class="language-powershell">    Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://ohmyposh.dev/install.ps1'))</code></pre>
+                <pre><code class="language-powershell">    winget install -e JanDeDobbeleer.OhMyPosh</code></pre>
                 <p>
                     Download <a href="https://github.com/MarkPollard/Tools.Settings_Profiles/blob/main/.ohmy.theme.omp.json" target="_blank">my 
                     theme</a> and save it to your PowerShell profile directory under a Themes folder. 
@@ -86,7 +111,15 @@
     $DocumentsFolder = [Environment]::GetFolderPath('Personal')
     oh-my-posh init pwsh --config "$DocumentsFolder/PowerShell/Themes/.ohmy.theme.omp.json" | Invoke-Expression</code></pre>
             </div>
+        </div>
+    </div>
+</div>
+<!-- End oh-my-posh -->
 
+<!-- Terminal Icons -->
+<div class="container pb-3">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
             <div class="my-2">
                 <h4 class="mt-4">Installing Terminal Icons</h4>
                 <p>
@@ -103,7 +136,15 @@
                 </p>
                 <img class="w-75 mx-auto d-block mt-2" src="~/img/blog/MyShell/terminalicons.png" alt="Branches">
             </div>
+        </div>
+    </div>
+</div>
+<!-- End Terminal Icons -->
 
+<!-- CompletionPredictor -->
+<div class="container pb-3">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
             <div class="my-2">
                 <h4 class="mt-4">Installing PSReadLine and CompletionPredictor</h4>
                 <p>
@@ -124,7 +165,15 @@
                 </p>
                 <img class="w-75 mx-auto d-block mt-2" src="~/img/blog/MyShell/completionpredictor.png" alt="Branches">
             </div>
+        </div>
+    </div>
+</div>
+<!-- End CompletionPredictor -->
 
+<!-- WSL -->
+<div class="container pb-3">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
             <div class="my-2">
                 <h4 class="mt-4">Installing oh-my-posh on WSL Ubuntu</h4>
                 <p>
@@ -159,3 +208,4 @@
         </div>
     </div>
 </div>
+<!-- End WSL -->
