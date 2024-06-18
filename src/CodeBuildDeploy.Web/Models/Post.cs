@@ -23,6 +23,8 @@ namespace CodeBuildDeploy.Models
 
         public DateTime? Modified { get; set; }
 
+        public string Author { get; set; }
+
         public Category Category { get; set; }
 
         public IList<Tag> Tags { get; set; }

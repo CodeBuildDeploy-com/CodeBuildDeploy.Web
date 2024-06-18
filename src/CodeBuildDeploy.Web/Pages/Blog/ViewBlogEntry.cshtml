@@ -51,40 +51,90 @@
                 <h5>About the author:</h5>
             </div>
             <div class="d-sm-flex">
-                <div class="flex-shrink-0 mb-3 mb-sm-0">
-                    <img class="avatar avatar-xl avatar-circle" src="/img/about/me-profile-sm.jpg" alt="Mark Pollard">
-                </div>
-
-                <div class="flex-grow-1 ms-sm-4">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h4 class="mb-0">
-                            <span class="text-dark">Mark Pollard</span>
-                        </h4>
-                        <div class="col-lg-6">
-                            <div class="d-flex justify-content-lg-end">
-                                <ul class="list-inline mb-0">
-                                    <li class="list-inline-item">
-                                        <a class="btn btn-soft-secondary btn-icon btn-sm rounded-circle" href="https://www.linkedin.com/in/mark-pollard-351aa163">
-                                            <i class="bi-linkedin"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a class="btn btn-soft-secondary btn-icon btn-sm rounded-circle" href="https://twitter.com/m4rk5">
-                                            <i class="bi-twitter-x"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a class="btn btn-soft-secondary btn-icon btn-sm rounded-circle" href="https://www.facebook.com/m4rkpollard">
-                                            <i class="bi-facebook"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+            @{
+                if (Model.Post != null && Model.Post.Author == "Mark Pollard")
+                {
+                    <div class="flex-shrink-0 mb-3 mb-sm-0">
+                        <img class="avatar avatar-xl avatar-circle" src="/img/about/me-profile-sm.jpg" alt="@Model.Post.Author">
                     </div>
 
-                    <p>I am a technical, delivery and engineering leader / Microsoft technologies technical architect, with a strong passion for software engineering. I am a firm believer in empowered teams with true DevOps cultures. I encourage responsibility over role, high quality and full stack engineers, showing ownership of the software and its behaviour, end to end, from requirements maturing through to its continual and successful running in Production.</p>
-                </div>
+                    <div class="flex-grow-1 ms-sm-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h4 class="mb-0">
+                                <span class="text-dark">@Model.Post.Author</span>
+                            </h4>
+                            <div class="col-lg-6">
+                                <div class="d-flex justify-content-lg-end">
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item">
+                                            <a class="btn btn-soft-secondary btn-icon btn-sm rounded-circle" href="https://www.linkedin.com/in/mark-pollard-351aa163">
+                                                <i class="bi-linkedin"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="btn btn-soft-secondary btn-icon btn-sm rounded-circle" href="https://twitter.com/m4rk5">
+                                                <i class="bi-twitter-x"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="btn btn-soft-secondary btn-icon btn-sm rounded-circle" href="https://www.facebook.com/m4rkpollard">
+                                                <i class="bi-facebook"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p>
+                            I am a technical, delivery and engineering leader / Microsoft technologies technical architect, with a strong passion for software 
+                            engineering. I am a firm believer in empowered teams with true DevOps cultures. I encourage responsibility over role, high quality 
+                            and full stack engineers, showing ownership of the software and its behaviour, end to end, from requirements maturing through to its 
+                            continual and successful running in Production.
+                        </p>
+                    </div>
+                }
+                else if (Model.Post != null && Model.Post.Author == "Andrew White")
+                {
+                    <div class="flex-shrink-0 mb-3 mb-sm-0">
+                        <img class="avatar avatar-xl avatar-circle" src="/img/user-blank.jpg" alt="@Model.Post.Author">
+                    </div>
+
+                    <div class="flex-grow-1 ms-sm-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h4 class="mb-0">
+                                <span class="text-dark">@Model.Post.Author</span>
+                            </h4>
+                        </div>
+
+                        <p>
+                            A highly motivated Senior Software Engineer, Andrew has a wide range of commercial experience in designing, developing, deploying, 
+                            maintaining, and supporting a variety of systems. He is focused on quality of delivery, continually looking for opportunities to 
+                            improve across the full software delivery lifecycle.
+                        </p>
+                        <p>
+                            Andrew has extensive knowledge of the Microsoft development ecosystem having worked with all versions of the .NET platform to 
+                            develop enterprise applications.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="flex-shrink-0 mb-3 mb-sm-0">
+                        <img class="avatar avatar-xl avatar-circle" src="/img/user-blank.jpg" alt="@Model.Post.Author">
+                    </div>
+
+                    <div class="flex-grow-1 ms-sm-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h4 class="mb-0">
+                                <span class="text-dark">@Model.Post.Author</span>
+                            </h4>
+                        </div>
+
+                        <p>...</p>
+                    </div>
+                }
+            }
             </div>
         </div>
     </div>
