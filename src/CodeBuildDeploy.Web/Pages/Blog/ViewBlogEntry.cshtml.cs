@@ -30,13 +30,22 @@ public class ViewBlogEntryModel : PageModel
         _blogsRepository = blogsRepository;
     }
 
-    public async Task OnGetAsync(string urlSlug)
+    public async Task<IActionResult> OnGetAsync(string urlSlug)
     {
-        Post = await _blogsRepository.PostByUrlSlugAsync(urlSlug);
+        if (string.IsNullOrEmpty(urlSlug))
+        {
+            return RedirectToPage("/Index");
+        }
+        else
+        {
+            Post = await _blogsRepository.PostByUrlSlugAsync(urlSlug);
 
-        Title = Post.Title;
-        Message = Post.Description;
+            Title = Post.Title;
+            Message = Post.Description;
 
-        _logger.LogInformation("Viewing Blog: '{0}'", Post.Title);
+            _logger.LogInformation("Viewing Blog: '{0}'", Post.Title);
+
+            return Page();
+        }
     }
 }

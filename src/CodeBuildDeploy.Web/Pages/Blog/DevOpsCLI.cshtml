@@ -2,14 +2,14 @@
 <div class="container pt-10 pb-5">
     <div class="row justify-content-center">
         <div class="col-lg-9">
-            <h2>AKS CLI container for DevOps Teams</h2>
+            <h2>Azure Envs CLI container for DevOps Teams</h2>
             <p>
                 When working with multiple projects, with multiple environments, each containing their own logins, details, configurations, it can 
-                get quite cumersome, switching details and reconfiguring your local environment for that specific AKS cluster. Multitasking 
-                between these environments becomes somewhat unworkable.
+                get quite cumersome, switching details and reconfiguring your local environment for that specific resources such as AKS cluster. 
+                Multitasking between these environments becomes somewhat unworkable.
             </p>
             <p>
-                This is where the <a href="https://github.com/MarkPollard/DevOps.CLI.AKS" target="_blank">DevOps.CLI.AKS</a> utility comes in.
+                This is where the <a href="https://github.com/MarkPollard/DevOps.CLI.AzEnvs" target="_blank">DevOps.CLI.AzEnvs</a> utility comes in.
                 It creates preconfigured containers with the required CLI tools, scripts and extensions for managing the AKS cluster instances. It 
                 sets the promps to show the currently configured Azure user/subscription and Kubernetes cluster/namespace you have selected.
                 It creates dedicated AZURE_CONFIG_DIR and KUBECONFIG paths, so that it doesn't affect your local configuration.
@@ -45,7 +45,8 @@
                 <pre><code class="language-bash">    winget install -e --id Docker.DockerDesktop</code></pre>
                 <p class="mt-3">
                     Finally, make sure you have a Nerd Font installed and configured. You can use 
-                    <a asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="MyShell">this post</a> to configure your font.
+                    <a asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="MyShell">this post</a> to find out how to configure your font and if you like, make your 
+                    local PowerShell prompt look great.
                 </p>
             </div>
         </div>
@@ -53,16 +54,16 @@
 </div>
 <!-- End Local Setup -->
 
-<!-- DevOps.CLI.AKS -->
+<!-- DevOps.CLI.AzEnvs -->
 <div class="container pb-3">
     <div class="row justify-content-center">
         <div class="col-lg-9">
             <div class="my-2">
-                <h4 class="mt-4">Building and Running DevOps.CLI.AKS</h4>
+                <h4 class="mt-4">Building and Running DevOps.CLI.AzEnvs</h4>
                 <p>
-                    Now that our underlining machine is ready, we can clone the DevOps.CLI.AKS source repository.
+                    Now that our underlining machine is ready, we can clone the DevOps.CLI.AzEnvs source repository.
                 </p>
-                <pre><code class="language-bash">    git clone https://github.com/MarkPollard/DevOps.CLI.AKS.git</code></pre>
+                <pre><code class="language-bash">    git clone https://github.com/MarkPollard/DevOps.CLI.AzEnvs.git</code></pre>
                 <p>
                     Create a new .dev.env and .prod.env file in the directory of the newly cloned repo, based on the .env.example. Set the INIT_ environment variables
                     appropriately, based on you cluster and azure details.
@@ -73,7 +74,7 @@
     INIT_AZ_TENANT=MY_TENANT_ID
     INIT_AZ_SUBSCRIPTION=MY_SUBSCRIPTION_ID</code></pre>
                 <p>
-                    Now, run the docker compose command, from the root directly of the repo to startup the containers.
+                    Now, run the following docker compose command, from the root directory of the DevOps.CLI.AzEnvs repo. This will startup the containers.
                 </p>
                 <pre><code class="language-bash">    docker compose up -d --build</code></pre>
                 <p>
@@ -84,16 +85,19 @@
     #prod
     docker compose exec devops-cli-aks-prod /bin/bash --login</code></pre>
                 <p>
-                    The first time you connect you'll be asked to log on to your azure tenant with a devise code. It will then select the configured aks
-                    cluster and namespace. Now run some commands
+                    The first time you connect you'll be asked to log on to your azure tenant with a device code. It will then select the configured aks
+                    cluster and namespace. Now run some commands.
                 </p>
                 <img class="w-75 mx-auto d-block mt-5" src="~/img/blog/DevOpsCLI/commands.png" alt="Commands">
                 <p class="mt-3">
                     Once you are done with the container instances, run a docker compose down to destroy them.
                 </p>
                 <pre><code class="language-bash">    docker compose down -v</code></pre>
+                <p class="mt-3">
+                    That's it, you are now done! I hope you enjoy the utility and dont forget to contribute back any improvements and additions that you might create.
+                </p>
             </div>
         </div>
     </div>
 </div>
-<!-- End DevOps.CLI.AKS -->
+<!-- End DevOps.CLI.AzEnvs -->
