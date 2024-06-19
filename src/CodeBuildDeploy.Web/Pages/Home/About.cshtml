@@ -1,23 +1,66 @@
 ﻿@page
 @model AboutModel
 
-<!-- Hero -->
-<div class="container content-space-t-3 content-space-t-lg-4">
-    <div class="w-lg-65 text-center mx-lg-auto mb-5 mb-sm-7 mb-lg-10">
-        <h1 class="display-4">About</h1>
-        <p class="lead">We cut through complexity, empowering engineering teams with knowledge of how to deliver software effectively.</p>
-    </div>
-
-    <div class="position-relative bg-img-center min-vh-35 min-vh-md-75" style="background-image: url(/img/about/code.jpg);">
-        <div class="position-absolute bottom-0 start-0 start-md-auto end-0 text-center text-md-start p-4 mx-auto mx-md-0" style="max-width: 25rem;">
-        </div>
+<!-- Title -->
+<div class="container content-space-t-1 content-space-t-lg-2">
+    <div class="w-lg-75 text-center mx-lg-auto mb-1 mb-sm-2 mb-lg-3">
+        <h1 class="display-3">About</h1>
+        <p class="lead">
+            CodeBuildDeploy is a software engineering information source on how we like to deliver software, inspired by Continuous Delivery approaches and DevOps cultures.
+        </p>
+        <p>
+            All the code used for CBD itself is published to <a href="https://github.com/orgs/CodeBuildDeploy-com">GitHub</a> so that it can be used as a reference by anyone 
+            that will find it useful. We will often reference the CBD code in our articles. The articles have been broken down into the following categories.
+        </p>
     </div>
 </div>
-<!-- End Hero -->
+<!-- End Title -->
 
+<!-- Features -->
 <div class="container content-space-2 content-space-lg-3">
     <div class="row justify-content-lg-between">
-        <h2>Work environment</h2>
-        <p>Code build deploy is a blog for software delivery and engineering topics.</p>
+        <div class="col-md-6 position-relative bg-img-center min-vh-md-50" style="background-image: url(/img/about/code.jpg);">
+            
+        </div>
+        <!-- End Col -->
+
+        <div class="col-md-6 col-lg-5">
+            <div class="d-grid gap-5">
+                <!-- Media -->
+                <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        <i class="bi-braces fs-2"></i>
+                    </div>
+
+                    <div class="flex-grow-1 ms-4">
+                        <h5>Software Delivery</h5>
+                        <p>
+                            Articles talking about how we like to deliver software here at CodeBuildDeploy, using the CodeBuildDeploy software as an example / POC delivery project.
+                        </p>
+                        <p>
+                            Includes key areas and concepts such as Continuous Delivery, DevOps Cultures, Automation, Continuous Improvement, Software Engineering Practices and all 
+                            things Software Delivery.
+                        </p>
+                    </div>
+                </div>
+                <!-- End Media -->
+                <!-- Media -->
+                <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        <i class="bi-pc-display fs-2"></i>
+                    </div>
+
+                    <div class="flex-grow-1 ms-4">
+                        <h5>Workstation Setup</h5>
+                        <p>An engineers workstation setup is an imperative part of their capability to deliver software effectively, comfortably and productively.</p>
+                        <p>This section details the setups of the CodeBuildDeploy family. It includes articles on how to setup tools that we find useful.</p>
+                    </div>
+                </div>
+                <!-- End Media -->
+            </div>
+        </div>
+        <!-- End Col -->
     </div>
+    <!-- End Row -->
 </div>
+<!-- End Features -->
