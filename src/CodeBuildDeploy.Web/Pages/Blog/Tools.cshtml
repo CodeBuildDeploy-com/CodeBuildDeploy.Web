@@ -154,7 +154,7 @@
 </div>
 <!-- End CLI -->
 
-<!-- Source Development -->
+<!-- Development -->
 <div class="container">
     <div class="row justify-content-lg-between align-items-md-center">
         <div class="col-md-12 mb-0 mb-md-0">
@@ -172,18 +172,26 @@
                             <div> --override '/VERYSILENT /SP /mergetasks="</div>
                             <div> !runcode,!desktopicon,addcontextmenufiles,</div>
                             <div> addcontextmenufolders,associatewithfiles,addtopath"'</div>
+                            <div>$ code --install-extension akamud.vscode-theme-onedark</div>
+                            <div>$ code --install-extension ms-vscode.vscode-node-azure-pack</div>
+                            <div>$ code --install-extension ms-vscode-remote.remote-wsl</div>
+                            <div>$ code --install-extension ms-vscode-remote.remote-ssh</div>
+                            <div>$ code --install-extension ms-azuretools.vscode-docker</div>
+                            <div>$ code --install-extension ms-dotnettools.csdevkit</div>
                         </li>
                         <li class="list-checked-item">
                             <div>
-                                <a href="https://visualstudio.microsoft.com" target="_blank" class="text-info">Visual Studio</a>
+                                <a href="https://learn.microsoft.com/en-us/azure-data-studio/download-azure-data-studio" target="_blank" class="text-info">Azure Data Studio</a>
                             </div>
-                            <div>$ winget install -e Microsoft.VisualStudio.2022.Enterprise</div>
+                            <div>- IDE to manage your Azure Sql / Sql Server instances</div>
+                            <div>$ winget install -e Microsoft.AzureDataStudio --override '/VERYSILENT /MERGETASKS=!runcode'</div>
                         </li>
                         <li class="list-checked-item">
                             <div>
-                                <a href="https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/scanners/sonarscanner-for-dotnet" target="_blank" class="text-info">SonarScanner for .Net</a>
+                                <a href="https://azure.microsoft.com/en-gb/products/storage/storage-explorer" target="_blank" class="text-info">Azure Storage Explorer</a>
                             </div>
-                            <div>- Publish .net projects to SonarQube</div>
+                            <div>$ winget install -e Microsoft.Azure.StorageExplorer</div>
+                            <div> --override '/VERYSILENT /MERGETASKS=!runcode'</div>
                         </li>
                         <li class="list-checked-item">
                             <div>
@@ -201,32 +209,48 @@
                     <ul class="list-checked list-checked-primary mb-0">
                         <li class="list-checked-item">
                             <div>
-                                <a href="https://learn.microsoft.com/en-us/azure-data-studio/download-azure-data-studio" target="_blank" class="text-info">Azure Data Studio</a>
+                                <a href="https://visualstudio.microsoft.com" target="_blank" class="text-info">Visual Studio</a>
                             </div>
-                            <div>$ winget install -e Microsoft.AzureDataStudio --override '/VERYSILENT /MERGETASKS=!runcode'</div>
+                            <div>$ winget install -e Microsoft.VisualStudio.2022.Enterprise</div>
                         </li>
                         <li class="list-checked-item">
                             <div>
-                                <a href="https://azure.microsoft.com/en-gb/products/storage/storage-explorer" target="_blank" class="text-info">Azure Storage Explorer</a>
+                                <a href="https://www.jetbrains.com/resharper" target="_blank" class="text-info">JetBrains ReSharper</a>
                             </div>
-                            <div>$ winget install -e Microsoft.Azure.StorageExplorer</div>
-                            <div> --override '/VERYSILENT /MERGETASKS=!runcode'</div>
-                        </li>
-                        <li class="list-checked-item">
-                            <div>
-                                <a href="http://www.jetbrains.com/resharper" target="_blank" class="text-info">JetBrains ReSharper</a>
-                            </div>
+                            <div>- Visual Studio extention to bring the Power of JetBrains IDEs to VS</div>
                             <div>$ winget install -e JetBrains.ReSharper</div>
                         </li>
                         <li class="list-checked-item">
                             <div>
-                                <a href="https://www.jetbrains.com/dotcover" target="_blank" class="text-info">JetBrains dotCover</a>
+                                <a href="https://www.jetbrains.com/rider/" target="_blank" class="text-info">JetBrains Rider</a>
                             </div>
+                            <div>- JetBrains IDE for .Net, as an alternative to Visual Studio</div>
+                            <div>$ winget install -e JetBrains.Rider</div>
+                        </li>
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://www.jetbrains.com/fleet/" target="_blank" class="text-info">JetBrains Fleet</a>
+                            </div>
+                            <div>- JetBrains 'one for all' IDE</div>
+                            <div>$ winget install -e JetBrains.Toolbox</div>
                         </li>
                         <li class="list-checked-item">
                             <div>
                                 <a href="https://www.jetbrains.com/decompiler" target="_blank" class="text-info">JetBrains dotPeak</a>
                             </div>
+                            <div>$ winget install -e JetBrains.Toolbox</div>
+                        </li>
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://www.jetbrains.com/dotcover" target="_blank" class="text-info">JetBrains dotCover</a>
+                            </div>
+                            <div>$ winget install -e JetBrains.Toolbox</div>
+                        </li>
+                        <li class="list-checked-item">
+                            <div>
+                                <a href="https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/scanners/sonarscanner-for-dotnet" target="_blank" class="text-info">SonarScanner for .Net</a>
+                            </div>
+                            <div>- Publish .net projects to SonarQube</div>
                         </li>
                     </ul>
                     <!-- End List Pointer -->
