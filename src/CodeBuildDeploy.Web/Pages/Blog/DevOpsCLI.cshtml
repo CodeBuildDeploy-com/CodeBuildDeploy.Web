@@ -38,11 +38,11 @@
                 <p>
                     It's also assumed that you have Git installed, however it can be installed with the following command if required.
                 </p>
-                <pre><code class="language-bash">    winget install -e --id Git.Git --source winget</code></pre>
+                <pre><code class="language-bash">    > winget install -e --id Git.Git --source winget</code></pre>
                 <p>
                     Then install Docker desktop with the following command. Select to use WSL2 when prompted. Docker desktop will also install the kubectl command line utility.
                 </p>
-                <pre><code class="language-bash">    winget install -e --id Docker.DockerDesktop</code></pre>
+                <pre><code class="language-bash">    > winget install -e --id Docker.DockerDesktop</code></pre>
                 <p class="mt-3">
                     Finally, make sure you have a Nerd Font installed and configured. You can use 
                     <a asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="MyShell">this post</a> to find out how to configure your font and if you like, make your 
@@ -63,7 +63,7 @@
                 <p>
                     Now that our underlining machine is ready, we can clone the DevOps.CLI.AzEnvs source repository.
                 </p>
-                <pre><code class="language-bash">    git clone https://github.com/MarkPollard/DevOps.CLI.AzEnvs.git</code></pre>
+                <pre><code class="language-bash">    > git clone https://github.com/MarkPollard/DevOps.CLI.AzEnvs.git</code></pre>
                 <p>
                     Create a new .dev.env and .prod.env file in the directory of the newly cloned repo, based on the .env.example. Set the INIT_ environment variables
                     appropriately, based on you cluster and azure details.
@@ -76,23 +76,32 @@
                 <p>
                     Now, run the following docker compose command, from the root directory of the DevOps.CLI.AzEnvs repo. This will startup the containers.
                 </p>
-                <pre><code class="language-bash">    docker compose up -d --build</code></pre>
+                <pre><code class="language-bash">    > docker compose up -d --build</code></pre>
                 <p>
                     Connect to either the Dev or Prod container instance.
                 </p>
                 <pre><code class="language-bash">    #dev
-    docker compose exec devops-cli-aks-dev /bin/bash --login
+    > docker compose exec devops-cli-aks-dev /bin/bash -l
     #prod
-    docker compose exec devops-cli-aks-prod /bin/bash --login</code></pre>
+    > docker compose exec devops-cli-aks-prod /bin/bash -l</code></pre>
                 <p>
                     The first time you connect you'll be asked to log on to your azure tenant with a device code. It will then select the configured aks
                     cluster and namespace. Now run some commands.
                 </p>
                 <img class="w-75 mx-auto d-block mt-5" src="~/img/blog/DevOpsCLI/commands.png" alt="Commands">
                 <p class="mt-3">
+                    Checkout the <a href="https://k9scli.io/" target="_blank">k9s tool</a> for running commands against your cluster by running:
+                </p>
+                <pre><code class="language-bash">    > k9s</code></pre>
+                <p class="mt-3">
+                    In the k9s interface you can use 'ctrl+a' to view all commands, ':' and then command to run that command such as ':pods'. 
+                    Press 'l' on a pod to view its logs. Use '/' to filter the logs such as '/exception'. To exit k9s use 'ctrl+c'.
+                </p>
+                <img class="w-75 mx-auto d-block mt-5" src="~/img/blog/DevOpsCLI/k9s.png" alt="k9s">
+                <p class="mt-3">
                     Once you are done with the container instances, run a docker compose down to destroy them.
                 </p>
-                <pre><code class="language-bash">    docker compose down -v</code></pre>
+                <pre><code class="language-bash">    > docker compose down -v</code></pre>
                 <p class="mt-3">
                     That's it, you are now done! I hope you enjoy the utility and dont forget to contribute back any improvements and additions that you might create.
                 </p>
