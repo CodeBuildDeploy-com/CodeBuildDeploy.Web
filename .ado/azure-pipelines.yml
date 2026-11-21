@@ -85,9 +85,10 @@ stages:
         script: |
           sed -ri -e "s#image: \{\{ required `"Populated by build`" null \}\}#image: ${env:APP_IMAGE}#" helm/service/templates/web-deployment.yaml
     
-    - task: HelmDeploy@0
+    - task: HelmDeploy@1
       displayName: Helm Package
       inputs:
+        connectionType: None
         command: package
         chartPath: helm/service
         destination: $(Build.ArtifactStagingDirectory)/helm
@@ -104,7 +105,7 @@ stages:
             latest
             $(Build.Number)
 
-      - task: AzureCLI@2
+      - task: AzureCLI@3
         displayName: ACR Login
         inputs:
           azureSubscription: '$(Azure.Subscription.ProdPremium)'
