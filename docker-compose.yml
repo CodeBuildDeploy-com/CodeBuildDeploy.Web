@@ -7,7 +7,7 @@ networks:
 
 services:
   codebuilddeploy-web:
-    image: codebuilddeploy.azurecr.io/codebuilddeploy-web:latest
+    image: codebuilddeploynonprod.azurecr.io/codebuilddeploy-web:latest
     build:
       context: .
       dockerfile: ./src/CodeBuildDeploy.Web/Dockerfile
