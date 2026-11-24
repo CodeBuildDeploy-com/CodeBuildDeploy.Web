@@ -23,7 +23,7 @@ namespace CodeBuildDeploy.Models
 
         public DateTime? Modified { get; set; }
 
-        public string Author { get; set; }
+        public Author? Author { get; set; }
 
         public Category Category { get; set; }
 
