@@ -1,4 +1,4 @@
-/* PrismJS 1.29.0
+/* PrismJS 1.30.0
 https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript+aspnet+bash+csharp+git+json+powershell+python+regex+shell-session+sql+typescript */
 /**
  * okaidia theme for JavaScript, CSS and HTML
@@ -123,4 +123,3 @@ pre[class*="language-"] {
 .token.entity {
 	cursor: help;
 }
-

@@ -105,7 +105,7 @@ const DefaultType = {
 class Tooltip extends BaseComponent {
   constructor(element, config) {
     if (typeof Popper === 'undefined') {
-      throw new TypeError('Bootstrap\'s tooltips require Popper (https://popper.js.org)')
+      throw new TypeError('Bootstrap\'s tooltips require Popper (https://github.com/floating-ui/popper-docs/blob/main/docs/v2/index.md)')
     }
 
     super(element, config)
@@ -160,7 +160,6 @@ class Tooltip extends BaseComponent {
       return
     }
 
-    this._activeTrigger.click = !this._activeTrigger.click
     if (this._isShown()) {
       this._leave()
       return
@@ -392,7 +391,7 @@ class Tooltip extends BaseComponent {
   }
 
   _resolvePossibleFunction(arg) {
-    return execute(arg, [this._element])
+    return execute(arg, [this._element, this._element])
   }
 
   _getPopperConfig(attachment) {
@@ -438,7 +437,7 @@ class Tooltip extends BaseComponent {
 
     return {
       ...defaultBsPopperConfig,
-      ...execute(this._config.popperConfig, [defaultBsPopperConfig])
+      ...execute(this._config.popperConfig, [undefined, defaultBsPopperConfig])
     }
   }
 
@@ -449,6 +448,7 @@ class Tooltip extends BaseComponent {
       if (trigger === 'click') {
         EventHandler.on(this._element, this.constructor.eventName(EVENT_CLICK), this._config.selector, event => {
           const context = this._initializeOnDelegatedTarget(event)
+          context._activeTrigger[TRIGGER_CLICK] = !(context._isShown() && context._activeTrigger[TRIGGER_CLICK])
           context.toggle()
         })
       } else if (trigger !== TRIGGER_MANUAL) {
@@ -538,6 +538,18 @@ class Tooltip extends BaseComponent {
 
   _getConfig(config) {
     const dataAttributes = Manipulator.getDataAttributes(this._element)
+
+    // Read text attributes without coercing their values.
+    const title = this._element.getAttribute('data-bs-title')
+    const content = this._element.getAttribute('data-bs-content')
+
+    if (title !== null) {
+      dataAttributes.title = title
+    }
+
+    if (content !== null) {
+      dataAttributes.content = content
+    }
 
     for (const dataAttribute of Object.keys(dataAttributes)) {
       if (DISALLOWED_ATTRIBUTES.has(dataAttribute)) {
