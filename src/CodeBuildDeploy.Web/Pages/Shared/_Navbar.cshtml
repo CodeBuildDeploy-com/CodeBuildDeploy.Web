@@ -68,19 +68,40 @@
             <!-- End Software Delivery -->
 
             <!-- HomeLab Setup -->
-            <li class="hs-has-mega-menu nav-item">
+            <li class="hs-has-mega-menu nav-item position-relative"
+                data-hs-mega-menu-item-options='{
+                  "desktop": {
+                    "position": "left",
+                    "maxWidth": "40rem"
+                  }
+                }'>
                 <a id="homeLabMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle" href="#" role="button" aria-expanded="false">HomeLab Setup</a>
-                <div class="hs-mega-menu dropdown-menu" aria-labelledby="homeLabMegaMenu">
-                    <div class="navbar-dropdown-menu-inner">
-                        <a class="dropdown-item" asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="homelab-network-and-edge">
-                            <i class="bi-arrow-right-square"></i> &nbsp;Network and edge
-                        </a>
-                        <a class="dropdown-item" asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="homelab-proxmox-cluster">
-                            <i class="bi-arrow-right-square"></i> &nbsp;Proxmox cluster
-                        </a>
-                        <a class="dropdown-item" asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="homelab-azure-infrastructure">
-                            <i class="bi-arrow-right-square"></i> &nbsp;Azure Infrastructure
-                        </a>
+                <div class="hs-mega-menu dropdown-menu" aria-labelledby="homeLabMegaMenu" style="min-width: 25rem;">
+                    <div class="row">
+                        <div class="col-lg d-none d-lg-block">
+                            <div class="d-flex align-items-start flex-column bg-light rounded-3 h-100 p-4">
+                                <span class="fs-3 fw-bold d-block mb-1">HomeLab Setup</span>
+                                <p class="text-body">
+                                    Working from home is a big part of software delivery today. A HomeLab gives me a place to try out the tools and practices I use to build, deploy and run software.
+                                </p>
+                                <p class="text-body">
+                                    Here’s how I set up my network, run development environments on Proxmox and connect the lab to Azure for CodeBuildDeploy.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="navbar-dropdown-menu-inner">
+                                <a class="dropdown-item" asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="homelab-network-and-edge">
+                                    <i class="bi-arrow-right-square"></i> &nbsp;Network and edge
+                                </a>
+                                <a class="dropdown-item" asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="homelab-proxmox-cluster">
+                                    <i class="bi-arrow-right-square"></i> &nbsp;Proxmox cluster
+                                </a>
+                                <a class="dropdown-item" asp-area="" asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="homelab-azure-infrastructure">
+                                    <i class="bi-arrow-right-square"></i> &nbsp;Azure Infrastructure
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </li>
