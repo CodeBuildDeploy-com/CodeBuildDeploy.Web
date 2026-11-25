@@ -1,0 +1,29 @@
+<article class="container pt-10 pb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <h1 class="pb-3">Network and edge</h1>
+
+            <h2 class="h4 mt-4">Routing the lab</h2>
+            <p>
+                A NanoPi R6S running FriendlyWrt is the router for the house and office networks.
+                It handles DHCP and local DNS, so clients can find services by name and I can move a service without updating every client.
+                Network policy lives at the router, where I can see which traffic crosses between networks or leaves for the internet.
+            </p>
+
+            <h2 class="h4 mt-4">Publishing the dev sites</h2>
+            <p>
+                Nginx Proxy Manager runs on the NanoPi and terminates public HTTPS for the CodeBuildDeploy dev sites.
+                It forwards requests over WireGuard to a private Istio frontend on Azure Kubernetes Service, and it checks the upstream certificate using the hostname for each site.
+                The public entry point is the reverse proxy.
+                The AKS ingress is reached through the tunnel.
+            </p>
+
+            <h2 class="h4 mt-4">Maintaining the router</h2>
+            <p>
+                I keep a firmware recovery image and configuration backups.
+                After a FriendlyWrt upgrade, I restored the network and service settings selectively so I could keep the new firmware and verify each part of the setup.
+                I check routing and DNS from clients, then test HTTPS from outside the network to cover the full path.
+            </p>
+        </div>
+    </div>
+</article>

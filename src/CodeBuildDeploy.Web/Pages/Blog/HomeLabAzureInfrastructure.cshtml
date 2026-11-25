@@ -1,0 +1,32 @@
+<article class="container pt-10 pb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <h1 class="pb-3">Azure Infrastructure</h1>
+
+            <h2 class="h4 mt-4">Three Terraform layers</h2>
+            <p>
+                I split the infrastructure across three repositories.
+                Platform.Subscription defines shared subscription resources, including a Key Vault and access assignments.
+                Platform.Environment defines the shared Azure network, Kubernetes cluster, container registry and SQL server for an environment.
+                Platform.App defines resources for each application environment, including its database, storage and Kubernetes namespace.
+            </p>
+
+            <h2 class="h4 mt-4">From plan to deployment</h2>
+            <p>
+                Azure DevOps uses a shared Terraform template across the three repositories.
+                The target selects its own variables and Azure Blob Storage state file.
+                The pipeline creates a plan and applies that saved plan when the deployment is enabled and there are changes.
+                When work spans all three layers, the order is Subscription, Environment, then App.
+                The App pipeline then uses Helm to release Blogs, Identity and Web.
+            </p>
+
+            <h2 class="h4 mt-4">Connecting Azure to the HomeLab</h2>
+            <p>
+                The dev sites use an Istio gateway on AKS with a private frontend.
+                The reverse proxy at home reaches it over WireGuard.
+                The Environment layer owns the Istio control plane, while the App layer owns the dev gateway release.
+                That split lets me deploy changes to the application's routing independently of changes to the cluster's Istio installation.
+            </p>
+        </div>
+    </div>
+</article>

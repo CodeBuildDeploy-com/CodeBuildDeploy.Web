@@ -1,0 +1,30 @@
+<article class="container pt-10 pb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <h1 class="pb-3">Proxmox cluster</h1>
+
+            <h2 class="h4 mt-4">What runs on the cluster</h2>
+            <p>
+                My three-node Proxmox VE cluster runs a mix of virtual machines and Linux containers.
+                Home Assistant runs in its own VM.
+                The cluster also hosts media services, Frigate for camera recording and detection, and workstation VMs for development.
+                I keep workstation maintenance separate from routine updates to the services the household relies on.
+            </p>
+
+            <h2 class="h4 mt-4">Storage and hardware dependencies</h2>
+            <p>
+                Some guests depend on hardware attached to a particular host, such as USB radios for Home Assistant or a tuner for television recording.
+                The NAS provides shared storage for services that need it, while Frigate uses dedicated recording storage.
+                These dependencies influence where a guest can run and which services need to come back first after maintenance.
+            </p>
+
+            <h2 class="h4 mt-4">Backups and maintenance</h2>
+            <p>
+                I use Proxmox Backup Server for guest backups and keep separate copies of important service and host configuration.
+                I update one node at a time, check quorum and guest health after each reboot, and exercise the services themselves.
+                For example, a short television recording checks the tuner, the guest and the storage path together.
+                Backup coverage varies by dataset, and restore testing is a separate part of recovery planning.
+            </p>
+        </div>
+    </div>
+</article>
