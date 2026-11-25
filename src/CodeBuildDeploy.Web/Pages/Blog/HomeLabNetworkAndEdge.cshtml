@@ -5,26 +5,37 @@
 
             <h2 class="h4 mt-4">From fibre to the office and the house</h2>
             <p>
-                My 2 Gbit/s fibre connection comes into a NanoPi R6S running FriendlyWrt. The WAN connects at 2.5 GbE, and the two LAN ports feed the office and house.
-                The office uses three 2.5 GbE switches and connects the Proxmox cluster and development workstations. The house uses four gigabit switches and three Tenda Nova Wi-Fi mesh nodes in bridge mode.
+                The HomeLab connects a 2 Gbit/s fibre service to a NanoPi R6S running FriendlyWrt. The WAN link negotiates at 2.5 GbE, and the two LAN ports feed the office and the house.
+                To mirror the setup, connect the office’s three 2.5 GbE switches in sequence for the Proxmox cluster and development workstations.
+                Connect the house’s four switches in the order shown below and run the three Tenda Nova Wi-Fi mesh nodes in bridge mode.
             </p>
             <pre class="bg-light rounded-3 p-3"><code>2 Gbit/s fibre
-└── NanoPi R6S / FriendlyWrt (2.5 GbE WAN)
+└── NanoPi R6S (2.5 GbE WAN) / FriendlyWrt
+    ├── Docker
+    │   ├── Primary PI-Hole/Unbound
+    │   └── NGinx Proxy Manager
     ├── Office (2.5 GbE LAN)
-    │   └── 3 × 2.5 GbE switches
+    │   └── Entry 5 port 2.5 GbE switch
+    │       └── Desk 5 port 2.5 GbE switch
+    │           └── Back 5 port 2.5 GbE switch
     └── House (1 GbE LAN)
-        ├── 4 × 1 GbE switches
-        └── 3 × Wi-Fi mesh nodes in bridge mode</code></pre>
+        ├── Router 5 port 1 GbE switch
+        │   └── TV 5 port 2.5 GbE switch
+        │       ├── Main/Living Room Wi-Fi mesh node (in bridge mode)
+        │       └── Kitchen 8 port 2.5 GbE switch
+        │           ├── Second/Kitchen Wi-Fi mesh node
+        │           └── Upstairs 5 port 2.5 GbE switch
+        │               └── Third/Upsatirs Wi-Fi mesh node
+        └── Secondary PI-Hole/Unbound</code></pre>
             <p>
-                The two wired branches are part of the same LAN bridge. FriendlyWrt provides the default gateway, firewall and DHCP,
-                and DHCP hands out both Pi-hole addresses. The house uplink is gigabit, so traffic from that branch to the internet or office shares that link.
-                The diagram groups switches and access points by branch.
+                Put both wired branches on the same LAN bridge and use FriendlyWrt as the default gateway, firewall and DHCP server. Configure DHCP to advertise both Pi-hole addresses.
+                The house shares a 1 GbE uplink for traffic to the internet or office, even though some links farther down the chain support 2.5 GbE.
             </p>
 
             <h2 class="h4 mt-4">Maintaining FriendlyWrt on the NanoPi R6S</h2>
             <p>
-                I use FriendlyElec’s Docker-capable FriendlyWrt build because the router also runs DNS and the reverse proxy.
-                I record the running firmware, driver and packages before upgrading. The commands below use the R6S interface names from my setup.
+                Choose FriendlyElec’s Docker-capable FriendlyWrt build to run Pi-hole and the reverse proxy on the R6S.
+                Before upgrading, record the running firmware, driver and installed packages. The commands below assume <code>eth2</code> is the WAN interface. Confirm the interface mapping on the router first.
                 The <a href="https://wiki.friendlyelec.com/wiki/index.php/NanoPi_R6S">NanoPi R6S wiki</a> covers port mapping, eMMC Tools and recovery.
                 Firmware and checksums are available from <a href="https://github.com/friendlyarm/Actions-FriendlyWrt/releases">FriendlyWrt releases</a>.
             </p>
@@ -37,35 +48,33 @@ apk info &gt; /tmp/friendlywrt-packages.txt
 sysupgrade -b /tmp/friendlywrt-config.tar.gz
 tar -tzf /tmp/friendlywrt-config.tar.gz</code></pre>
             <p>
-                I copy the archive and package list off the router, back up the Docker stacks and their persistent data separately,
-                and keep a bootable recovery microSD card handy. The <code>sysupgrade -b</code> command creates the configuration archive.
-                I compare the downloaded image’s SHA-256 with the value published for that exact release before uploading it.
+                Copy the configuration archive from <code>sysupgrade -b</code> and the package list off the router. Back up the Docker stacks and their persistent data separately,
+                and have a bootable recovery microSD card ready. Before uploading the image, compare its SHA-256 with the value published for that exact release.
             </p>
             <pre><code class="language-bash">sha256sum ./friendlywrt-r6s-image.tgz</code></pre>
             <p>
-                For the eMMC upgrade I use <strong>System → eMMC Tools</strong> in LuCI with the correct FriendlyElec archive for the R6S and its partition layout.
-                For a compatible minor upgrade the vendor tool offers a data-preserving option. My last upgrade still booted with factory settings,
-                so I reapplied the network and service settings selectively and remounted the Docker data. After boot I check the kernel and Ethernet driver again,
-                then test WAN routing, both DNS servers and HTTPS.
+                To upgrade the eMMC installation, open <strong>System → eMMC Tools</strong> in LuCI and select the FriendlyElec archive for the R6S and its partition layout.
+                The vendor tool offers a data-preserving option for compatible minor upgrades. The lab’s last upgrade booted with factory settings, which required selectively
+                restoring network and service settings and remounting the Docker data. After rebooting, check the kernel and Ethernet driver again, then test WAN routing, both DNS servers and HTTPS.
             </p>
             <p>
-                FriendlyWrt 25.12 uses <code>apk</code>. I use <code>apk update</code> to refresh the package index and
-                <code>apk list --upgradable</code> to inspect it. For system-wide updates I use a compatible firmware image, which supplies a matched kernel, drivers and packages.
-                In particular, I update the Realtek 2.5 GbE driver with the firmware. See the
+                FriendlyWrt 25.12 uses <code>apk</code>. Run <code>apk update</code> to refresh the package index and
+                <code>apk list --upgradable</code> to see which packages have updates. For a system-wide update, use a compatible firmware image so the kernel, Realtek 2.5 GbE driver and packages come from the same build. See the
                 <a href="https://openwrt.org/docs/guide-user/additional-software/apk">OpenWrt APK guide</a>.
             </p>
 
             <h2 class="h4 mt-4">Two Pi-hole DNS servers</h2>
             <p>
-                My primary Pi-hole runs in Docker on the NanoPi, with an Unbound container on the same Docker bridge. My secondary runs natively on a Raspberry Pi 3B,
-                with its own Unbound service on loopback. Each Pi-hole filters requests and sends public lookups to its own recursive resolver.
-                Clients can use either Pi-hole, so I keep local records and filtering policy in sync by hand and update one server at a time.
-                The addresses and hostnames in the commands below are examples to adapt to your LAN.
+                Run the primary Pi-hole in Docker on the NanoPi and place its Unbound container on the same Docker bridge.
+                Install the secondary Pi-hole directly on a Raspberry Pi 3B with its own Unbound service on loopback.
+                Each Pi-hole filters requests and sends public lookups to its own recursive resolver.
+                Clients can use either server, so keep the local DNS records and filtering policy in sync and update one server at a time.
+                Substitute addresses and hostnames from the target LAN in the examples below.
             </p>
 
             <h3 class="h5 mt-4">Primary Pi-hole on the NanoPi</h3>
             <p>
-                I run this stack from <code>/opt/stacks/pihole</code>. This example pins the images to versions used in the lab.
+                Save the Compose file under <code>/opt/stacks/pihole</code>. The example pins the images to versions used in the lab.
                 Pi-hole publishes DNS on TCP and UDP port 53 and its dashboard on port 8088, leaving ports 80 and 443 for the proxy.
                 Unbound is reachable from Pi-hole on the Docker bridge. Pick a bridge subnet that does not overlap your LAN or VPN,
                 and set <code>PIHOLE_PASSWORD</code> in a private <code>.env</code> file next to <code>docker-compose.yml</code>.
@@ -114,9 +123,9 @@ docker compose up -d
 docker compose ps
 docker compose exec pihole pihole status</code></pre>
             <p>
-                For a Docker update I export the Pi-hole settings with Teleporter and save the Compose file and persistent data off the router.
-                Then I change the pinned tag for the component I’m updating. The same pull and recreate sequence works for the Unbound service
-                by using <code>unbound</code> as the service name. I check DNS after each change.
+                Before updating the Docker stack, export the Pi-hole settings with Teleporter and save the Compose file and persistent data off the router.
+                Change the pinned image tag for the component being updated, then pull and recreate its container.
+                For Unbound, use <code>unbound</code> as the service name in the pull and recreate commands. Check DNS after each update.
             </p>
             <pre><code class="language-bash">docker compose config --quiet
 docker compose pull pihole
@@ -126,9 +135,9 @@ docker compose logs --tail=30 pihole</code></pre>
 
             <h3 class="h5 mt-4">Secondary Pi-hole on the Raspberry Pi</h3>
             <p>
-                Give the Pi a stable LAN address, such as <code>192.168.50.16</code>. I use the native installer on this host and keep DHCP on FriendlyWrt.
-                I install Unbound with APT, then save the loopback configuration from the Unbound guide as <code>/etc/unbound/unbound.conf.d/pi-hole.conf</code>
-                before running the configuration check below.
+                Give the Pi a stable LAN address, such as <code>192.168.50.16</code>, and keep DHCP on FriendlyWrt.
+                Install Unbound with APT and save the loopback configuration from the Unbound guide as <code>/etc/unbound/unbound.conf.d/pi-hole.conf</code>.
+                Check that Unbound answers on port 5335 before running the native Pi-hole installer.
                 See the <a href="https://docs.pi-hole.net/main/basic-install/">Pi-hole installation guide</a> and the
                 <a href="https://docs.pi-hole.net/guides/dns/unbound/">Unbound configuration guide</a>.
             </p>
@@ -148,7 +157,7 @@ sudo pihole-FTL --config dns.upstreams '["127.0.0.1#5335"]'
 sudo systemctl restart pihole-FTL
 sudo pihole status</code></pre>
             <p>
-                After exporting the secondary Pi-hole settings, I use the native updater for Pi-hole and the Debian package manager for Unbound.
+                Before updating the secondary server, export its Pi-hole settings. Use the native updater for Pi-hole and APT for Unbound.
                 See the <a href="https://docs.pi-hole.net/main/pihole-command/#update">Pi-hole update command</a>.
             </p>
             <pre><code class="language-bash">sudo pihole -up
@@ -156,8 +165,8 @@ sudo apt update
 sudo apt install --only-upgrade unbound
 sudo systemctl is-active pihole-FTL unbound</code></pre>
             <p>
-                From another LAN machine, I query both DNS servers directly. In this example the local name points to the reverse proxy on the NanoPi.
-                Add that same local record to each Pi-hole before testing the local lookup.
+                Add the same local record to each Pi-hole, pointing the example hostname to the reverse proxy on the NanoPi.
+                From another LAN machine, query both DNS servers directly over UDP and TCP, and check that each returns the same address for the local name.
             </p>
             <pre><code class="language-bash">for dns in 192.168.50.1 192.168.50.16; do
     dig "@@$dns" example.org
@@ -167,14 +176,14 @@ done</code></pre>
 
             <h2 class="h4 mt-4">Nginx Proxy Manager on the NanoPi</h2>
             <p>
-                Nginx Proxy Manager (NPM) gives my internal services usable names and terminates public HTTPS for the CodeBuildDeploy dev sites.
-                It runs in host-network mode so it can reach the private Istio frontend in Azure Kubernetes Service over the router’s WireGuard tunnel.
-                The proxy uses ports 80 and 443, and I use port 81 for LAN administration in this example. Keep that admin port restricted to the LAN.
+                Nginx Proxy Manager (NPM) gives internal services readable hostnames and terminates public HTTPS for the CodeBuildDeploy dev sites.
+                Run NPM in host-network mode so it can reach the private Istio frontend in Azure Kubernetes Service over the router’s WireGuard tunnel.
+                The proxy listens on ports 80 and 443. Restrict access to the admin interface on port 81 to the LAN.
                 See the <a href="https://nginxproxymanager.com/setup/">Nginx Proxy Manager setup guide</a> and
                 <a href="https://docs.docker.com/engine/network/drivers/host/">Docker host networking</a>.
             </p>
             <p>
-                I keep a separate Compose stack under <code>/opt/stacks/npm</code>. The <code>data</code> directory contains the configuration and SQLite database,
+                Create a separate Compose stack under <code>/opt/stacks/npm</code>. The <code>data</code> directory contains the configuration and SQLite database,
                 and <code>letsencrypt</code> stores certificate material.
             </p>
             <pre><code class="language-yaml">services:
@@ -191,8 +200,8 @@ docker compose up -d
 docker compose ps
 docker compose exec npm nginx -t</code></pre>
             <p>
-                In the admin UI, I create a proxy host, enter its hostname and backend address, and select the certificate on the SSL tab.
-                For the dev sites I select HTTPS and port 443 at the private upstream. In the Advanced tab I set the upstream TLS server name and enable certificate verification.
+                In the admin UI, create a proxy host, enter its hostname and backend address, and select the certificate on the SSL tab.
+                To mirror the dev sites, select HTTPS and port 443 for the private upstream. In the Advanced tab, set the upstream TLS server name and enable certificate verification.
                 Replace <code>dev.example.org</code> with the name on the upstream certificate for that proxy host. See the
                 <a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_name">Nginx upstream TLS directives</a>.
             </p>
@@ -202,8 +211,8 @@ proxy_ssl_verify on;
 proxy_ssl_verify_depth 3;
 proxy_ssl_trusted_certificate /etc/ssl/certs/ca-certificates.crt;</code></pre>
             <p>
-                Before upgrading, I read the release notes and back up the Compose file and both data directories with NPM stopped, so the SQLite database
-                and certificate files can be restored together. I run these commands as the stack administrator and copy the backup off the router.
+                Before upgrading, read the release notes and stop NPM. Back up the Compose file and both data directories together so the SQLite database
+                and certificate files can be restored as a set. Run these commands as the stack administrator and copy the backup off the router.
             </p>
             <pre><code class="language-bash">cd /opt/stacks/npm
 umask 077
@@ -212,8 +221,8 @@ docker compose stop npm
 tar -czf "$backup" docker-compose.yml data letsencrypt
 tar -tzf "$backup"</code></pre>
             <p>
-                Once the backup checks out, I change the pinned image tag, pull it and recreate the service.
-                If the backup fails, I bring the existing service back with <code>docker compose start npm</code> and resolve the backup issue before upgrading.
+                Once the backup checks out, change the pinned image tag, pull the new image and recreate the service.
+                If the backup fails, bring the existing service back with <code>docker compose start npm</code> and resolve the backup issue before upgrading.
                 See the <a href="https://nginxproxymanager.com/upgrading/">Nginx Proxy Manager upgrade guide</a>.
             </p>
             <pre><code class="language-bash">docker compose config --quiet
@@ -226,8 +235,8 @@ docker compose logs --tail=30 npm
 curl --fail --silent --show-error --output /dev/null \
     --resolve dev.example.org:443:192.168.50.1 https://dev.example.org/</code></pre>
             <p>
-                I also repeat the HTTPS check from outside the home network for public sites. That exercises public DNS, the edge certificate,
-                the WireGuard path and the application response together.
+                For a public site, repeat the HTTPS check from outside the home network using its public hostname without <code>--resolve</code>.
+                This tests public DNS, the edge certificate, the WireGuard path and the application response together.
             </p>
         </div>
     </div>
