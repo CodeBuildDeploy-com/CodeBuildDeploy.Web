@@ -3,29 +3,103 @@
         <div class="col-lg-9">
             <h1 class="pb-3">Azure Infrastructure</h1>
 
+            <p>
+                CodeBuildDeploy runs on Azure Kubernetes Service (AKS), with Azure SQL for application data, Azure Container Registry for release artifacts, and Key Vault for secrets and certificates.
+                Terraform manages the Azure resources and Azure DevOps deploys the application. Public HTTPS starts at the NanoPi in the HomeLab and reaches the Azure application over WireGuard.
+                This setup gives the site a working example of provisioning infrastructure, releasing services and verifying a deployment across the home network and Azure.
+            </p>
+
+            <h2 class="h4 mt-4">Azure subscriptions</h2>
+            <p>
+                The personal Visual Studio Enterprise subscription, with £120 a month in Azure credit, hosts the CodeBuildDeploy non-production environment.
+                Production previously used a separate personal Visual Studio Premium with MSDN subscription that came with a boxed edition acquired in 2005. That benefit has since been disabled due to inactivity.
+                A third Visual Studio Enterprise subscription is available through a work account, also with £120 a month in Azure credit. It is unused and reserved for a future HomeLab extension.
+            </p>
+
             <h2 class="h4 mt-4">Three Terraform layers</h2>
             <p>
-                I split the infrastructure across three repositories.
-                Platform.Subscription defines shared subscription resources, including a Key Vault and access assignments.
-                Platform.Environment defines the shared Azure network, Kubernetes cluster, container registry and SQL server for an environment.
-                Platform.App defines resources for each application environment, including its database, storage and Kubernetes namespace.
+                Each layer has its own Git repository and <code>terraform/</code> directory. Subscription resources are provisioned first, followed by the shared platform environment and then the individual application environment.
+                For example, the dev application gets its own database and Kubernetes namespace while using the non-production AKS cluster, registry and SQL server.
+            </p>
+            <pre class="bg-light rounded-3 p-3"><code>Platform.Subscription
+├── Shared resource group, Key Vault, Entra ID groups and role assignments
+└── Platform.Environment (shared non-production infrastructure)
+    ├── Virtual network and WireGuard VM
+    ├── AKS, Istio control plane and Gateway API
+    ├── Azure Container Registry and Azure SQL server
+    └── Platform.App (CodeBuildDeploy dev)
+        ├── Storage and Azure SQL database
+        ├── Kubernetes namespace, secrets and Istio gateway
+        └── App pipeline deploys Blogs, Identity and Web with Helm</code></pre>
+            <p>
+                Platform.Environment manages the Istio installation for the cluster. Platform.App manages the shared gateway release in the application namespace, and each service chart installs its own <code>HTTPRoute</code>.
+                Application routing can therefore change on an app release without reinstalling the cluster's Istio control plane.
             </p>
 
             <h2 class="h4 mt-4">From plan to deployment</h2>
             <p>
-                Azure DevOps uses a shared Terraform template across the three repositories.
-                The target selects its own variables and Azure Blob Storage state file.
-                The pipeline creates a plan and applies that saved plan when the deployment is enabled and there are changes.
-                When work spans all three layers, the order is Subscription, Environment, then App.
-                The App pipeline then uses Helm to release Blogs, Identity and Web.
+                The three repositories use a shared Azure DevOps template. A target selects the Azure service connection, a <code>.tfvars</code> file and a state key in Azure Blob Storage.
+                The personal Enterprise subscription, shared non-production platform and dev application use <code>enterprise.tfstate</code>, <code>nonprod.tfstate</code> and <code>nonprod-dev.tfstate</code> respectively.
+                Infrastructure changes are previewed in a Terraform plan. When apply is enabled and the plan contains changes, the pipeline applies that saved plan.
+                HashiCorp documents the <a href="https://developer.hashicorp.com/terraform/language/backend/azurerm">AzureRM backend</a> and <a href="https://developer.hashicorp.com/terraform/cli/commands/plan">Terraform plan command</a>.
+            </p>
+            <p>
+                The commands below show a plan from the App repository's <code>terraform/</code> directory. They assume the intended Azure subscription is selected and the session can access the state storage,
+                Azure resources and AKS. The example backend file is supplied locally with the state storage account, container, authentication settings and the <code>nonprod-dev.tfstate</code> key.
+                A saved plan can contain sensitive values, so it is kept out of source control.
+            </p>
+            <pre><code class="language-bash">az account show --query '{subscription:name, id:id}' --output table
+export ARM_SUBSCRIPTION_ID="$(az account show --query id --output tsv)"
+terraform init -backend-config=nonprod-dev.azurerm.tfbackend
+terraform validate
+terraform plan -var-file=tfvars/dev.tfvars -out=main.tfplan
+terraform show main.tfplan</code></pre>
+            <p>
+                The App pipeline then installs or upgrades the pinned OCI Helm charts for Blogs, Identity and Web from Azure Container Registry.
+                The production pipeline is configured to wait for approval before promoting pinned artifacts into the production registry and deploying them.
+                The running dev environment uses the non-production registry. Production approvals use <a href="https://learn.microsoft.com/en-us/azure/devops/pipelines/process/approvals?view=azure-devops">Azure DevOps environment checks</a>.
             </p>
 
-            <h2 class="h4 mt-4">Connecting Azure to the HomeLab</h2>
+            <h2 class="h4 mt-4">Private AKS ingress over WireGuard</h2>
             <p>
-                The dev sites use an Istio gateway on AKS with a private frontend.
-                The reverse proxy at home reaches it over WireGuard.
-                The Environment layer owns the Istio control plane, while the App layer owns the dev gateway release.
-                That split lets me deploy changes to the application's routing independently of changes to the cluster's Istio installation.
+                Public DNS sends both CodeBuildDeploy dev domains to Nginx Proxy Manager on the NanoPi. The proxy terminates the visitor's HTTPS connection and opens a second HTTPS connection to the private Azure frontend.
+                It uses the original hostname for TLS server name indication (SNI) and verifies the origin certificate. The
+                <a asp-page="/Blog/ViewBlogEntry" asp-route-urlSlug="homelab-network-and-edge">Network and edge article</a> covers the NanoPi and reverse proxy setup.
+            </p>
+            <pre class="bg-light rounded-3 p-3"><code>Browser → Nginx Proxy Manager on the NanoPi (public HTTPS)
+            └── WireGuard → Azure WireGuard VM
+                └── AKS internal load balancer (private TCP 443)
+                    └── Istio Gateway and HTTPRoutes
+                        ├── Web
+                        ├── Blogs API
+                        └── Identity</code></pre>
+            <p>
+                The Azure VM initiates the tunnel and forwards HTTPS traffic using its private virtual network address as the source. The internal load balancer accepts connections from that address on TCP 443.
+                Istio terminates the upstream TLS connection and routes the requests to the appropriate Kubernetes service by hostname and path.
+                The former public AKS frontend was retired after both dev domains passed HTTPS checks through the private path.
+                Microsoft documents <a href="https://learn.microsoft.com/en-us/azure/aks/internal-lb">AKS internal load balancers</a>, and Gateway API documents <a href="https://gateway-api.sigs.k8s.io/guides/user-guides/http-routing/">HTTP routing</a>.
+            </p>
+
+            <h2 class="h4 mt-4">Deployment checks and recovery</h2>
+            <p>
+                After a deploy, the Helm revisions and running workloads show what was released. The Gateway and routes show whether Istio accepted the configuration and resolved the backend references.
+                An external HTTPS request then exercises public DNS, the NanoPi proxy, WireGuard and the private gateway together. The homepage, blog API and login page exercise different routes through the same gateway.
+            </p>
+            <pre><code class="language-bash"># With the non-production AKS context selected
+kubectl config current-context
+ns=cbd-nonprod-dev
+helm list -n "$ns"
+kubectl get deployments,pods -n "$ns"
+kubectl get service codebuilddeploy-dev-private -n "$ns"
+kubectl get gateway,httproute -n "$ns"
+kubectl describe httproute -n "$ns"
+
+# From outside the HomeLab network
+curl --fail --silent --show-error --output /dev/null https://dev.codebuilddeploy.com/</code></pre>
+            <p>
+                Before a change spanning several layers, snapshots of the Terraform state blobs provide a record of the resource mappings, and the current Helm revisions identify the running releases.
+                A previous Helm revision can be used to roll back a release. A state snapshot records Terraform's view of Azure resources, while Azure SQL point-in-time recovery covers database data separately.
+                The <a href="https://helm.sh/docs/helm/helm_history/">Helm history command</a> lists revisions for a release.
             </p>
         </div>
     </div>
