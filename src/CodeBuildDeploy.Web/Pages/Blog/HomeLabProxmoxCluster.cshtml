@@ -3,27 +3,118 @@
         <div class="col-lg-9">
             <h1 class="pb-3">Proxmox cluster</h1>
 
-            <h2 class="h4 mt-4">What runs on the cluster</h2>
             <p>
-                My three-node Proxmox VE cluster runs a mix of virtual machines and Linux containers.
-                Home Assistant runs in its own VM.
-                The cluster also hosts media services, Frigate for camera recording and detection, and workstation VMs for development.
-                I keep workstation maintenance separate from routine updates to the services the household relies on.
+                Three Proxmox VE hosts on the office network run the HomeLab's development workstations, home automation, cameras and media services.
+                A Ryzen desktop provides most of the storage and workstation capacity, while two mini PCs run the services that are normally left on.
+                Each host connects at 2.5 GbE and uses a Linux bridge, <code>vmbr0</code>, to put guest interfaces on the same LAN as the hosts.
+            </p>
+            <pre class="bg-light rounded-3 p-3"><code>Office network (2.5 GbE)
+├── n1 · Ryzen 9 5900X, 64 GB RAM, RTX 2060
+│   ├── Windows and Linux workstation VMs
+│   ├── Tvheadend VM with a PCIe tuner
+│   └── NAS and Proxmox Backup Server containers
+├── n2 · Ryzen 7 7735HS, 32 GB RAM
+│   ├── Frigate VM with GPU and USB Coral passthrough
+│   └── Home Assistant OS VM with USB radio access
+└── n3 · Ryzen 7 7735HS, 32 GB RAM
+    ├── Plex VM
+    └── Immich and media automation containers</code></pre>
+
+            <h2 class="h4 mt-4">Cluster networking and quorum</h2>
+            <p>
+                Stable host addresses and name resolution give Corosync a consistent path between the three nodes. Each node has one vote, and two votes are enough to retain quorum while a third node reboots.
+                Cluster membership provides a single view of the hosts and their guests in the web interface. Guest disks are primarily local, and the setup has no automatic HA failover or guest replication.
+                Workloads on a host undergoing maintenance are brought back on that host after the reboot. The <a href="https://pve.proxmox.com/pve-docs/pve-admin-guide.pdf">Proxmox VE administration guide</a> covers cluster creation, quorum and Linux bridges.
+            </p>
+            <pre><code class="language-bash">pvecm status
+pvecm nodes
+ip -br link show vmbr0
+qm list
+pct list</code></pre>
+            <p>
+                The first two commands show cluster membership and quorum. The guest lists show the VMs and LXCs on the node where the commands run.
             </p>
 
             <h2 class="h4 mt-4">Storage and hardware dependencies</h2>
             <p>
-                Some guests depend on hardware attached to a particular host, such as USB radios for Home Assistant or a tuner for television recording.
-                The NAS provides shared storage for services that need it, while Frigate uses dedicated recording storage.
-                These dependencies influence where a guest can run and which services need to come back first after maintenance.
+                n1 has separate ZFS mirrors for NVMe and hard disk storage, alongside single-disk SSD pools. Its NAS container exports selected directories over SMB to Plex, Immich and the media automation services on n3.
+                Tvheadend also writes recordings to a NAS share. These are application data paths. The guests still boot from their own Proxmox storage.
+                The mini PCs use local LVM-thin storage for guest disks. Checking physical thin-pool usage matters because virtual disks can add up to more than the pool can hold.
+            </p>
+            <pre><code class="language-bash"># On a Proxmox host
+pvesm status
+lvs -o vg_name,lv_name,lv_size,data_percent,metadata_percent
+
+# On n1, which hosts the ZFS pools
+zpool status -x
+zpool list</code></pre>
+
+            <h3 class="h5 mt-4">Frigate and Home Assistant on n2</h3>
+            <p>
+                Frigate runs in Docker Compose inside a Debian VM. The VM uses the mini PC's Radeon GPU for video decoding and a USB Coral for object detection.
+                A dedicated 500 GB disk is passed through to the VM, mounted at <code>/mnt/frigate_storage</code> and mapped into the container as <code>/media/frigate</code>.
+                The <a href="https://docs.frigate.video/frigate/installation/">Frigate installation guide</a> explains the container volume mappings and hardware access.
+            </p>
+            <p>
+                Home Assistant OS runs in a separate VM with its own USB controller assignment and Zigbee coordinator access. Its dashboards and configuration are versioned separately.
+                Proxmox starts Frigate first and waits 120 seconds before requesting the Home Assistant start. Application checks after boot cover fresh Frigate recordings, Coral detection and a representative Home Assistant sensor update.
+                The <a href="https://www.home-assistant.io/installation/alternative/">Home Assistant OS installation guide</a> provides the KVM/Proxmox disk image.
+            </p>
+            <pre><code class="language-bash"># On n2, inspect the two VM configurations and passthrough devices
+qm config 100
+qm config 105
+lspci -nnk
+
+# Inside the Frigate VM, from the Compose project directory
+findmnt --mountpoint /mnt/frigate_storage
+docker compose config --quiet
+docker compose ps
+docker compose logs --tail=30 frigate</code></pre>
+
+            <h3 class="h5 mt-4">Media and tuner services</h3>
+            <p>
+                Plex and Immich on n3 depend on n1's SMB shares for media and photos. When n1 comes back after maintenance, the ZFS pools and NAS shares are checked before those applications resume reading and writing.
+                On n1, Tvheadend uses a passed-through TBS PCIe tuner with driver modules built for the VM's Debian kernel. A guest kernel upgrade can require rebuilding those modules.
+                After reboot, the appearance of the DVB adapters and a short recording to the NAS exercise the tuner, the guest and the storage path together.
             </p>
 
-            <h2 class="h4 mt-4">Backups and maintenance</h2>
+            <h2 class="h4 mt-4">Guest backups and recovery</h2>
             <p>
-                I use Proxmox Backup Server for guest backups and keep separate copies of important service and host configuration.
-                I update one node at a time, check quorum and guest health after each reboot, and exercise the services themselves.
-                For example, a short television recording checks the tuner, the guest and the storage path together.
-                Backup coverage varies by dataset, and restore testing is a separate part of recovery planning.
+                Proxmox Backup Server runs in an LXC on n1, with a datastore on a dedicated SSD-backed ZFS pool. Scheduled jobs cover selected service guests across all three nodes.
+                A recent successful backup is checked for accessibility and coverage before maintenance. A separate archive of the backup server's own container and a copy of n1's host configuration are held on another node so they can be retrieved while n1 is down.
+            </p>
+            <p>
+                The guest backups cover selected virtual disks and container root filesystems. NAS media, Immich's photo bind mount and Frigate's separately passed-through recording disk sit outside those jobs.
+                Checking a snapshot for integrity and restoring a guest from it are separate recovery checks. The <a href="https://pbs.proxmox.com/docs/maintenance.html">Proxmox Backup Server maintenance guide</a> describes pruning, garbage collection and verification jobs.
+            </p>
+            <pre><code class="language-bash"># From a Proxmox host while the backup datastore is available
+pvesm status --storage pbs-ssd2
+pvesm list pbs-ssd2 --vmid 105</code></pre>
+
+            <h2 class="h4 mt-4">Rolling maintenance</h2>
+            <p>
+                Routine maintenance goes through n2, n3 and then n1, with one host offline at a time. Before updating a host, the other two nodes are checked for quorum, running guests are shut down cleanly,
+                and services that depend on its storage are paused. Development workstation VMs are maintained separately and stay stopped after the host reboot.
+                Home Assistant OS handles its own updates, and a Debian update inside the Frigate VM leaves the pinned Docker image at its existing version.
+            </p>
+            <pre><code class="language-bash"># On the host, after checking backups and stopping its guests
+pveversion -v
+apt update
+apt --simulate full-upgrade
+
+# After reviewing the proposed changes
+apt full-upgrade
+
+# After reboot
+uname -r
+pvecm status
+pvesm status
+systemctl --failed
+qm list
+pct list</code></pre>
+            <p>
+                The next node waits until the rebooted host has rejoined the cluster, its storage is available, and the intended guests and services have recovered.
+                On n2 that includes camera feeds and home automation. On n3 it includes the media and photo mounts. On n1 the NAS shares and backup datastore come back before dependent services, followed by a Tvheadend recording check.
             </p>
         </div>
     </div>

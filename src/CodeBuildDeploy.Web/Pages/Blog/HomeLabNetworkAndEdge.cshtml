@@ -3,30 +3,29 @@
         <div class="col-lg-9">
             <h1 class="pb-3">Network and edge</h1>
 
-            <h2 class="h4 mt-4">From fibre to the office and the house</h2>
             <p>
                 The HomeLab connects a 2 Gbit/s fibre service to a NanoPi R6S running FriendlyWrt. The WAN link negotiates at 2.5 GbE, and the two LAN ports feed the office and the house.
-                The office’s three 2.5 GbE switches are connected in sequence accross the office for Proxmox cluster nodes and workstations to be physically connected to the network.
-                The 1 GbE LAN port is then for the house’s four switches, again chained together accross the house, also providing a hard wired backbone for the three Tenda Nova Wi-Fi mesh nodes in bridge mode.
+                The office’s three 2.5 GbE switches are connected in sequence across the office for Proxmox cluster nodes and workstations to be physically connected to the network.
+                The 1 GbE LAN port is then for the house’s four switches, again chained together across the house, also providing a hard-wired backbone for the three Tenda Nova Wi-Fi mesh nodes in bridge mode.
             </p>
             <pre class="bg-light rounded-3 p-3"><code>2 Gbit/s fibre
 └── NanoPi R6S (2.5 GbE WAN) / FriendlyWrt
     ├── Docker
-    │   ├── Primary PI-Hole/Unbound
-    │   └── NGinx Proxy Manager
+    │   ├── Primary Pi-hole/Unbound
+    │   └── Nginx Proxy Manager
     ├── Office (2.5 GbE LAN)
-    │   └── Entry 5 port 2.5 GbE switch
-    │       └── Desk 5 port 2.5 GbE switch
-    │           └── Back 5 port 2.5 GbE switch
+    │   └── Entry 5-port 2.5 GbE switch
+    │       └── Desk 5-port 2.5 GbE switch
+    │           └── Back 5-port 2.5 GbE switch
     └── House (1 GbE LAN)
-        ├── Router 5 port 1 GbE switch
-        │   └── TV 5 port 2.5 GbE switch
-        │       ├── Main/Living Room Wi-Fi mesh node (in bridge mode)
-        │       └── Kitchen 8 port 2.5 GbE switch
-        │           ├── Second/Kitchen Wi-Fi mesh node
-        │           └── Upstairs 5 port 2.5 GbE switch
-        │               └── Third/Upsatirs Wi-Fi mesh node
-        └── Secondary PI-Hole/Unbound</code></pre>
+        └── Router 5-port 1 GbE switch
+            ├── Secondary Pi-hole/Unbound On Raspberry PI 3b
+            └── TV 5-port 2.5 GbE switch
+                ├── Main/Living Room Wi-Fi mesh node (in bridge mode)
+                └── Kitchen 8-port 2.5 GbE switch
+                    ├── Second/Kitchen Wi-Fi mesh node
+                    └── Upstairs 5-port 2.5 GbE switch
+                        └── Third/Upstairs Wi-Fi mesh node</code></pre>
             <p>
                 Both wired branches share a LAN bridge. FriendlyWrt acts as the default gateway, firewall and DHCP server, and advertises both Pi-hole addresses to clients.
                 The house shares a 1 GbE uplink for traffic to the internet or office, even though some links farther down the chain support 2.5 GbE.
@@ -61,6 +60,97 @@ tar -tzf /tmp/friendlywrt-config.tar.gz</code></pre>
                 FriendlyWrt 25.12 uses <code>apk</code>. The <code>apk update</code> command refreshes the package index, and <code>apk list --upgradable</code> shows available package updates.
                 System-wide updates come through a compatible firmware image, keeping the kernel, Realtek 2.5 GbE driver and packages on the same build.
                 Package management is covered in the <a href="https://openwrt.org/docs/guide-user/additional-software/apk">OpenWrt APK guide</a>.
+            </p>
+
+            <h2 class="h4 mt-4">WireGuard between the NanoPi and Azure</h2>
+            <p>
+                A WireGuard tunnel carries HTTPS from Nginx Proxy Manager on the NanoPi to the private Istio frontend in Azure Kubernetes Service (AKS).
+                Terraform provisions the Azure WireGuard VM and its fixed outbound IP. The VM initiates the tunnel to the NanoPi's WAN address and sends a keepalive every 25 seconds.
+                The NanoPi learns the endpoint from Azure's authenticated handshake. Non-production is active, and production has a separate interface and key pair staged with its WAN port closed.
+                WireGuard's <a href="https://www.wireguard.com/quickstart/">quick start</a> covers key generation and keepalives.
+            </p>
+            <p>
+                On FriendlyWrt, the non-production tunnel uses a dedicated WireGuard interface with its own tunnel address and UDP listening port.
+                Each peer keeps its private key locally and shares its public key with the other. The router's WAN firewall allows traffic to the listener only from the Azure VM's fixed outbound IP.
+                The tunnel sits in a separate firewall zone that permits router-originated traffic and rejects new incoming and forwarded connections.
+            </p>
+            <p>
+                The Azure peer's <code>AllowedIPs</code> on the NanoPi contain two host routes (<code>/32</code>), one for the Azure peer's tunnel address and one for the private Istio frontend.
+                The route to Istio uses the NanoPi's tunnel address as its source. The Azure VM forwards the HTTPS traffic and translates its source to the VM's virtual network address,
+                which is the only source allowed by the private Azure load balancer. The default internet route and the separate NordVPN policy routes continue to serve their usual traffic.
+            </p>
+            <p>
+                The router checks below show the handshake, transfer counters and route to the private frontend. The sample frontend address should be replaced with the address assigned by Azure.
+                A direct HTTPS request from NPM using the site's hostname then verifies both the tunnel path and the origin certificate before the proxy upstream is switched.
+            </p>
+            <pre><code class="language-bash">wg show cbd_wg_np latest-handshakes
+wg show cbd_wg_np transfer
+ip route get 10.50.4.120</code></pre>
+
+            <h2 class="h4 mt-4">Nginx Proxy Manager on the NanoPi</h2>
+            <p>
+                Nginx Proxy Manager (NPM) gives internal services readable hostnames and terminates public HTTPS for the CodeBuildDeploy dev sites.
+                NPM uses host networking to reach the private Istio frontend in Azure Kubernetes Service over the router’s WireGuard tunnel.
+                The proxy listens on ports 80 and 443, and the admin interface on port 81 is intended for LAN access only.
+                More detail is available in the <a href="https://nginxproxymanager.com/setup/">Nginx Proxy Manager setup guide</a> and the
+                <a href="https://docs.docker.com/engine/network/drivers/host/">Docker host networking documentation</a>.
+            </p>
+            <p>
+                NPM runs in a separate Compose stack under <code>/opt/stacks/npm</code>. The <code>data</code> directory contains the configuration and SQLite database,
+                and <code>letsencrypt</code> stores certificate material.
+            </p>
+            <pre><code class="language-yaml">services:
+  npm:
+    image: jc21/nginx-proxy-manager:2.17.1
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt</code></pre>
+            <pre><code class="language-bash">cd /opt/stacks/npm
+docker compose config --quiet
+docker compose up -d
+docker compose ps
+docker compose exec npm nginx -t</code></pre>
+            <p>
+                Each proxy host in the admin UI maps a hostname to a backend address and has a certificate selected on the SSL tab.
+                The CodeBuildDeploy dev sites use HTTPS on port 443 to the private upstream. The Advanced tab contains the settings that send the upstream TLS server name and verify its certificate.
+                In the example, <code>dev.example.org</code> represents the name on that certificate. The options are documented in the
+                <a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_name">Nginx upstream TLS directives</a>.
+            </p>
+            <pre><code class="language-nginx">proxy_ssl_server_name on;
+proxy_ssl_name dev.example.org;
+proxy_ssl_verify on;
+proxy_ssl_verify_depth 3;
+proxy_ssl_trusted_certificate /etc/ssl/certs/ca-certificates.crt;</code></pre>
+            <p>
+                An NPM upgrade starts with a review of the release notes and a backup while the service is stopped.
+                The archive captures the Compose file and both data directories, so the SQLite database and certificates can be restored as a set.
+                The stack administrator creates the archive and keeps a copy off the router.
+            </p>
+            <pre><code class="language-bash">cd /opt/stacks/npm
+umask 077
+backup="$HOME/npm-before-$(date +%Y%m%d-%H%M%S).tar.gz"
+docker compose stop npm
+tar -czf "$backup" docker-compose.yml data letsencrypt
+tar -tzf "$backup"</code></pre>
+            <p>
+                After verification of the backup, the pinned image tag changes and Compose pulls the new image and recreates the service.
+                If the backup fails, <code>docker compose start npm</code> brings the existing service back while the backup issue is resolved.
+                The process is covered in the <a href="https://nginxproxymanager.com/upgrading/">Nginx Proxy Manager upgrade guide</a>.
+            </p>
+            <pre><code class="language-bash">docker compose config --quiet
+docker compose pull npm
+docker compose up -d --no-deps npm
+docker compose exec npm nginx -t
+docker compose logs --tail=30 npm
+
+# From a LAN client, test HTTPS at the proxy using the real site name
+curl --fail --silent --show-error --output /dev/null \
+    --resolve dev.example.org:443:192.168.50.1 https://dev.example.org/</code></pre>
+            <p>
+                The local HTTPS check targets the proxy directly. A separate check from outside the home network uses the site’s public hostname without <code>--resolve</code>
+                to exercise public DNS, the edge certificate, the WireGuard path and the application response together.
             </p>
 
             <h2 class="h4 mt-4">Two Pi-hole DNS servers</h2>
@@ -170,72 +260,6 @@ sudo systemctl is-active pihole-FTL unbound</code></pre>
     dig "@@$dns" +tcp example.org
     dig "@@$dns" app.home.arpa +short
 done</code></pre>
-
-            <h2 class="h4 mt-4">Nginx Proxy Manager on the NanoPi</h2>
-            <p>
-                Nginx Proxy Manager (NPM) gives internal services readable hostnames and terminates public HTTPS for the CodeBuildDeploy dev sites.
-                NPM uses host networking to reach the private Istio frontend in Azure Kubernetes Service over the router’s WireGuard tunnel.
-                The proxy listens on ports 80 and 443, and the admin interface on port 81 is intended for LAN access only.
-                More detail is available in the <a href="https://nginxproxymanager.com/setup/">Nginx Proxy Manager setup guide</a> and the
-                <a href="https://docs.docker.com/engine/network/drivers/host/">Docker host networking documentation</a>.
-            </p>
-            <p>
-                NPM runs in a separate Compose stack under <code>/opt/stacks/npm</code>. The <code>data</code> directory contains the configuration and SQLite database,
-                and <code>letsencrypt</code> stores certificate material.
-            </p>
-            <pre><code class="language-yaml">services:
-  npm:
-    image: jc21/nginx-proxy-manager:2.17.1
-    network_mode: host
-    restart: unless-stopped
-    volumes:
-      - ./data:/data
-      - ./letsencrypt:/etc/letsencrypt</code></pre>
-            <pre><code class="language-bash">cd /opt/stacks/npm
-docker compose config --quiet
-docker compose up -d
-docker compose ps
-docker compose exec npm nginx -t</code></pre>
-            <p>
-                Each proxy host in the admin UI maps a hostname to a backend address and has a certificate selected on the SSL tab.
-                The CodeBuildDeploy dev sites use HTTPS on port 443 to the private upstream. The Advanced tab contains the settings that send the upstream TLS server name and verify its certificate.
-                In the example, <code>dev.example.org</code> represents the name on that certificate. The options are documented in the
-                <a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_name">Nginx upstream TLS directives</a>.
-            </p>
-            <pre><code class="language-nginx">proxy_ssl_server_name on;
-proxy_ssl_name dev.example.org;
-proxy_ssl_verify on;
-proxy_ssl_verify_depth 3;
-proxy_ssl_trusted_certificate /etc/ssl/certs/ca-certificates.crt;</code></pre>
-            <p>
-                An NPM upgrade starts with a review of the release notes and a backup while the service is stopped.
-                The archive captures the Compose file and both data directories, so the SQLite database and certificates can be restored as a set.
-                The stack administrator creates the archive and keeps a copy off the router.
-            </p>
-            <pre><code class="language-bash">cd /opt/stacks/npm
-umask 077
-backup="$HOME/npm-before-$(date +%Y%m%d-%H%M%S).tar.gz"
-docker compose stop npm
-tar -czf "$backup" docker-compose.yml data letsencrypt
-tar -tzf "$backup"</code></pre>
-            <p>
-                After verification of the backup, the pinned image tag changes and Compose pulls the new image and recreates the service.
-                If the backup fails, <code>docker compose start npm</code> brings the existing service back while the backup issue is resolved.
-                The process is covered in the <a href="https://nginxproxymanager.com/upgrading/">Nginx Proxy Manager upgrade guide</a>.
-            </p>
-            <pre><code class="language-bash">docker compose config --quiet
-docker compose pull npm
-docker compose up -d --no-deps npm
-docker compose exec npm nginx -t
-docker compose logs --tail=30 npm
-
-# From a LAN client, test HTTPS at the proxy using the real site name
-curl --fail --silent --show-error --output /dev/null \
-    --resolve dev.example.org:443:192.168.50.1 https://dev.example.org/</code></pre>
-            <p>
-                The local HTTPS check targets the proxy directly. A separate check from outside the home network uses the site’s public hostname without <code>--resolve</code>
-                to exercise public DNS, the edge certificate, the WireGuard path and the application response together.
-            </p>
         </div>
     </div>
 </article>
